@@ -1,0 +1,846 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Functions &mdash; documentación de Julia Language - 0.3-dev</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="documentación de Julia Language - 0.3-dev" href="../index.html"/>
+        <link rel="up" title="El Manual de Julia" href="index.html"/>
+        <link rel="next" title="Control Flow" href="control-flow.html"/>
+        <link rel="prev" title="Strings" href="strings.html"/>
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://julia-es-la.readthedocs.org/es/latest/manual/functions.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "julia-es-la",
+    version: "latest",
+    language: "es",
+    page: "manual/functions",
+    theme: "julia",
+    docroot: "/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "julia-es-la";
+  var page_name = "manual/functions";
+  var html_theme = "julia";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://julialang.org/"><img src="../_static/julia-logo.svg" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> Julia Language</a>
+        -->
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">El Manual de Julia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Comenzando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers-and-floating-point-numbers.html">Integers and Floating-Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematical-operations.html">Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex-and-rational-numbers.html">Complex and Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings.html">Strings</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-flow.html">Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-scoping.html">Variables and Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constructors.html">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion-and-promotion.html">Conversion and Promotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metaprogramming.html">Metaprogramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arreglos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#sparse-matrices">Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-computing.html">Parallel Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-external-programs.html">Running External Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calling-c-and-fortran-code.html">Calling C and Fortran Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Julia Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance-tips.html">Performance Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/index.html">Libreria estandar de Julia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-ins">Built-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-in-modules">Built-in Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packagelist.html">Paquetes Disponibles (en inglés)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id1">ArgParse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id2">Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id3">BinDeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id4">BioSeq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id5">BloomFilters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id7">Cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id8">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id10">Calendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id11">Catalan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id12">Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id13">Clp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id14">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id16">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id17">CoinMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id19">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id21">Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id23">ContinuedFractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id25">Cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id26">Cubature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id27">Curl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id28">DICOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id30">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id31">DataStructures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id32">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id33">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id34">Devectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id36">DictViews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id37">DimensionalityReduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id39">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id41">Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id42">Elliptic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id44">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id46">FITSIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id48">FactCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id49">FastaRead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id51">FileFind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id53">GLFW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id54">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id56">GLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id58">GLUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id59">GSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id60">GZip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id61">Gadfly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id63">Gaston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id64">GetC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id66">GoogleCharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id67">Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id69">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id71">Gtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id72">Gurobi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id74">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id76">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id78">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id79">Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id81">HypothesisTests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id82">ICU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id84">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id86">ImmutableArrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id87">IniFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id89">Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id91">Ito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id92">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id94">JudyDicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id95">JuliaWebRepl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id97">Jyacas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id99">KLDivergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id101">LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id103">Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id105">LazySequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id107">LinProgGLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id109">Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id111">MAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id113">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id115">MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id116">MLBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id118">MarketTechnicals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id119">MathProg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id120">MathProgBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id122">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id124">MixedModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id125">Monads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id126">Mongo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id127">Mongrel2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id129">Mustache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id131">NHST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id133">NLopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id135">Named</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id137">ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id138">ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id140">OpenGL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id142">OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id144">Optim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id146">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id148">PLX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id150">PatternDispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id152">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id154">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id156">ProjectTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id158">PyCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id160">QuickCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id162">RDatasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id164">RNGTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id165">RandomMatrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id167">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id169">Rif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id170">Rmath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id172">SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id173">SDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id175">SemidefiniteProgramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id177">SimJulia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id178">Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id179">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id181">StrPack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id183">Sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id185">SymbolicLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id187">TOML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id188">TextAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id190">TextWrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id192">TimeModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id194">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id196">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id198">TkExtras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id200">TopicModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id201">TradingInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id203">Trie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id205">UTF16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id207">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id209">WAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id210">Winston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id212">ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id214">Zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id216">kNN</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Julia Language</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">El Manual de Julia</a> &raquo;</li>
+      
+    <li>Functions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/lbenitesanchez/julia-doc-es-la/blob/master/manual/functions.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="functions">
+<span id="man-functions"></span><h1>Functions<a class="headerlink" href="#functions" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>In Julia, a function is an object that maps a tuple of argument values
+to a return value. Julia functions are not pure mathematical functions,
+in the sense that functions can alter and be affected by the global
+state of the program. The basic syntax for defining functions in Julia
+is:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This syntax is similar to MATLAB, but there are some significant
+differences:</p>
+<ul class="simple">
+<li>In MATLAB, this definition must be saved in a file, named <tt class="docutils literal"><span class="pre">f.m</span></tt>,
+whereas in Julia, this expression can appear anywhere, including in
+an interactive session.</li>
+<li>In MATLAB, the closing <tt class="docutils literal"><span class="pre">end</span></tt> is optional, being implied by the end
+of the file. In Julia, the terminating <tt class="docutils literal"><span class="pre">end</span></tt> is required.</li>
+<li>In MATLAB, this function would print the value <tt class="docutils literal"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></tt> but would
+not return any value, whereas in Julia, the last expression evaluated
+is a function&#8217;s return value.</li>
+<li>Expression values are never printed automatically except in
+interactive sessions. Semicolons are only required to separate
+expressions on the same line.</li>
+</ul>
+<p>In general, while the function definition syntax is reminiscent of
+MATLAB, the similarity is largely superficial. Therefore, rather than
+continually comparing the two, in what follows, we will simply describe
+the behavior of functions in Julia directly.</p>
+<p>There is a second, more terse syntax for defining a function in Julia.
+The traditional function declaration syntax demonstrated above is
+equivalent to the following compact &#8220;assignment form&#8221;:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>In the assignment form, the body of the function must be a single
+expression, although it can be a compound expression (see
+<a class="reference internal" href="control-flow.html#man-compound-expressions"><em>Compound Expressions</em></a>). Short, simple
+function definitions are common in Julia. The short function syntax is
+accordingly quite idiomatic, considerably reducing both typing and
+visual noise.</p>
+<p>A function is called using the traditional parenthesis syntax:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">5</span>
+</pre></div>
+</div>
+<p>Without parentheses, the expression <tt class="docutils literal"><span class="pre">f</span></tt> refers to the function object,
+and can be passed around like any value:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">5</span>
+</pre></div>
+</div>
+<p>There are two other ways that functions can be applied: using special
+operator syntax for certain function names (see <a class="reference external" href="#operators-are-functions">Operators Are
+Functions</a> below), or with the <tt class="docutils literal"><span class="pre">apply</span></tt>
+function:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">5</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">apply</span></tt> function applies its first argument — a function object —
+to its remaining arguments.</p>
+<div class="section" id="the-return-keyword">
+<span id="man-return-keyword"></span><h2>The &#8220;return&#8221; Keyword<a class="headerlink" href="#the-return-keyword" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>The value returned by a function is the value of the last expression
+evaluated, which, by default, is the last expression in the body of the
+function definition. In the example function, <tt class="docutils literal"><span class="pre">f</span></tt>, from the previous
+section this is the value of the expression <tt class="docutils literal"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></tt>. As in C and most
+other imperative or functional languages, the <tt class="docutils literal"><span class="pre">return</span></tt> keyword causes
+a function to return immediately, providing an expression whose value is
+returned:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+  <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Since functions definitions can be entered into interactive sessions, it
+is easy to compare these definitions:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="k">function</span><span class="nf"> g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+  <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">5</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+</pre></div>
+</div>
+<p>Of course, in a purely linear function body like <tt class="docutils literal"><span class="pre">g</span></tt>, the usage of
+<tt class="docutils literal"><span class="pre">return</span></tt> is pointless since the expression <tt class="docutils literal"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></tt> is never
+evaluated and we could simply make <tt class="docutils literal"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></tt> the last expression in the
+function and omit the <tt class="docutils literal"><span class="pre">return</span></tt>. In conjunction with other control
+flow, however, <tt class="docutils literal"><span class="pre">return</span></tt> is of real use. Here, for example, is a
+function that computes the hypotenuse length of a right triangle with
+sides of length <em>x</em> and <em>y</em>, avoiding overflow:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> hypot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">y</span><span class="o">/</span><span class="n">x</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">zero</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="n">y</span>
+  <span class="k">return</span> <span class="n">y</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>There are three possible points of return from this function, returning
+the values of three different expressions, depending on the values of
+<em>x</em> and <em>y</em>. The <tt class="docutils literal"><span class="pre">return</span></tt> on the last line could be omitted since it
+is the last expression.</p>
+</div>
+<div class="section" id="id1">
+<h2>Operators Are Functions<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>In Julia, most operators are just functions with support for special
+syntax. The exceptions are operators with special evaluation semantics
+like <tt class="docutils literal"><span class="pre">&amp;&amp;</span></tt> and <tt class="docutils literal"><span class="pre">||</span></tt>. These operators cannot be functions since
+short-circuit evaluation (see <a class="reference internal" href="control-flow.html#man-short-circuit-evaluation"><em>Short-Circuit Evaluation</em></a>) requires that
+their operands are not evaluated before evaluation of the operator.
+Accordingly, you can also apply them using parenthesized argument lists,
+just as you would any other function:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="mi">6</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+</pre></div>
+</div>
+<p>The infix form is exactly equivalent to the function application form —
+in fact the former is parsed to produce the function call internally.
+This also means that you can assign and pass around operators such as
+<tt class="docutils literal"><span class="pre">+</span></tt> and <tt class="docutils literal"><span class="pre">*</span></tt> just like you would with other function values:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="o">+</span><span class="p">;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+</pre></div>
+</div>
+<p>Under the name <tt class="docutils literal"><span class="pre">f</span></tt>, the function does not support infix notation,
+however.</p>
+</div>
+<div class="section" id="anonymous-functions">
+<span id="man-anonymous-functions"></span><h2>Anonymous Functions<a class="headerlink" href="#anonymous-functions" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Functions in Julia are first-class objects: they can be assigned to
+variables, called using the standard function call syntax from the
+variable they have been assigned to. They can be used as arguments, and
+they can be returned as values. They can also be created anonymously,
+without giving them a name:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="c">#&lt;function&gt;</span>
+</pre></div>
+</div>
+<p>This creates an unnamed function taking one argument and returning the
+value of the polynomial <em>x</em>^2 + 2<em>x</em> - 1 at that value. The primary
+use for anonymous functions is passing them to functions which take
+other functions as arguments. A classic example is the <tt class="docutils literal"><span class="pre">map</span></tt> function,
+which applies a function to each value of an array and returns a new
+array containing the resulting values:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">(</span><span class="n">round</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">3.5</span><span class="p">,</span><span class="mf">1.7</span><span class="p">])</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Float64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">1.0</span>
+ <span class="mf">4.0</span>
+ <span class="mf">2.0</span>
+</pre></div>
+</div>
+<p>This is fine if a named function effecting the transform one wants
+already exists to pass as the first argument to <tt class="docutils literal"><span class="pre">map</span></tt>. Often, however,
+a ready-to-use, named function does not exist. In these situations, the
+anonymous function construct allows easy creation of a single-use
+function object without needing a name:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Int64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mi">2</span>
+ <span class="mi">14</span>
+ <span class="o">-</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>An anonymous function accepting multiple arguments can be written using
+the syntax <tt class="docutils literal"><span class="pre">(x,y,z)-&gt;2x+y-z</span></tt>. A zero-argument anonymous function is
+written as <tt class="docutils literal"><span class="pre">()-&gt;3</span></tt>. The idea of a function with no arguments may seem
+strange, but is useful for &#8220;delaying&#8221; a computation. In this usage, a
+block of code is wrapped in a zero-argument function, which is later
+invoked by calling it as <tt class="docutils literal"><span class="pre">f()</span></tt>.</p>
+</div>
+<div class="section" id="multiple-return-values">
+<h2>Multiple Return Values<a class="headerlink" href="#multiple-return-values" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>In Julia, one returns a tuple of values to simulate returning multiple
+values. However, tuples can be created and destructured without needing
+parentheses, thereby providing an illusion that multiple values are
+being returned, rather than a single tuple value. For example, the
+following function returns a pair of values:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+  <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>If you call it in an interactive session without assigning the return
+value anywhere, you will see the tuple returned:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A typical usage of such a pair of return values, however, extracts each
+value into a variable. Julia supports simple tuple &#8220;destructuring&#8221; that
+facilitates this:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">foo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span>
+<span class="mi">5</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">y</span>
+<span class="mi">6</span>
+</pre></div>
+</div>
+<p>You can also return multiple values via an explicit usage of the
+<tt class="docutils literal"><span class="pre">return</span></tt> keyword:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This has the exact same effect as the previous definition of <tt class="docutils literal"><span class="pre">foo</span></tt>.</p>
+</div>
+<div class="section" id="varargs-functions">
+<h2>Varargs Functions<a class="headerlink" href="#varargs-functions" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>It is often convenient to be able to write functions taking an arbitrary
+number of arguments. Such functions are traditionally known as &#8220;varargs&#8221;
+functions, which is short for &#8220;variable number of arguments&#8221;. You can
+define a varargs function by following the last argument with an
+ellipsis:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">bar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="o">...</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The variables <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> are bound to the first two argument values
+as usual, and the variable <tt class="docutils literal"><span class="pre">x</span></tt> is bound to an iterable collection of
+the zero or more values passed to <tt class="docutils literal"><span class="pre">bar</span></tt> after its first two arguments:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,())</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,))</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In all these cases, <tt class="docutils literal"><span class="pre">x</span></tt> is bound to a tuple of the trailing values
+passed to <tt class="docutils literal"><span class="pre">bar</span></tt>.</p>
+<p>On the flip side, it is often handy to &#8220;splice&#8221; the values contained in
+an iterable collection into a function call as individual arguments. To
+do this, one also uses <tt class="docutils literal"><span class="pre">...</span></tt> but in the function call instead:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">x</span><span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In this case a tuple of values is spliced into a varargs call precisely
+where the variable number of arguments go. This need not be the case,
+however:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Furthermore, the iterable object spliced into a function call need not
+be a tuple:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="kt">Int64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mi">3</span>
+ <span class="mi">4</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">x</span><span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="kt">Int64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>
+ <span class="mi">4</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Also, the function that arguments are spliced into need not be a varargs
+function (although it often is):</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">baz</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="kt">Int64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">baz</span><span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span>
+<span class="mi">3</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Int64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">baz</span><span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">baz</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, if the wrong number of elements are in the spliced
+container, then the function call will fail, just as it would if too
+many arguments were given explicitly.</p>
+</div>
+<div class="section" id="optional-arguments">
+<h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>In many cases, function arguments have sensible default values and therefore
+might not need to be passed explicitly in every call. For example, the
+library function <tt class="docutils literal"><span class="pre">parseint(num,base)</span></tt> interprets a string as a number
+in some base. The <tt class="docutils literal"><span class="pre">base</span></tt> argument defaults to <tt class="docutils literal"><span class="pre">10</span></tt>. This behavior can be
+expressed concisely as:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> parseint</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="c">###</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>With this definition, the function can be called with either one or two
+arguments, and <tt class="docutils literal"><span class="pre">10</span></tt> is automatically passed when a second argument is not
+specified:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">parseint</span><span class="p">(</span><span class="s">&quot;12&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="mi">12</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">parseint</span><span class="p">(</span><span class="s">&quot;12&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">5</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">parseint</span><span class="p">(</span><span class="s">&quot;12&quot;</span><span class="p">)</span>
+<span class="mi">12</span>
+</pre></div>
+</div>
+<p>Optional arguments are actually just a convenient syntax for writing
+multiple method definitions with different numbers of arguments
+(see <a class="reference internal" href="methods.html#man-methods"><em>Methods</em></a>).</p>
+</div>
+<div class="section" id="named-arguments">
+<h2>Named Arguments<a class="headerlink" href="#named-arguments" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Some functions need a large number of arguments, or have a large number of
+behaviors. Remembering how to call such functions can be difficult. Named
+arguments, also called keyword arguments, can make these complex interfaces
+easier to use and extend by allowing arguments to be identified by name
+instead of only by position.</p>
+<p>For example, consider a function <tt class="docutils literal"><span class="pre">plot</span></tt> that
+plots a line. This function might have many options, for controlling line
+style, width, color, and so on. If it accepts named arguments, a possible
+call might look like <tt class="docutils literal"><span class="pre">plot(x,</span> <span class="pre">y,</span> <span class="pre">width=2)</span></tt>, where we have chosen to
+specify only line width. Notice that this serves two purposes. The call is
+easier to read, since we can label an argument with its meaning. It also
+becomes possible to pass any subset of a large number of arguments, in
+any order.</p>
+<p>Functions with named arguments are defined using a semicolon in the
+signature:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="n">style</span><span class="o">=</span><span class="s">&quot;solid&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+    <span class="c">###</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Extra named arguments can be collected using <tt class="docutils literal"><span class="pre">...</span></tt>, as in varargs
+functions:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">function</span><span class="nf"> f</span><span class="p">(</span><span class="n">x</span><span class="p">;</span> <span class="n">args</span><span class="o">...</span><span class="p">)</span>
+    <span class="c">###</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Inside <tt class="docutils literal"><span class="pre">f</span></tt>, <tt class="docutils literal"><span class="pre">args</span></tt> will be a collection of <tt class="docutils literal"><span class="pre">(key,value)</span></tt> tuples,
+where each <tt class="docutils literal"><span class="pre">key</span></tt> is a symbol. Such collections can be passed as named
+arguments using a semicolon in a call, <tt class="docutils literal"><span class="pre">f(x;</span> <span class="pre">k...)</span></tt>. Dictionaries
+can be used for this purpose.</p>
+</div>
+<div class="section" id="block-syntax-for-function-arguments">
+<h2>Block Syntax for Function Arguments<a class="headerlink" href="#block-syntax-for-function-arguments" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Passing functions as arguments to other functions is a powerful technique,
+but the syntax for it is not always convenient. Such calls are especially
+awkward to write when the function argument requires multiple lines. As
+an example, consider calling <tt class="docutils literal"><span class="pre">map</span></tt> on a function with several cases:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">map</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="k">begin</span>
+           <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">iseven</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+               <span class="k">return</span> <span class="mi">0</span>
+           <span class="k">elseif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span>
+               <span class="k">return</span> <span class="mi">1</span>
+           <span class="k">else</span>
+               <span class="k">return</span> <span class="n">x</span>
+           <span class="k">end</span>
+       <span class="k">end</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Julia provides a reserved word <tt class="docutils literal"><span class="pre">do</span></tt> for rewriting this code more clearly:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">map</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span> <span class="k">do</span> <span class="n">x</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">iseven</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elseif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">do</span> <span class="pre">x</span></tt> syntax creates an anonymous function with argument <tt class="docutils literal"><span class="pre">x</span></tt> and
+passes it as the first argument to <tt class="docutils literal"><span class="pre">map</span></tt>. This syntax makes it easier to
+use functions to effectively extend the language, since calls look like
+normal code blocks. There are many possible uses quite different from <tt class="docutils literal"><span class="pre">map</span></tt>,
+such as managing system state. For example, the standard library provides
+a function <tt class="docutils literal"><span class="pre">cd</span></tt> for running code in a given directory, and switching back
+to the previous directory when the code finishes or aborts. There is also
+a definition of <tt class="docutils literal"><span class="pre">open</span></tt> that runs code ensuring that the opened file is
+eventually closed. We can combine these functions to safely write a file
+in a certain directory:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">cd</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">open</span><span class="p">(</span><span class="s">&quot;outfile&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The function argument to <tt class="docutils literal"><span class="pre">cd</span></tt> takes no arguments; it is just a block of
+code. The function argument to <tt class="docutils literal"><span class="pre">open</span></tt> receives a handle to the opened
+file.</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>We should mention here that this is far from a complete picture of
+defining functions. Julia has a sophisticated type system and allows
+multiple dispatch on argument types. None of the examples given here
+provide any type annotations on their arguments, meaning that they are
+applicable to all types of arguments. The type system is described in
+<a class="reference internal" href="types.html#man-types"><em>Types</em></a> and defining a function in terms of methods chosen
+by multiple dispatch on run-time argument types is described in
+<a class="reference internal" href="methods.html#man-methods"><em>Methods</em></a>.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="control-flow.html" class="btn btn-neutral float-right" title="Control Flow">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="strings.html" class="btn btn-neutral" title="Strings"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2013, Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

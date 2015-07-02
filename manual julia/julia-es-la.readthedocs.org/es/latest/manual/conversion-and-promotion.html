@@ -1,0 +1,730 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Conversion and Promotion &mdash; documentación de Julia Language - 0.3-dev</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="documentación de Julia Language - 0.3-dev" href="../index.html"/>
+        <link rel="up" title="El Manual de Julia" href="index.html"/>
+        <link rel="next" title="Modules" href="modules.html"/>
+        <link rel="prev" title="Constructors" href="constructors.html"/>
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://julia-es-la.readthedocs.org/es/latest/manual/conversion-and-promotion.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "julia-es-la",
+    version: "latest",
+    language: "es",
+    page: "manual/conversion-and-promotion",
+    theme: "julia",
+    docroot: "/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "julia-es-la";
+  var page_name = "manual/conversion-and-promotion";
+  var html_theme = "julia";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://julialang.org/"><img src="../_static/julia-logo.svg" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> Julia Language</a>
+        -->
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">El Manual de Julia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Comenzando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers-and-floating-point-numbers.html">Integers and Floating-Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematical-operations.html">Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex-and-rational-numbers.html">Complex and Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings.html">Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-flow.html">Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-scoping.html">Variables and Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constructors.html">Constructors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Conversion and Promotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metaprogramming.html">Metaprogramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arreglos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#sparse-matrices">Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-computing.html">Parallel Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-external-programs.html">Running External Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calling-c-and-fortran-code.html">Calling C and Fortran Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Julia Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance-tips.html">Performance Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/index.html">Libreria estandar de Julia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-ins">Built-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-in-modules">Built-in Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packagelist.html">Paquetes Disponibles (en inglés)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id1">ArgParse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id2">Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id3">BinDeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id4">BioSeq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id5">BloomFilters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id7">Cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id8">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id10">Calendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id11">Catalan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id12">Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id13">Clp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id14">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id16">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id17">CoinMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id19">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id21">Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id23">ContinuedFractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id25">Cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id26">Cubature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id27">Curl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id28">DICOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id30">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id31">DataStructures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id32">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id33">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id34">Devectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id36">DictViews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id37">DimensionalityReduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id39">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id41">Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id42">Elliptic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id44">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id46">FITSIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id48">FactCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id49">FastaRead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id51">FileFind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id53">GLFW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id54">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id56">GLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id58">GLUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id59">GSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id60">GZip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id61">Gadfly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id63">Gaston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id64">GetC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id66">GoogleCharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id67">Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id69">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id71">Gtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id72">Gurobi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id74">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id76">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id78">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id79">Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id81">HypothesisTests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id82">ICU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id84">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id86">ImmutableArrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id87">IniFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id89">Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id91">Ito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id92">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id94">JudyDicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id95">JuliaWebRepl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id97">Jyacas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id99">KLDivergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id101">LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id103">Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id105">LazySequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id107">LinProgGLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id109">Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id111">MAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id113">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id115">MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id116">MLBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id118">MarketTechnicals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id119">MathProg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id120">MathProgBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id122">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id124">MixedModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id125">Monads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id126">Mongo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id127">Mongrel2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id129">Mustache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id131">NHST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id133">NLopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id135">Named</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id137">ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id138">ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id140">OpenGL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id142">OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id144">Optim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id146">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id148">PLX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id150">PatternDispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id152">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id154">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id156">ProjectTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id158">PyCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id160">QuickCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id162">RDatasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id164">RNGTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id165">RandomMatrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id167">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id169">Rif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id170">Rmath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id172">SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id173">SDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id175">SemidefiniteProgramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id177">SimJulia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id178">Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id179">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id181">StrPack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id183">Sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id185">SymbolicLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id187">TOML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id188">TextAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id190">TextWrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id192">TimeModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id194">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id196">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id198">TkExtras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id200">TopicModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id201">TradingInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id203">Trie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id205">UTF16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id207">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id209">WAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id210">Winston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id212">ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id214">Zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id216">kNN</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Julia Language</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">El Manual de Julia</a> &raquo;</li>
+      
+    <li>Conversion and Promotion</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/lbenitesanchez/julia-doc-es-la/blob/master/manual/conversion-and-promotion.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="conversion-and-promotion">
+<span id="man-conversion-and-promotion"></span><h1>Conversion and Promotion<a class="headerlink" href="#conversion-and-promotion" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Julia has a system for promoting arguments of mathematical operators to
+a common type, which has been mentioned in various other sections,
+including <a class="reference internal" href="integers-and-floating-point-numbers.html#man-integers-and-floating-point-numbers"><em>Integers and Floating-Point Numbers</em></a>, <a class="reference internal" href="mathematical-operations.html#man-mathematical-operations"><em>Mathematical Operations</em></a>, <a class="reference internal" href="types.html#man-types"><em>Types</em></a>, and
+<a class="reference internal" href="methods.html#man-methods"><em>Methods</em></a>. In this section, we explain how this promotion
+system works, as well as how to extend it to new types and apply it to
+functions besides built-in mathematical operators. Traditionally,
+programming languages fall into two camps with respect to promotion of
+arithmetic arguments:</p>
+<ul class="simple">
+<li><strong>Automatic promotion for built-in arithmetic types and operators.</strong>
+In most languages, built-in numeric types, when used as operands to
+arithmetic operators with infix syntax, such as <tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">-</span></tt>, <tt class="docutils literal"><span class="pre">*</span></tt>,
+and <tt class="docutils literal"><span class="pre">/</span></tt>, are automatically promoted to a common type to produce the
+expected results. C, Java, Perl, and Python, to name a few, all
+correctly compute the sum <tt class="docutils literal"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">1.5</span></tt> as the floating-point value
+<tt class="docutils literal"><span class="pre">2.5</span></tt>, even though one of the operands to <tt class="docutils literal"><span class="pre">+</span></tt> is an integer.
+These systems are convenient and designed carefully enough that they
+are generally all-but-invisible to the programmer: hardly anyone
+consciously thinks of this promotion taking place when writing such
+an expression, but compilers and interpreters must perform conversion
+before addition since integers and floating-point values cannot be
+added as-is. Complex rules for such automatic conversions are thus
+inevitably part of specifications and implementations for such
+languages.</li>
+<li><strong>No automatic promotion.</strong> This camp includes Ada and ML — very
+&#8220;strict&#8221; statically typed languages. In these languages, every
+conversion must be explicitly specified by the programmer. Thus, the
+example expression <tt class="docutils literal"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">1.5</span></tt> would be a compilation error in both
+Ada and ML. Instead one must write <tt class="docutils literal"><span class="pre">real(1)</span> <span class="pre">+</span> <span class="pre">1.5</span></tt>, explicitly
+converting the integer <tt class="docutils literal"><span class="pre">1</span></tt> to a floating-point value before
+performing addition. Explicit conversion everywhere is so
+inconvenient, however, that even Ada has some degree of automatic
+conversion: integer literals are promoted to the expected integer
+type automatically, and floating-point literals are similarly
+promoted to appropriate floating-point types.</li>
+</ul>
+<p>In a sense, Julia falls into the &#8220;no automatic promotion&#8221; category:
+mathematical operators are just functions with special syntax, and the
+arguments of functions are never automatically converted. However, one
+may observe that applying mathematical operations to a wide variety of
+mixed argument types is just an extreme case of polymorphic multiple
+dispatch —&nbsp;something which Julia&#8217;s dispatch and type systems are
+particularly well-suited to handle. &#8220;Automatic&#8221; promotion of
+mathematical operands simply emerges as a special application: Julia
+comes with pre-defined catch-all dispatch rules for mathematical
+operators, invoked when no specific implementation exists for some
+combination of operand types. These catch-all rules first promote all
+operands to a common type using user-definable promotion rules, and then
+invoke a specialized implementation of the operator in question for the
+resulting values, now of the same type. User-defined types can easily
+participate in this promotion system by defining methods for conversion
+to and from other types, and providing a handful of promotion rules
+defining what types they should promote to when mixed with other types.</p>
+<div class="section" id="conversion">
+<span id="man-conversion"></span><h2>Conversion<a class="headerlink" href="#conversion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Conversion of values to various types is performed by the <tt class="docutils literal"><span class="pre">convert</span></tt>
+function. The <tt class="docutils literal"><span class="pre">convert</span></tt> function generally takes two arguments: the
+first is a type object while the second is a value to convert to that
+type; the returned value is the value converted to an instance of given
+type. The simplest way to understand this function is to see it in
+action:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="mi">12</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="kt">Int64</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="kt">Uint8</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="mi">12</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="kt">Uint8</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="n">FloatingPoint</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="mf">12.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="kt">Float64</span>
+</pre></div>
+</div>
+<p>Conversion isn&#8217;t always possible, in which case a no method error is
+thrown indicating that <tt class="docutils literal"><span class="pre">convert</span></tt> doesn&#8217;t know how to perform the
+requested conversion:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="n">FloatingPoint</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="nb">convert</span><span class="p">(</span><span class="n">Type</span><span class="p">{</span><span class="n">FloatingPoint</span><span class="p">},</span><span class="n">ASCIIString</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some languages consider parsing strings as numbers or formatting
+numbers as strings to be conversions (many dynamic languages will even
+perform conversion for you automatically), however Julia does not: even
+though some strings can be parsed as numbers, most strings are not valid
+representations of numbers, and only a very limited subset of them are.</p>
+<div class="section" id="defining-new-conversions">
+<h3>Defining New Conversions<a class="headerlink" href="#defining-new-conversions" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>To define a new conversion, simply provide a new method for <tt class="docutils literal"><span class="pre">convert</span></tt>.
+That&#8217;s really all there is to it. For example, the method to convert a
+number to a boolean is simply this:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="nb">convert</span><span class="p">(::</span><span class="n">Type</span><span class="p">{</span><span class="kt">Bool</span><span class="p">},</span> <span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The type of the first argument of this method is a <a class="reference internal" href="types.html#man-singleton-types"><em>singleton
+type</em></a>, <tt class="docutils literal"><span class="pre">Type{Bool}</span></tt>, the only instance of
+which is <tt class="docutils literal"><span class="pre">Bool</span></tt>. Thus, this method is only invoked when the first
+argument is the type value <tt class="docutils literal"><span class="pre">Bool</span></tt>. When invoked, the method determines
+whether a numeric value is true or false as a boolean, by comparing it
+to zero:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="mi">1</span><span class="nb">im</span><span class="p">)</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="mi">0</span><span class="nb">im</span><span class="p">)</span>
+<span class="n">false</span>
+</pre></div>
+</div>
+<p>The method signatures for conversion methods are often quite a bit more
+involved than this example, especially for parametric types. The example
+above is meant to be pedagogical, and is not the actual julia behaviour.
+This is the actual implementation in julia:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="nb">convert</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">z</span><span class="p">::</span><span class="n">Complex</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">imag</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="o">?</span> <span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">real</span><span class="p">(</span><span class="n">z</span><span class="p">))</span> <span class="p">:</span>
+                                           <span class="nb">throw</span><span class="p">(</span><span class="n">InexactError</span><span class="p">()))</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">convert</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="mi">1</span><span class="nb">im</span><span class="p">)</span>
+<span class="n">InexactError</span><span class="p">()</span>
+ <span class="k">in</span> <span class="nb">convert</span> <span class="n">at</span> <span class="n">complex</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">40</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="case-study-rational-conversions">
+<h3>Case Study: Rational Conversions<a class="headerlink" href="#case-study-rational-conversions" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>To continue our case study of Julia&#8217;s <tt class="docutils literal"><span class="pre">Rational</span></tt> type, here are the
+conversions declared in
+<a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/base/rational.jl">rational.jl</a>,
+right after the declaration of the type and its constructors:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="nb">convert</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="n">x</span><span class="p">::</span><span class="n">Rational</span><span class="p">)</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">num</span><span class="p">),</span><span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">den</span><span class="p">))</span>
+<span class="nb">convert</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="n">x</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="k">function</span><span class="nf"> convert</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="n">x</span><span class="p">::</span><span class="n">FloatingPoint</span><span class="p">,</span> <span class="n">tol</span><span class="p">::</span><span class="n">Real</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="k">return</span> <span class="n">zero</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">//</span><span class="n">zero</span><span class="p">(</span><span class="n">T</span><span class="p">);</span> <span class="k">end</span>
+    <span class="k">if</span> <span class="n">isinf</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="k">return</span> <span class="n">sign</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">//</span><span class="n">zero</span><span class="p">(</span><span class="n">T</span><span class="p">);</span> <span class="k">end</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">d</span> <span class="o">=</span> <span class="n">one</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="n">zero</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">true</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">round</span><span class="p">(</span><span class="n">y</span><span class="p">));</span> <span class="n">y</span> <span class="o">-=</span> <span class="n">f</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">tol</span>
+            <span class="k">return</span> <span class="n">a</span><span class="o">//</span><span class="n">b</span>
+        <span class="k">end</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">y</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="nb">convert</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(</span><span class="n">rt</span><span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="n">x</span><span class="p">::</span><span class="n">FloatingPoint</span><span class="p">)</span> <span class="o">=</span> <span class="nb">convert</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="nb">eps</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="nb">convert</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">FloatingPoint</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">x</span><span class="p">::</span><span class="n">Rational</span><span class="p">)</span> <span class="o">=</span> <span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">num</span><span class="p">)</span><span class="o">/</span><span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">den</span><span class="p">)</span>
+<span class="nb">convert</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">x</span><span class="p">::</span><span class="n">Rational</span><span class="p">)</span> <span class="o">=</span> <span class="n">div</span><span class="p">(</span><span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">num</span><span class="p">),</span><span class="nb">convert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">den</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The initial four convert methods provide conversions to rational types.
+The first method converts one type of rational to another type of
+rational by converting the numerator and denominator to the appropriate
+integer type. The second method does the same conversion for integers by
+taking the denominator to be 1. The third method implements a standard
+algorithm for approximating a floating-point number by a ratio of
+integers to within a given tolerance, and the fourth method applies it,
+using machine epsilon at the given value as the threshold. In general,
+one should have <tt class="docutils literal"><span class="pre">a//b</span> <span class="pre">==</span> <span class="pre">convert(Rational{Int64},</span> <span class="pre">a/b)</span></tt>.</p>
+<p>The last two convert methods provide conversions from rational types to
+floating-point and integer types. To convert to floating point, one
+simply converts both numerator and denominator to that floating point
+type and then divides. To convert to integer, one can use the <tt class="docutils literal"><span class="pre">div</span></tt>
+operator for truncated integer division (rounded towards zero).</p>
+</div>
+</div>
+<div class="section" id="promotion">
+<h2>Promotion<a class="headerlink" href="#promotion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Promotion refers to converting values of mixed types to a single common
+type. Although it is not strictly necessary, it is generally implied
+that the common type to which the values are converted can faithfully
+represent all of the original values. In this sense, the term
+&#8220;promotion&#8221; is appropriate since the values are converted to a &#8220;greater&#8221;
+type — i.e. one which can represent all of the input values in a single
+common type. It is important, however, not to confuse this with
+object-oriented (structural) super-typing, or Julia&#8217;s notion of abstract
+super-types: promotion has nothing to do with the type hierarchy, and
+everything to do with converting between alternate representations. For
+instance, although every <tt class="docutils literal"><span class="pre">Int32</span></tt> value can also be represented as a
+<tt class="docutils literal"><span class="pre">Float64</span></tt> value, <tt class="docutils literal"><span class="pre">Int32</span></tt> is not a subtype of <tt class="docutils literal"><span class="pre">Float64</span></tt>.</p>
+<p>Promotion to a common supertype is performed in Julia by the <tt class="docutils literal"><span class="pre">promote</span></tt>
+function, which takes any number of arguments, and returns a tuple of
+the same number of values, converted to a common type, or throws an
+exception if promotion is not possible. The most common use case for
+promotion is to convert numeric arguments to a common type:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="nb">promote</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">promote</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">3.0</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">promote</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span><span class="o">//</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">promote</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">promote</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="nb">im</span><span class="p">)</span>
+<span class="p">(</span><span class="mf">1.5</span> <span class="o">+</span> <span class="mf">0.0</span><span class="nb">im</span><span class="p">,</span><span class="mf">0.0</span> <span class="o">+</span> <span class="mf">1.0</span><span class="nb">im</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">promote</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">,</span> <span class="mi">3</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">//</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">//</span><span class="mi">1</span><span class="nb">im</span><span class="p">,</span><span class="mi">3</span><span class="o">//</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">0</span><span class="o">//</span><span class="mi">1</span><span class="nb">im</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Integer values are promoted to the largest type of the integer values.
+Floating-point values are promoted to largest of the floating-point
+types. Mixtures of integers and floating-point values are promoted to a
+floating-point type big enough to hold all the values. Integers mixed
+with rationals are promoted to rationals. Rationals mixed with floats
+are promoted to floats. Complex values mixed with real values are
+promoted to the appropriate kind of complex value.</p>
+<p>That is really all there is to using promotions. The rest is just a
+matter of clever application, the most typical &#8220;clever&#8221; application
+being the definition of catch-all methods for numeric operations like
+the arithmetic operators <tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">-</span></tt>, <tt class="docutils literal"><span class="pre">*</span></tt> and <tt class="docutils literal"><span class="pre">/</span></tt>. Here are some of
+the the catch-all method definitions given in
+<a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/base/promotion.jl">promotion.jl</a>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="o">+</span><span class="p">(</span><span class="nb">promote</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="nb">promote</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="nb">promote</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="o">/</span><span class="p">(</span><span class="nb">promote</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These method definitions say that in the absence of more specific rules
+for adding, subtracting, multiplying and dividing pairs of numeric
+values, promote the values to a common type and then try again. That&#8217;s
+all there is to it: nowhere else does one ever need to worry about
+promotion to a common numeric type for arithmetic operations — it just
+happens automatically. There are definitions of catch-all promotion
+methods for a number of other arithmetic and mathematical functions in
+<a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/base/promotion.jl">promotion.jl</a>,
+but beyond that, there are hardly any calls to <tt class="docutils literal"><span class="pre">promote</span></tt> required in
+the Julia standard library. The most common usages of <tt class="docutils literal"><span class="pre">promote</span></tt> occur
+in outer constructors methods, provided for convenience, to allow
+constructor calls with mixed types to delegate to an inner type with
+fields promoted to an appropriate common type. For example, recall that
+<a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/base/rational.jl">rational.jl</a>
+provides the following outer constructor method:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">Rational</span><span class="p">(</span><span class="n">n</span><span class="p">::</span><span class="n">Integere</span><span class="p">,</span> <span class="n">d</span><span class="p">::</span><span class="n">Integer</span><span class="p">)</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="nb">promote</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">d</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This allows calls like the following to work:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Rational</span><span class="p">(</span><span class="n">int8</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="n">int32</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">))</span>
+<span class="o">-</span><span class="mi">3</span><span class="o">//</span><span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="n">Rational</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>For most user-defined types, it is better practice to require
+programmers to supply the expected types to constructor functions
+explicitly, but sometimes, especially for numeric problems, it can be
+convenient to do promotion automatically.</p>
+<div class="section" id="defining-promotion-rules">
+<h3>Defining Promotion Rules<a class="headerlink" href="#defining-promotion-rules" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Although one could, in principle, define methods for the <tt class="docutils literal"><span class="pre">promote</span></tt>
+function directly, this would require many redundant definitions for all
+possible permutations of argument types. Instead, the behavior of
+<tt class="docutils literal"><span class="pre">promote</span></tt> is defined in terms of an auxiliary function called
+<tt class="docutils literal"><span class="pre">promote_rule</span></tt>, which one can provide methods for. The
+<tt class="docutils literal"><span class="pre">promote_rule</span></tt> function takes a pair of type objects and returns
+another type object, such that instances of the argument types will be
+promoted to the returned type. Thus, by defining the rule:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">promote_rule</span><span class="p">(::</span><span class="n">Type</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="kt">Float32</span><span class="p">}</span> <span class="p">)</span> <span class="o">=</span> <span class="kt">Float64</span>
+</pre></div>
+</div>
+<p>one declares that when 64-bit and 32-bit floating-point values are
+promoted together, they should be promoted to 64-bit floating-point. The
+promotion type does not need to be one of the argument types, however;
+the following promotion rules both occur in Julia&#8217;s standard library:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">promote_rule</span><span class="p">(::</span><span class="n">Type</span><span class="p">{</span><span class="kt">Uint8</span><span class="p">},</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="kt">Int8</span><span class="p">})</span> <span class="o">=</span> <span class="kt">Int</span>
+<span class="n">promote_rule</span><span class="p">(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Char</span><span class="p">},</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="kt">Uint8</span><span class="p">})</span> <span class="o">=</span> <span class="kt">Int32</span>
+</pre></div>
+</div>
+<p>As a general rule, Julia promotes integers to <cite>Int</cite> during computation
+order to avoid overflow. In the latter case, the result type is
+<tt class="docutils literal"><span class="pre">Int32</span></tt> since <tt class="docutils literal"><span class="pre">Int32</span></tt> is large enough to contain all possible
+Unicode code points, and numeric operations on characters always
+result in plain old integers unless explicitly cast back to characters
+(see <a class="reference internal" href="strings.html#man-characters"><em>Characters</em></a>). Also note that one does not need to
+define both <tt class="docutils literal"><span class="pre">promote_rule(::Type{A},</span> <span class="pre">::Type{B})</span></tt> and
+<tt class="docutils literal"><span class="pre">promote_rule(::Type{B},</span> <span class="pre">::Type{A})</span></tt> — the symmetry is implied by
+the way <tt class="docutils literal"><span class="pre">promote_rule</span></tt> is used in the promotion process.</p>
+<p>The <tt class="docutils literal"><span class="pre">promote_rule</span></tt> function is used as a building block to define a
+second function called <tt class="docutils literal"><span class="pre">promote_type</span></tt>, which, given any number of type
+objects, returns the common type to which those values, as arguments to
+<tt class="docutils literal"><span class="pre">promote</span></tt> should be promoted. Thus, if one wants to know, in absence
+of actual values, what type a collection of values of certain types
+would promote to, one can use <tt class="docutils literal"><span class="pre">promote_type</span></tt>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="nb">promote_type</span><span class="p">(</span><span class="kt">Int8</span><span class="p">,</span> <span class="kt">Uint16</span><span class="p">)</span>
+<span class="kt">Int64</span>
+</pre></div>
+</div>
+<p>Internally, <tt class="docutils literal"><span class="pre">promote_type</span></tt> is used inside of <tt class="docutils literal"><span class="pre">promote</span></tt> to determine
+what type argument values should be converted to for promotion. It can,
+however, be useful in its own right. The curious reader can read the
+code in
+<a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/base/promotion.jl">promotion.jl</a>,
+which defines the complete promotion mechanism in about 35 lines.</p>
+</div>
+<div class="section" id="case-study-rational-promotions">
+<h3>Case Study: Rational Promotions<a class="headerlink" href="#case-study-rational-promotions" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Finally, we finish off our ongoing case study of Julia&#8217;s rational number
+type, which makes relatively sophisticated use of the promotion
+mechanism with the following promotion rules:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">promote_rule</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="n">T</span><span class="p">})</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="n">promote_rule</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">,</span><span class="n">S</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="n">S</span><span class="p">})</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">{</span><span class="nb">promote_type</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">S</span><span class="p">)}</span>
+<span class="n">promote_rule</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">,</span><span class="n">S</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">S</span><span class="p">}})</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">{</span><span class="nb">promote_type</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">S</span><span class="p">)}</span>
+<span class="n">promote_rule</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Int</span><span class="p">,</span><span class="n">S</span><span class="o">&lt;:</span><span class="n">FloatingPoint</span><span class="p">}(::</span><span class="n">Type</span><span class="p">{</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="p">}},</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="n">S</span><span class="p">})</span> <span class="o">=</span> <span class="nb">promote_type</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">S</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first rule asserts that promotion of a rational number with its own
+numerator/denominator type, simply promotes to itself. The second rule
+says that promoting a rational number with any other integer type
+promotes to a rational type whose numerator/denominator type is the
+result of promotion of its numerator/denominator type with the other
+integer type. The third rule applies the same logic to two different
+types of rational numbers, resulting in a rational of the promotion of
+their respective numerator/denominator types. The fourth and final rule
+dictates that promoting a rational with a float results in the same type
+as promoting the numerator/denominator type with the float.</p>
+<p>This small handful of promotion rules, together with the <a class="reference external" href="#case-study-rational-conversions">conversion
+methods discussed above</a>, are
+sufficient to make rational numbers interoperate completely naturally
+with all of Julia&#8217;s other numeric types —&nbsp;integers, floating-point
+numbers, and complex numbers. By providing appropriate conversion
+methods and promotion rules in the same manner, any user-defined numeric
+type can interoperate just as naturally with Julia&#8217;s predefined
+numerics.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="Modules">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="constructors.html" class="btn btn-neutral" title="Constructors"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2013, Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,877 @@
+Package: libarpack2
+Source: arpack
+Priority: optional
+Section: libs
+Installed-Size: 361
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 3.1.5-4~trusty
+Replaces: arpack2
+Depends: libblas3 | libblas.so.3, libc6 (>= 2.2.5), libgfortran3 (>= 4.6), liblapack3 | liblapack.so.3
+Conflicts: arpack2
+Breaks: octave3.2
+Filename: pool/main/a/arpack/libarpack2_3.1.5-4~trusty_amd64.deb
+Size: 97970
+MD5sum: 261cd7d774daf4a81d045db113c70501
+SHA1: 6e3b3b857ae6f607529d79d731d81a0b0f5ba0cc
+SHA256: b4a7bbd3424e95cc7ae982a05adab47772b3f2c8eb6316b332d49a20c0ff8d4a
+Description: Fortran77 subroutines to solve large scale eigenvalue problems
+Description-md5: ee3beabb3947f6a089ff53caf443a6a6
+
+Package: libarpack2-dev
+Source: arpack
+Priority: extra
+Section: libdevel
+Installed-Size: 699
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 3.1.5-4~trusty
+Replaces: arpack2-dev
+Depends: libarpack2 (= 3.1.5-4~trusty), libblas-dev, liblapack-dev
+Conflicts: arpack2-dev
+Filename: pool/main/a/arpack/libarpack2-dev_3.1.5-4~trusty_amd64.deb
+Size: 105226
+MD5sum: 134fe3f0350eac6ea5f6f0bd6aa27f07
+SHA1: 613be8f567d0800d8b144106c35151e1467776a5
+SHA256: 6f4f56999c651f8f61046aa4ba2e2b36f9c9bbbdf6275290810b13bd983454fd
+Description: Fortran77 subroutines to solve large scale eigenvalue problems (development)
+Description-md5: ce479c0c27c3104bee7093d103d5e8cb
+
+Package: libunwind-setjmp0
+Source: libunwind
+Priority: optional
+Section: libs
+Installed-Size: 52
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: amd64
+Version: 1.1-2.2ubuntu4
+Depends: libc6 (>= 2.2.5), libunwind8
+Pre-Depends: multiarch-support
+Filename: pool/main/libu/libunwind/libunwind-setjmp0_1.1-2.2ubuntu4_amd64.deb
+Size: 11056
+MD5sum: 7763f797ccd000f8d73d7e847eb86438
+SHA1: 0b790195d278332c0b23b862b2ce619bf43b1ee7
+SHA256: 41b2a08a4153ea17ade4598515af5c21a4c3f5ee47f3b44c40328504d40a82ae
+Description: libunwind-based non local goto - runtime
+Description-md5: a2ad087672aa604c7e2e5e0dee1676a0
+Original-Maintainer: Daigo Moriwaki <daigo@debian.org>
+
+Package: libunwind-setjmp0-dev
+Source: libunwind
+Priority: optional
+Section: libdevel
+Installed-Size: 99
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: amd64
+Version: 1.1-2.2ubuntu4
+Depends: libunwind8-dev (= 1.1-2.2ubuntu4), libunwind-setjmp0 (= 1.1-2.2ubuntu4)
+Filename: pool/main/libu/libunwind/libunwind-setjmp0-dev_1.1-2.2ubuntu4_amd64.deb
+Size: 19602
+MD5sum: 4235e3a82522e8193176346775519924
+SHA1: 93e692002a146f9ff22afb30a85e69bff9e0eff2
+SHA256: 2d36beeedc1cb664fd97acb52d69ed3822973e38c0648311ff32bde4c9669e94
+Description: libunwind-based non local goto - development
+Description-md5: 099a990a984e4f0a5487014e58a269b8
+Original-Maintainer: Daigo Moriwaki <daigo@debian.org>
+
+Package: libsuitesparse-doc
+Source: suitesparse
+Priority: optional
+Section: doc
+Installed-Size: 2598
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: all
+Version: 1:4.4.3-juliadeps1~utopic
+Recommends: libatlas-doc, libblas-doc
+Replaces: libufsparse-doc, libumfpack4-doc
+Conflicts: libufsparse-doc, libumfpack4-doc
+Filename: pool/main/s/suitesparse/libsuitesparse-doc_4.4.3-juliadeps1~utopic_all.deb
+Size: 2143968
+MD5sum: f19a97c65bfa78a5dd6e5ad0cb4f9779
+SHA1: 70f6e5a6e43d3e436fbe4ccb0f3481a3b28318fd
+SHA256: 593695ea8c6eb08cc4027e8c3e699a535f3bfc1e94d0aa483744ffa8c62b3810
+Description: libraries for sparse matrices computations (documentation)
+Description-md5: f15349737b83c1a4657a0bcdb2f64fa7
+
+Package: libsuitesparse-doc
+Source: suitesparse
+Priority: optional
+Section: doc
+Installed-Size: 2241
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: all
+Version: 1:4.2.0-juliadeps1~raring
+Recommends: libatlas-doc, libblas-doc
+Replaces: libufsparse-doc, libumfpack4-doc
+Conflicts: libufsparse-doc, libumfpack4-doc
+Filename: pool/main/s/suitesparse/libsuitesparse-doc_4.2.0-juliadeps1~raring_all.deb
+Size: 2160002
+MD5sum: 3893e1c6ed6b239a2e545fbbe21bc48c
+SHA1: e627e6892852ebe7e17030eefa23ecc9e52af1cf
+SHA256: 56f23d96a7cac4bab3ab0038bd47114da9a1b41a55cc8a1e6e341918356ebff1
+Description: libraries for sparse matrices computations (documentation)
+Description-md5: f15349737b83c1a4657a0bcdb2f64fa7
+
+Package: libsuitesparse-dev
+Source: suitesparse
+Priority: optional
+Section: libdevel
+Installed-Size: 4765
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Replaces: libsuitesparse-metis-dev, libufsparse-dev, libumfpack4-dev
+Provides: libufsparse-dev, libumfpack4-dev
+Depends: libamd2.4.1 (= 1:4.4.3-juliadeps1~utopic), libcamd2.4.1 (= 1:4.4.3-juliadeps1~utopic), libbtf1.2.1 (= 1:4.4.3-juliadeps1~utopic), libcolamd2.9.1 (= 1:4.4.3-juliadeps1~utopic), libccolamd2.9.1 (= 1:4.4.3-juliadeps1~utopic), libcholmod3.0.5 (= 1:4.4.3-juliadeps1~utopic), libcsparse3.1.4 (= 1:4.4.3-juliadeps1~utopic), libcxsparse3.1.4 (= 1:4.4.3-juliadeps1~utopic), libklu1.3.2 (= 1:4.4.3-juliadeps1~utopic), libldl2.2.1 (= 1:4.4.3-juliadeps1~utopic), libumfpack5.7.1 (= 1:4.4.3-juliadeps1~utopic), libspqr2.0.0 (= 1:4.4.3-juliadeps1~utopic), libsuitesparseconfig4.4.3 (= 1:4.4.3-juliadeps1~utopic), libblas-dev | libblas.so, liblapack-dev | liblapack.so
+Conflicts: libsuitesparse-metis-dev, libufsparse-dev, libumfpack4-dev
+Filename: pool/main/s/suitesparse/libsuitesparse-dev_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 886372
+MD5sum: aad63c5882f3927db53fe0ba57adf4b6
+SHA1: 474cdbb94ab03a4eab46515770d4c559effb803c
+SHA256: 2c330e83bb1fdba32574c6f38b1806a76cd030992855e6fde9fc6e76b51850a8
+Description: libraries for sparse matrices computations (development files)
+Description-md5: 3e340f8e65a004cfa12661cd9bcbde89
+Multi-Arch: same
+
+Package: libsuitesparse-dbg
+Source: suitesparse
+Priority: extra
+Section: debug
+Installed-Size: 2294
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Replaces: libufsparse-dbg
+Depends: libamd2.4.1 (= 1:4.4.3-juliadeps1~utopic), libcamd2.4.1 (= 1:4.4.3-juliadeps1~utopic), libbtf1.2.1 (= 1:4.4.3-juliadeps1~utopic), libcolamd2.9.1 (= 1:4.4.3-juliadeps1~utopic), libccolamd2.9.1 (= 1:4.4.3-juliadeps1~utopic), libcholmod3.0.5 (= 1:4.4.3-juliadeps1~utopic), libcsparse3.1.4 (= 1:4.4.3-juliadeps1~utopic), libcxsparse3.1.4 (= 1:4.4.3-juliadeps1~utopic), libklu1.3.2 (= 1:4.4.3-juliadeps1~utopic), libldl2.2.1 (= 1:4.4.3-juliadeps1~utopic), libumfpack5.7.1 (= 1:4.4.3-juliadeps1~utopic), libspqr2.0.0 (= 1:4.4.3-juliadeps1~utopic), libsuitesparseconfig4.4.3 (= 1:4.4.3-juliadeps1~utopic), libblas-dev | libblas.so, liblapack-dev | liblapack.so
+Conflicts: libufsparse-dbg
+Filename: pool/main/s/suitesparse/libsuitesparse-dbg_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 2084640
+MD5sum: 6c1bb1f70ed042bd476e08fd179dd498
+SHA1: abe5729d3c405b459d9cb094bbbf5cbb8ef4e3c2
+SHA256: 77c3f82c4fd74f6f55a792ff988350f377291f81cc62d7dd845b4ab1a0e25f35
+Description: libraries for sparse matrices computations (debugging symbols)
+Description-md5: ce7bfd6dd8c36021799ef7828ebf6b15
+Multi-Arch: same
+
+Package: libarpack2-dbg
+Source: arpack
+Priority: extra
+Section: debug
+Installed-Size: 638
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 3.1.5-4~trusty
+Depends: libarpack2 (= 3.1.5-4~trusty)
+Filename: pool/main/a/arpack/libarpack2-dbg_3.1.5-4~trusty_amd64.deb
+Size: 111632
+MD5sum: 9f13f9dc189be11ab491cb5cb5358504
+SHA1: 8b6bc96f45ef40626990013b4f04e315f7882523
+SHA256: 55e790fc79451b9a905c00865923f69677f6c872f306eb3ecbf273b7f7fb8a6a
+Description: Fortran77 subroutines to solve large scale eigenvalue problems (debug)
+Description-md5: 439145a23c358fc1e83b3f224e687e95
+
+Package: libamd2.2.0
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 78
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.2.5)
+Filename: pool/main/s/suitesparse/libamd2.2.0_4.2.0-juliadeps1~raring_amd64.deb
+Size: 29696
+MD5sum: 5c55fca5f9963ec2f8963d62b1f695e6
+SHA1: c420758ca8d9c9b1a6121f90162360f3fefa19f4
+SHA256: 813ff8ef1efb10d72b803e1b30490117f8e67a330b6c467ca87448ac0245aeb4
+Description: approximate minimum degree ordering library for sparse matrices
+Description-md5: 97217997208933cd4300b4fdf03c0d3d
+
+Package: libbtf1.1.0
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 51
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.2.5)
+Filename: pool/main/s/suitesparse/libbtf1.1.0_4.2.0-juliadeps1~raring_amd64.deb
+Size: 13974
+MD5sum: a590243aaa13ddda35dae6040781d054
+SHA1: 090748bf185cc1b3c31c777dd886afdc3e1f099c
+SHA256: b4f37f3fa79ec918ef81a5a3b345f4acb17919ce1c302c7b8cdd3c05a0641cbf
+Description: permutation to block triangular form library for sparse matrices
+Description-md5: 6e365bf2b7dd8b53a71ca8cd3531be8e
+
+Package: libcamd2.2.0
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 79
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.2.5)
+Filename: pool/main/s/suitesparse/libcamd2.2.0_4.2.0-juliadeps1~raring_amd64.deb
+Size: 29008
+MD5sum: f4f8741ff7cba2e5cc781f1a380b2be5
+SHA1: 9fbec7623ac55f1ac0bca947610bd0a32d70f829
+SHA256: d17f71b2dce9814ce37a904e22c315d4667b305410b5e67189ee7c2d2c75be53
+Description: symmetric approximate minimum degree library for sparse matrices
+Description-md5: 33f572e7507f842b25b406aac73c7832
+
+Package: libcolamd2.7.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 67
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.2.5)
+Filename: pool/main/s/suitesparse/libcolamd2.7.1_4.2.0-juliadeps1~raring_amd64.deb
+Size: 23160
+MD5sum: a4bedd1af5dccfff31c5e1c25fbcc68b
+SHA1: 211f24df8d42838c072b4062f0985234199f2113
+SHA256: e9ca12f68573e2751c3bb22915c1d6fd8c346dca11ed5563ee24eafcbaee9f19
+Description: column approximate minimum degree ordering library for sparse matrices
+Description-md5: 8deaa08627160807bac22fabb0a29a30
+
+Package: libccolamd2.7.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 83
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.2.5)
+Filename: pool/main/s/suitesparse/libccolamd2.7.1_4.2.0-juliadeps1~raring_amd64.deb
+Size: 30980
+MD5sum: ffc3b6dcfe1ce9139fae44bda47cb00a
+SHA1: 74729fedec6ee61ab9a895feaa161fab1adb84ad
+SHA256: 58865fa9aa704baa9ef9a3fbcfb91eecd81be48117f703f2ab0f0135372b7010
+Description: constrained column approximate library for sparse matrices
+Description-md5: 5f3652d2b70c784dca41724ec361ac90
+
+Package: libcholmod1.7.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 977
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libamd2.2.0 (>= 1:3.4.0), libblas3 | libblas.so.3 | libatlas3-base, libc6 (>= 2.17), libcolamd2.7.1 (>= 1:3.4.0), liblapack3 | liblapack.so.3 | libatlas3-base
+Filename: pool/main/s/suitesparse/libcholmod1.7.1_4.2.0-juliadeps1~raring_amd64.deb
+Size: 409996
+MD5sum: f82cef17cc423cf582267d497b956167
+SHA1: 3c122713c6476a7c82218b8ef4e706ae6bda1bc2
+SHA256: 917f11be49214f50491bd703244a2bebd8af7b36f469b4fe2651a4239fe2759d
+Description: sparse Cholesky factorization library for sparse matrices
+Description-md5: 25fa37b74d5c43d409795092b01492b1
+
+Package: libcsparse2.2.3
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 88
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.7)
+Filename: pool/main/s/suitesparse/libcsparse2.2.3_4.2.0-juliadeps1~raring_amd64.deb
+Size: 33654
+MD5sum: 746aaae5331b74c45de712ca28387918
+SHA1: 94ab9fc945c42141a69a8cde8f7d68af3bf8cac3
+SHA256: bbb26c713157b4e237f457e1fa0451d3be0fe2b2f25aa0f02e66c4c08353b11c
+Description: concise sparse matrix library
+Description-md5: 6530f377281485af9bf1b1318db9dd6f
+
+Package: libcxsparse2.2.3
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 243
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.7)
+Filename: pool/main/s/suitesparse/libcxsparse2.2.3_4.2.0-juliadeps1~raring_amd64.deb
+Size: 112266
+MD5sum: 830da833591fcd51dcead08e3de2f118
+SHA1: 1051f6e909db27f63048e385c8adca12d1b69574
+SHA256: 349b95e0446da92adb14386c43706dc9f89d09961110666648541324047021e4
+Description: concise sparse matrix library (complex, int and long int support)
+Description-md5: f6d7a859e2e3907c881edcfe15aad57a
+
+Package: libklu1.1.0
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 246
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libamd2.2.0 (>= 1:3.4.0), libbtf1.1.0 (>= 1:3.4.0), libc6 (>= 2.2.5), libcolamd2.7.1 (>= 1:3.4.0)
+Filename: pool/main/s/suitesparse/libklu1.1.0_4.2.0-juliadeps1~raring_amd64.deb
+Size: 106870
+MD5sum: e75189a5ea0c517e6fb27a9866d0223f
+SHA1: c34d99224b7a730c2b3c66b5fc129fdfcc4a2b87
+SHA256: ea854fbae502e69589822d62ebc63b37894524fb3ff4d8d58e34389c5ac9920b
+Description: circuit simulation sparse LU factorization library
+Description-md5: 870630b1bc7130d951e1bb1f2f3281de
+
+Package: libldl2.0.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 51
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.2.5)
+Filename: pool/main/s/suitesparse/libldl2.0.1_4.2.0-juliadeps1~raring_amd64.deb
+Size: 13390
+MD5sum: c1d58f6594df14619236ccb4d73882b2
+SHA1: 65bce219d04ffb46a67b789a24b97b514932b93b
+SHA256: baa311b1448ddd029c6dd015a16ef2f61aa7a36c538f803df603b29a238aeef0
+Description: simple LDL' factorization library for sparse matrices
+Description-md5: cc70c0f9279a045ec212e588648b5726
+
+Package: libumfpack5.4.0
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 784
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libamd2.2.0 (>= 1:3.4.0), libblas3 | libblas.so.3 | libatlas3-base, libc6 (>= 2.17)
+Filename: pool/main/s/suitesparse/libumfpack5.4.0_4.2.0-juliadeps1~raring_amd64.deb
+Size: 366880
+MD5sum: 42a81762dcfeadafd21607b6305fc18d
+SHA1: e077afdc543218fffdc6538ddf180ee163b5ac48
+SHA256: ad5f202276a97ec174989e564e2f612fdb83148ffa3e46aff7985578aec6fcd0
+Description: sparse LU factorization library
+Description-md5: 6b5cd8bc82b6a25890f5ace9d9937b82
+
+Package: libopenblas-base
+Source: openblas
+Priority: optional
+Section: libs
+Installed-Size: 22620
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 0.2.10.1-juliadeps1~trusty
+Replaces: libatlas3gf-base (<< 3.8.4-4), libblas3gf (<< 1.2.20110419-3)
+Suggests: liblapack3
+Provides: libblas.so.3, libblas.so.3gf
+Depends: libc6 (>= 2.4)
+Breaks: libatlas3gf-base (<< 3.8.4-4), libblas3gf (<< 1.2.20110419-3)
+Filename: pool/main/o/openblas/libopenblas-base_0.2.10.1-juliadeps1~trusty_amd64.deb
+Size: 1009176
+MD5sum: 9f2286003dcba0b20c51e3587c808595
+SHA1: fbd215a0dcde709abaafc6ea8fe9e7bf7c247d96
+SHA256: f978eb3179c18ecb57043544700c5317030057412848ff6984fcf8b754517c23
+Description: Optimized BLAS (linear algebra) library based on GotoBLAS2
+Description-md5: 010ad90e608009e6e8fdb04ab8387b69
+
+Package: libopenblas-dev
+Source: openblas
+Priority: optional
+Section: libdevel
+Installed-Size: 33759
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 0.2.10.1-juliadeps1~trusty
+Suggests: liblapack-dev
+Provides: libblas.so
+Depends: libopenblas-base (= 0.2.10.1-juliadeps1~trusty)
+Filename: pool/main/o/openblas/libopenblas-dev_0.2.10.1-juliadeps1~trusty_amd64.deb
+Size: 1017792
+MD5sum: 32977421e57b30a1067eafab9e072f16
+SHA1: 2e90efad26d554666e499258041a77a02fbd40e2
+SHA256: a3e64ac17b513eeffa048c8c033d2e81909ba242ddff514bdd2c77284066423a
+Description: Optimized BLAS (linear algebra) library based on GotoBLAS2
+Description-md5: bfdd89cf82e357d442894a55d1104925
+
+Package: libparpack2
+Source: arpack
+Priority: optional
+Section: libs
+Installed-Size: 631
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 3.1.5-4~trusty
+Replaces: libarpack2
+Depends: libblas3 | libblas.so.3, libc6 (>= 2.2.5), libgfortran3 (>= 4.6), liblapack3 | liblapack.so.3, libopenmpi1.6
+Filename: pool/main/a/arpack/libparpack2_3.1.5-4~trusty_amd64.deb
+Size: 150896
+MD5sum: f8bcba596bd3e893f604dbfbf191cb52
+SHA1: a06604c75cc6322e6af20e1a43b30e7960310431
+SHA256: 018346d1f7d4531790792ed57eae7d96daa9f47309e35d448b39470cb8eb3ceb
+Description: Parallel subroutines to solve large scale eigenvalue problems
+Description-md5: 4494da9b9d83f76de585d0fa3f53ef51
+
+Package: libparpack2-dev
+Source: arpack
+Priority: extra
+Section: libdevel
+Installed-Size: 1310
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 3.1.5-4~trusty
+Replaces: libarpack2-dev
+Depends: libparpack2 (= 3.1.5-4~trusty), libblas-dev, liblapack-dev, mpi-default-dev
+Filename: pool/main/a/arpack/libparpack2-dev_3.1.5-4~trusty_amd64.deb
+Size: 153688
+MD5sum: fb73c0d976029032072ec37d856534ea
+SHA1: 5f4dcd23c26b0e1522138b7459214ab533c4175c
+SHA256: 63ec09e9e89b4fbcf796fc6337fea9be54d5c98d27fb717446db3f61d1cae03e
+Description: Parallel subroutines to solve large scale eigenvalue problems (development)
+Description-md5: fd30cbaebb5feaf3cce172b72935657f
+
+Package: libparpack2-dbg
+Source: arpack
+Priority: extra
+Section: debug
+Installed-Size: 1273
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 3.1.5-4~trusty
+Replaces: libarpack2-dbg
+Depends: libparpack2 (= 3.1.5-4~trusty)
+Filename: pool/main/a/arpack/libparpack2-dbg_3.1.5-4~trusty_amd64.deb
+Size: 190778
+MD5sum: 68483d7104cc97b016a024a9cd0acfbc
+SHA1: 4ffc63fc48fb3c11939590e1811d6401e42d747b
+SHA256: ea1713ecbfd1ced21e766516b9738a73007e440bd1b828bbd668cd83acdb7fbf
+Description: Parallel subroutines to solve large scale eigenvalue problems (debug)
+Description-md5: 2767bd30e68903781bf0255715e8780a
+
+Package: libunwind8-dev
+Source: libunwind
+Priority: optional
+Section: libdevel
+Installed-Size: 2636
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: amd64
+Version: 1.1-2.2ubuntu4
+Replaces: libunwind7-dev
+Depends: libunwind8 (= 1.1-2.2ubuntu4)
+Conflicts: libunwind1-dev, libunwind7-dev
+Filename: pool/main/libu/libunwind/libunwind8-dev_1.1-2.2ubuntu4_amd64.deb
+Size: 380370
+MD5sum: 0dd11305e41ee56b29a821bc395dbdec
+SHA1: e7df98a0120e8d926ba68ac79d4d2b8647c23ae1
+SHA256: e80a97f991c626c9299166952b55573f7e43d0a6f1adc65bece728636b33b1b9
+Description: library to determine the call-chain of a program - development
+Description-md5: 968fa5fbcdf32543dedc4d9d40405c26
+Original-Maintainer: Daigo Moriwaki <daigo@debian.org>
+
+Package: libunwind8
+Source: libunwind
+Priority: optional
+Section: libs
+Installed-Size: 190
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: amd64
+Version: 1.1-2.2ubuntu4
+Replaces: libgcc1 (<< 1:4.0.0-2)
+Depends: libc6 (>= 2.4), liblzma5 (>= 5.1.1alpha+20110809)
+Conflicts: libunwind1-dev
+Pre-Depends: multiarch-support
+Filename: pool/main/libu/libunwind/libunwind8_1.1-2.2ubuntu4_amd64.deb
+Size: 52438
+MD5sum: 2894ff762fbfbacf1273ead2783d43fe
+SHA1: 296b8586c208a28d2cb2b8091a52b31b72dc2144
+SHA256: 426d1a86e11a53824bc46126694b931a8b278ab449460cb170e8ca99047dce7e
+Description: library to determine the call-chain of a program - runtime
+Description-md5: 7095fd22983044140f5faf099162a263
+Original-Maintainer: Daigo Moriwaki <daigo@debian.org>
+
+Package: libspqr1.3.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 241
+Maintainer: Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.2.0-juliadeps1~raring
+Depends: libc6 (>= 2.14)
+Filename: pool/main/s/suitesparse/libspqr1.3.1_4.2.0-juliadeps1~raring_amd64.deb
+Size: 86958
+MD5sum: fbc36f0feaf07534c1fa8f46a1c950e1
+SHA1: 505d3a853260c5100d6640971f6b9dfa9eadaf84
+SHA256: c3ea3163732055b9dae9ab0eeb4d7cda68b099b19072b340930d88261568683d
+Description: SPQR
+Description-md5: 8da2029ce3b395b8af99796fb97ff352
+
+Package: libunwind8-dbg
+Source: libunwind
+Priority: extra
+Section: debug
+Installed-Size: 394
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: amd64
+Version: 1.1-2.2ubuntu4
+Depends: libunwind8 (= 1.1-2.2ubuntu4)
+Filename: pool/main/libu/libunwind/libunwind8-dbg_1.1-2.2ubuntu4_amd64.deb
+Size: 312082
+MD5sum: bc182cfeffb7c82e8d545d7422ffa225
+SHA1: 58fdf8775c4a09e2e3d6fa8a636c87db2b3697ec
+SHA256: 70848fd6e2da93020acc64390fa3c61eda5e99793f95f29c11ded7aee895ce7e
+Description: library to determine the call-chain of a program - runtime
+Description-md5: 1aaea2ab3392bcfdf7a686bc495adf82
+Original-Maintainer: Daigo Moriwaki <daigo@debian.org>
+
+Package: libunwind-setjmp0-dbg
+Source: libunwind
+Priority: extra
+Section: debug
+Installed-Size: 62
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: amd64
+Version: 1.1-2.2ubuntu4
+Depends: libunwind-setjmp0 (= 1.1-2.2ubuntu4)
+Filename: pool/main/libu/libunwind/libunwind-setjmp0-dbg_1.1-2.2ubuntu4_amd64.deb
+Size: 18070
+MD5sum: d7b079ae5a1d71eb6cd73a44fdfa8679
+SHA1: c2659774a46cda96d5845885e92a440b192f3ce1
+SHA256: 2d09627703b02913184f196b46699a706bb6d8319521e83962f2434f04fdd932
+Description: libunwind-based non local goto - runtime
+Description-md5: cf23db6dc3fda03286356b5dcd73dc7f
+Original-Maintainer: Daigo Moriwaki <daigo@debian.org>
+
+Package: patchelf
+Priority: extra
+Section: devel
+Installed-Size: 129
+Maintainer: Elliot Saba <staticfloat@gmail.com>
+Architecture: amd64
+Version: 0.6-juliadeps5~raring
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Filename: pool/main/p/patchelf/patchelf_0.6-juliadeps5~raring_amd64.deb
+Size: 42922
+MD5sum: f8730ce996c6af8d6041138119241955
+SHA1: 0c76ae49864e5d9a3085198757c4796f880e5edf
+SHA256: b8eb1ecba509f80e6519e011bee6d416435b14016fef1461e8371824a7217fc0
+Description: PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables.
+Description-md5: eac2dac3eefc5e5a17111fa4538d8183
+
+Package: librmath-julia-base
+Source: rmath-julia
+Priority: extra
+Section: libs
+Installed-Size: 242
+Maintainer: Elliot Saba <staticfloat@gmail.com>
+Architecture: amd64
+Version: 2.15.2-juliadeps2~saucy
+Filename: pool/main/r/rmath-julia/librmath-julia-base_2.15.2-juliadeps2~saucy_amd64.deb
+Size: 103930
+MD5sum: 34632f53de4f52964fe9555e04c76fb2
+SHA1: 2300041610dd3c6eb3e7b93ddbf375b43df3f741
+SHA256: 8411d0246d61c1fc693e1a907f413b2fc65cd44713220fa3df1a16a188528c87
+Description: The Rmath library from R, adapted for use with Julia
+Description-md5: 41787721c44a1c2d3e8b6ac46ca4c74e
+
+Package: librmath-julia-dev
+Source: rmath-julia
+Priority: extra
+Section: libdevel
+Installed-Size: 35
+Maintainer: Elliot Saba <staticfloat@gmail.com>
+Architecture: amd64
+Version: 2.15.2-juliadeps2~saucy
+Depends: librmath-julia-base (= 2.15.2-juliadeps2~saucy)
+Filename: pool/main/r/rmath-julia/librmath-julia-dev_2.15.2-juliadeps2~saucy_amd64.deb
+Size: 1944
+MD5sum: 2d5506fbacede443b1c8adccd21f8037
+SHA1: 49b39228db6bd587f14b43bacc14db9ac00725b5
+SHA256: 90d252152350f476a504c42fe71c0262b60fbc989f5795e8a061fd8aa733510f
+Description: The Rmath library from R, adapted for use with Julia
+Description-md5: 41787721c44a1c2d3e8b6ac46ca4c74e
+
+Package: python-sphinx-rtd-theme
+Source: sphinx-rtd-theme
+Priority: optional
+Section: python
+Installed-Size: 181
+Maintainer: Debian Julia Team <pkg-julia-devel@lists.alioth.debian.org>
+Architecture: all
+Version: 0.1.6-1~trusty1
+Depends: python:any (<< 2.8), python-sphinx, python:any (>= 2.7.5-5~), fonts-font-awesome
+Filename: pool/main/s/sphinx-rtd-theme/python-sphinx-rtd-theme_0.1.6-1~trusty1_all.deb
+Size: 26432
+MD5sum: c0330c32553c771206c41af24b06f543
+SHA1: cce716a69e2611e61330379da9da13a7e4731353
+SHA256: 62b1c000f87b4611412df8b1594adf728e9c57027b6d47b64a1646da0f09de24
+Description: sphinx theme from readthedocs.org (Python 2)
+Description-md5: 08f41c41f4232a0da162781eade277a0
+
+Package: python3-sphinx-rtd-theme
+Source: sphinx-rtd-theme
+Priority: optional
+Section: python
+Installed-Size: 181
+Maintainer: Debian Julia Team <pkg-julia-devel@lists.alioth.debian.org>
+Architecture: all
+Version: 0.1.6-1~trusty1
+Depends: python3:any (>= 3.3.2-2~), python3-sphinx, fonts-font-awesome
+Filename: pool/main/s/sphinx-rtd-theme/python3-sphinx-rtd-theme_0.1.6-1~trusty1_all.deb
+Size: 26500
+MD5sum: 9f1317f517651778addd8ceda8a68ae2
+SHA1: 60722dc0a0784a96dbb46235d9681ec4bb435ce2
+SHA256: 971e59e492ec8ce2d7b8efcd521fbb1bd3a4545797b038a03abae5acf36c6a51
+Description: sphinx theme from readthedocs.org (Python 3)
+Description-md5: 682228ce8adf96cca247ed39e329b2f6
+
+Package: libamd2.4.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 85
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.2.5), libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libamd2.4.1_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 31068
+MD5sum: d3efa7f6b1ba232207977404cd597cae
+SHA1: 7f2c08395ead687b66eae421b8db19f8bea61ff4
+SHA256: 9f5171d638bec1af823df677b3fc6717de4f3224276ed19b4f859a001aef9d50
+Description: approximate minimum degree ordering library for sparse matrices
+Description-md5: 97217997208933cd4300b4fdf03c0d3d
+Multi-Arch: same
+
+Package: libbtf1.2.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 58
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.2.5)
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libbtf1.2.1_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 17610
+MD5sum: c85ff0b972c6c9db6de1bc6413a45eeb
+SHA1: 3e38170061897bec48d529a5344d4efd7119707f
+SHA256: 591c533f3b466eaa80351e5f92223a606c9222870199e5c6f22061de46ca3177
+Description: permutation to block triangular form library for sparse matrices
+Description-md5: 6e365bf2b7dd8b53a71ca8cd3531be8e
+Multi-Arch: same
+
+Package: libcamd2.4.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 86
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.2.5), libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libcamd2.4.1_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 29412
+MD5sum: 8a52eb93dd0dd37128f97e03e8933216
+SHA1: de1fe5bb67fb7969306c67b5cdefe3e320e13027
+SHA256: 9dafe85ed9de53428bce381b8b050c71999378d1af7b14960114a8172dc3a9fa
+Description: symmetric approximate minimum degree library for sparse matrices
+Description-md5: 33f572e7507f842b25b406aac73c7832
+Multi-Arch: same
+
+Package: libcolamd2.9.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 74
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.2.5), libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libcolamd2.9.1_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 25308
+MD5sum: 969f0e15dff007654001d38ef8cc440e
+SHA1: f2c43680808dcae1c881d1e4ab158a219a728134
+SHA256: 07c223e812427c56f66e2b79cc2036c2fe4aa38e2d23a10c281763aae6e9e9a4
+Description: column approximate minimum degree ordering library for sparse matrices
+Description-md5: 8deaa08627160807bac22fabb0a29a30
+Multi-Arch: same
+
+Package: libccolamd2.9.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 86
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.2.5), libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libccolamd2.9.1_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 30904
+MD5sum: 3012716efa0b17a924bb1dcf9fe6e8fd
+SHA1: b03aec6cc94e0d10df7382324d0e266e2da9b645
+SHA256: b9ca7f4ee39fec855f1f301a003f06596fadd16033c2be995c78b674a16be352
+Description: constrained column approximate library for sparse matrices
+Description-md5: 5f3652d2b70c784dca41724ec361ac90
+Multi-Arch: same
+
+Package: libcholmod3.0.5
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 891
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libamd2.4.1, libblas3 | libblas.so.3, libc6 (>= 2.7), libcamd2.4.1, libccolamd2.9.1, libcolamd2.9.1, liblapack3 | liblapack.so.3, libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libcholmod3.0.5_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 294382
+MD5sum: d804d7891fe24a5a8e4846eef0d01cd4
+SHA1: d2a48e262e1a24aa6b645767a8cf097e5a8f54fa
+SHA256: 42f4bfd9dd3725f43bd28614dca0ce8bc3c2ef03295f02d31c0b837910c887b6
+Description: sparse Cholesky factorization library for sparse matrices
+Description-md5: 25fa37b74d5c43d409795092b01492b1
+Multi-Arch: same
+
+Package: libcsparse3.1.4
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 90
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.7)
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libcsparse3.1.4_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 32802
+MD5sum: 422bada93e833368960c8bb20ec6b3ef
+SHA1: aaf40975f338366294d3f5ee782c0f4191b24ac1
+SHA256: 019751e64c35552a96b9de07c92e2e499912586573f7353b4b564557ad9a83d7
+Description: concise sparse matrix library
+Description-md5: 6530f377281485af9bf1b1318db9dd6f
+Multi-Arch: same
+
+Package: libcxsparse3.1.4
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 214
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.7)
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libcxsparse3.1.4_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 69124
+MD5sum: 8d0ecf9f8b2f6a94d74dda8585882f4e
+SHA1: c6c84516b7f213b0cb0bde9ca5218570f9ccf63f
+SHA256: 841f1170a737d2d871ad3b3bb95b6d7783a1354d5df37866f11117f1926146eb
+Description: concise sparse matrix library (complex, int and long int support)
+Description-md5: f6d7a859e2e3907c881edcfe15aad57a
+Multi-Arch: same
+
+Package: libklu1.3.2
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 234
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libamd2.4.1, libbtf1.2.1, libc6 (>= 2.2.5), libcolamd2.9.1, libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libklu1.3.2_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 79818
+MD5sum: e524777705c515aa1763f43e179e80ef
+SHA1: 729ead8aed011b64daf10df5fcf8209c410a4f58
+SHA256: 663cf38017e3c812eb7e235bb4301221d58433971b64ebd19af2ac187911d977
+Description: circuit simulation sparse LU factorization library
+Description-md5: 870630b1bc7130d951e1bb1f2f3281de
+Multi-Arch: same
+
+Package: libldl2.2.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 58
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.2.5)
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libldl2.2.1_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 17486
+MD5sum: 2bf0f59fc0699f5246a751d493f5858c
+SHA1: b71a4d6c528993d5d6699ae0a910deb20cc417c1
+SHA256: e299725c675c4c0a1803a819edd8bdb2c271d69f9c4d9d090b9b98fa11121222
+Description: simple LDL' factorization library for sparse matrices
+Description-md5: cc70c0f9279a045ec212e588648b5726
+Multi-Arch: same
+
+Package: libumfpack5.7.1
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 699
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libamd2.4.1, libblas3 | libblas.so.3, libc6 (>= 2.2.5), libcholmod3.0.5, libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libumfpack5.7.1_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 224546
+MD5sum: 628807a426bd4b780fe9f6e577e183e8
+SHA1: 68494df3a9dcbcb6ff5d4fec22b976b988038d9e
+SHA256: 9ff86172e0b4fdb2efdee5d20813dc11c3c5fb256d5c6337c3e87cccded27395
+Description: sparse LU factorization library
+Description-md5: 6b5cd8bc82b6a25890f5ace9d9937b82
+Multi-Arch: same
+
+Package: libspqr2.0.0
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 222
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libblas3 | libblas.so.3, libc6 (>= 2.14), libcholmod3.0.5, liblapack3 | liblapack.so.3, libsuitesparseconfig4.4.3
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libspqr2.0.0_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 71764
+MD5sum: 8d4d5af85c5b61978c7800d81cc30608
+SHA1: 0413781b8ebfa3dc952cb8529eb2ce49e47c60ed
+SHA256: dc6e4d85ee2039521f96fb9d42bc16d619150f24aeb238d0c46ed8cab81fddf4
+Description: sparse QR factorization library
+Description-md5: c5ef39f6884e5bacb6b738f4f122f2d6
+Multi-Arch: same
+
+Package: libsuitesparseconfig4.4.3
+Source: suitesparse
+Priority: optional
+Section: libs
+Installed-Size: 58
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Version: 1:4.4.3-juliadeps1~utopic
+Depends: libc6 (>= 2.17)
+Pre-Depends: multiarch-support
+Filename: pool/main/s/suitesparse/libsuitesparseconfig4.4.3_4.4.3-juliadeps1~utopic_amd64.deb
+Size: 16054
+MD5sum: 299c27d9a511c5eb288d2079c7c152dc
+SHA1: c78188c86f0656be9fe84c3a4a2d21d0e94e5eb6
+SHA256: c26926efdc01f8e932fc663952715b1ec21015ba548afefb2fdde4b66063e10d
+Description: configuration routines for all SuiteSparse modules
+Description-md5: 4b45f1a53f97830a9dfa0c494e3c3437
+Multi-Arch: same
+

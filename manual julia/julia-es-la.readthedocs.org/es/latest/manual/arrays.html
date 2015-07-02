@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Arreglos &mdash; documentación de Julia Language - 0.3-dev</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="documentación de Julia Language - 0.3-dev" href="../index.html"/>
+        <link rel="up" title="El Manual de Julia" href="index.html"/>
+        <link rel="next" title="Parallel Computing" href="parallel-computing.html"/>
+        <link rel="prev" title="Metaprogramming" href="metaprogramming.html"/>
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://julia-es-la.readthedocs.org/es/latest/manual/arrays.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "julia-es-la",
+    version: "latest",
+    language: "es",
+    page: "manual/arrays",
+    theme: "julia",
+    docroot: "/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "julia-es-la";
+  var page_name = "manual/arrays";
+  var html_theme = "julia";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://julialang.org/"><img src="../_static/julia-logo.svg" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> Julia Language</a>
+        -->
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">El Manual de Julia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Comenzando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers-and-floating-point-numbers.html">Integers and Floating-Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematical-operations.html">Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex-and-rational-numbers.html">Complex and Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings.html">Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-flow.html">Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-scoping.html">Variables and Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constructors.html">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion-and-promotion.html">Conversion and Promotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metaprogramming.html">Metaprogramming</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Arreglos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sparse-matrices">Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-computing.html">Parallel Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-external-programs.html">Running External Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calling-c-and-fortran-code.html">Calling C and Fortran Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Julia Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance-tips.html">Performance Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/index.html">Libreria estandar de Julia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-ins">Built-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-in-modules">Built-in Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packagelist.html">Paquetes Disponibles (en inglés)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id1">ArgParse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id2">Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id3">BinDeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id4">BioSeq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id5">BloomFilters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id7">Cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id8">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id10">Calendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id11">Catalan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id12">Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id13">Clp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id14">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id16">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id17">CoinMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id19">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id21">Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id23">ContinuedFractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id25">Cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id26">Cubature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id27">Curl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id28">DICOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id30">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id31">DataStructures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id32">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id33">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id34">Devectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id36">DictViews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id37">DimensionalityReduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id39">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id41">Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id42">Elliptic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id44">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id46">FITSIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id48">FactCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id49">FastaRead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id51">FileFind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id53">GLFW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id54">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id56">GLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id58">GLUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id59">GSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id60">GZip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id61">Gadfly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id63">Gaston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id64">GetC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id66">GoogleCharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id67">Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id69">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id71">Gtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id72">Gurobi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id74">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id76">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id78">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id79">Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id81">HypothesisTests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id82">ICU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id84">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id86">ImmutableArrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id87">IniFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id89">Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id91">Ito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id92">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id94">JudyDicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id95">JuliaWebRepl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id97">Jyacas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id99">KLDivergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id101">LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id103">Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id105">LazySequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id107">LinProgGLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id109">Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id111">MAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id113">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id115">MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id116">MLBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id118">MarketTechnicals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id119">MathProg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id120">MathProgBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id122">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id124">MixedModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id125">Monads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id126">Mongo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id127">Mongrel2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id129">Mustache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id131">NHST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id133">NLopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id135">Named</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id137">ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id138">ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id140">OpenGL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id142">OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id144">Optim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id146">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id148">PLX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id150">PatternDispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id152">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id154">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id156">ProjectTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id158">PyCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id160">QuickCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id162">RDatasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id164">RNGTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id165">RandomMatrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id167">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id169">Rif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id170">Rmath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id172">SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id173">SDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id175">SemidefiniteProgramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id177">SimJulia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id178">Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id179">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id181">StrPack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id183">Sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id185">SymbolicLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id187">TOML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id188">TextAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id190">TextWrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id192">TimeModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id194">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id196">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id198">TkExtras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id200">TopicModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id201">TradingInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id203">Trie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id205">UTF16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id207">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id209">WAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id210">Winston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id212">ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id214">Zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id216">kNN</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Julia Language</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">El Manual de Julia</a> &raquo;</li>
+      
+    <li>Arreglos</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/lbenitesanchez/julia-doc-es-la/blob/master/manual/arrays.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="arreglos">
+<span id="man-arrays"></span><h1>Arreglos<a class="headerlink" href="#arreglos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Julia, como la mayoría de lenguajes de computación técnica,
+La mayoría de los lenguajes de computación técnica ponen mucha
+atención a su implementación de arreglos a expensas de otros contenedores.
+Julia no trata a los arreglos de ninguna manera especial. La librería de
+arreglos se implementa casi por completo en sí mismo en Julia, y deriva
+su rendimiento del compilador, al igual que cualquier otro tipo de código
+escrito en Julia.</p>
+<p>Un arreglo es una colección de objetos almacenados en una rejilla
+de dimensión múltiple. En el caso más general, un arreglo puede contener
+objetos de tipo <tt class="docutils literal"><span class="pre">Cualquiera</span></tt>. Para la mayoría de los fines de cálculo,
+los arreglos deben contener objetos de un tipo más específico, como por
+ejemplo `` float64 `` o `` `` Int32.</p>
+<p>En general, a diferencia de muchos otros lenguajes de computación técnica,
+Julia no espera que los programas que se escriban en un estilo vectorizado
+para el rendimiento. El compilador de Julia utiliza la inferencia de tipos
+y genera código optimizado para la indexación de arreglo escalar, permitiendo
+que los programas sean escritos en un estilo que es conveniente y fácil de leer,
+sin sacrificar el rendimiento, y el uso a veces de menos memoria.</p>
+<p>En Julia, todos los argumentos de las funciones son pasados por referencia. Algunos
+lenguajes de computación técnica pasan arreglos por valor, y esto es conveniente
+en muchos casos. En Julia, las modificaciones realizadas a los arreglos de entrada
+dentro de una función serán visibles en la función de los padres. La biblioteca
+completa de arreglo de Julia asegura que las entradas no se modifican con funciones
+de la biblioteca. El código de usuario, si es necesario exhibir un comportamiento
+similar, debe tener cuidado de crear una copia de entradas que puede modificar.</p>
+<div class="section" id="funciones-basicas">
+<h2>Funciones básicas<a class="headerlink" href="#funciones-basicas" title="Enlazar permanentemente con este título">¶</a></h2>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">ndims(A)</span></tt> — el número de dimensiones de A</li>
+<li><tt class="docutils literal"><span class="pre">size(A,n)</span></tt> — el tamaño de A en una particular dimensión</li>
+<li><tt class="docutils literal"><span class="pre">size(A)</span></tt> — una tupla que contiene las dimensiones de A</li>
+<li><tt class="docutils literal"><span class="pre">eltype(A)</span></tt> — el tipo de elementos que contiene en A</li>
+<li><tt class="docutils literal"><span class="pre">length(A)</span></tt> — o número de elementos en A</li>
+<li><tt class="docutils literal"><span class="pre">nnz(A)</span></tt> — o número de valores diferentes de cero en A</li>
+<li><tt class="docutils literal"><span class="pre">stride(A,k)</span></tt> — the size of the stride along dimension k</li>
+<li><tt class="docutils literal"><span class="pre">strides(A)</span></tt> — una tupla de las distancias de índices lineales entre elementos adyacentes en cada dimensión</li>
+</ol>
+</div>
+<div class="section" id="construccion-e-inicializacion">
+<h2>Construcción e Inicialización<a class="headerlink" href="#construccion-e-inicializacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Se facilitan muchas funciones para construir e inicializar arrays. En
+la siguiente lista de funciones, llamadas con un argumento <tt class="docutils literal"><span class="pre">dims...</span></tt>
+pueden tomar o bien una única tupla de dimensión dims o una serie de
+tamaños de dimensión pasada como un número variable de argumentos.</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">Array(type,</span> <span class="pre">dims...)</span></tt> — array denso no inicializado</li>
+<li><tt class="docutils literal"><span class="pre">cell(dims...)</span></tt> — an uninitialized cell array (heterogeneous
+array)</li>
+<li><tt class="docutils literal"><span class="pre">zeros(type,</span> <span class="pre">dims...)</span></tt> — array de tipo especificado inicializado a cero</li>
+<li><tt class="docutils literal"><span class="pre">ones(type,</span> <span class="pre">dims...)</span></tt> — array de tipo especificado inicializado a unos</li>
+<li><tt class="docutils literal"><span class="pre">trues(dims...)</span></tt> — array <tt class="docutils literal"><span class="pre">Bool</span></tt> con valores a <tt class="docutils literal"><span class="pre">true</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">falses(dims...)</span></tt> — array <tt class="docutils literal"><span class="pre">Bool</span></tt> con valores a <tt class="docutils literal"><span class="pre">false</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">reshape(A,</span> <span class="pre">dims...)</span></tt> — array con los mismos datos que el pasado como argumento,
+pero con diferentes dimensiones</li>
+<li><tt class="docutils literal"><span class="pre">copy(A)</span></tt>  — copia <tt class="docutils literal"><span class="pre">A</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">deepcopy(A)</span></tt> — copia <tt class="docutils literal"><span class="pre">A</span></tt>, copiando sus elementos recursivamente</li>
+<li><tt class="docutils literal"><span class="pre">similar(A,</span> <span class="pre">element_type,</span> <span class="pre">dims...)</span></tt> — array sin inicializar del mismo tipo
+que el pasado (denso, disperso, etc.), pero con el tipo de elementos y dimensiones
+especificadas. El segundo y tercer argumento son opcionales, por defecto (si se omiten)
+asigna el tipo de elemento y dimensiones de <tt class="docutils literal"><span class="pre">A</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">reinterpret(type,</span> <span class="pre">A)</span></tt> — array con los mismos datos binarios que array pasado como argumento,
+pero con el tipo de elemento especificado.</li>
+<li><tt class="docutils literal"><span class="pre">rand(dims)</span></tt> — array de aleatorios <tt class="docutils literal"><span class="pre">Float64</span></tt> uniformemente distribuidos en el rango [0,1)</li>
+<li><tt class="docutils literal"><span class="pre">randf(dims)</span></tt> — array de aleatorios <tt class="docutils literal"><span class="pre">Float32</span></tt> uniformemente distribuidos en el rango [0,1)</li>
+<li><tt class="docutils literal"><span class="pre">randn(dims)</span></tt> — array de aleatorios <tt class="docutils literal"><span class="pre">Float64</span></tt> distribuidos mediante una normal con media 0 y
+desviación estándar de 1</li>
+<li><tt class="docutils literal"><span class="pre">eye(n)</span></tt> — matriz identidad de tamaño nxn</li>
+<li><tt class="docutils literal"><span class="pre">eye(m,</span> <span class="pre">n)</span></tt> — matriz identidad de tamaño mxn</li>
+<li><tt class="docutils literal"><span class="pre">linspace(start,</span> <span class="pre">stop,</span> <span class="pre">n)</span></tt> — vector de <tt class="docutils literal"><span class="pre">n</span></tt> elementos linealmente espaciados desde <tt class="docutils literal"><span class="pre">start</span></tt> a <tt class="docutils literal"><span class="pre">stop</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">fill!(A,</span> <span class="pre">x)</span></tt> — llena el array <tt class="docutils literal"><span class="pre">A</span></tt> con el valor <tt class="docutils literal"><span class="pre">x</span></tt></li>
+</ol>
+<p>La última función, <tt class="docutils literal"><span class="pre">fill!</span></tt>, es diferente en tanto que modifica un
+array existente en lugar de construir uno nuevo. Como convención,
+las funciones con esta propiedad tienen identificadores con un signo
+de exclamación como sufijo. Estas funciones a veces son denominadas
+funciones &#8220;modificadoras&#8221; o &#8220;in-place&#8221;.</p>
+</div>
+<div class="section" id="comprehensions">
+<h2>Comprehensions<a class="headerlink" href="#comprehensions" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Comprehensions provide a general and powerful way to construct arrays.
+Comprehension syntax is similar to set construction notation in
+mathematics:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">A</span> <span class="o">=</span> <span class="p">[</span> <span class="n">F</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="o">...</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="o">=</span><span class="n">rx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ry</span><span class="p">,</span> <span class="o">...</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>The meaning of this form is that <tt class="docutils literal"><span class="pre">F(x,y,...)</span></tt> is evaluated with the
+variables <tt class="docutils literal"><span class="pre">x</span></tt>, <tt class="docutils literal"><span class="pre">y</span></tt>, etc. taking on each value in their given list of
+values. Values can be specified as any iterable object, but will
+commonly be ranges like <tt class="docutils literal"><span class="pre">1:n</span></tt> or <tt class="docutils literal"><span class="pre">2:(n-1)</span></tt>, or explicit arrays of
+values like <tt class="docutils literal"><span class="pre">[1.2,</span> <span class="pre">3.4,</span> <span class="pre">5.7]</span></tt>. The result is an N-d dense array with
+dimensions that are the concatenation of the dimensions of the variable
+ranges <tt class="docutils literal"><span class="pre">rx</span></tt>, <tt class="docutils literal"><span class="pre">ry</span></tt>, etc. and each <tt class="docutils literal"><span class="pre">F(x,y,...)</span></tt> evaluation returns a
+scalar.</p>
+<p>The following example computes a weighted average of the current element
+and its left and right neighbour along a 1-d grid.</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="kd">const</span> <span class="n">x</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="mi">8</span><span class="o">-</span><span class="n">element</span> <span class="kt">Float64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">0.276455</span>
+ <span class="mf">0.614847</span>
+ <span class="mf">0.0601373</span>
+ <span class="mf">0.896024</span>
+ <span class="mf">0.646236</span>
+ <span class="mf">0.143959</span>
+ <span class="mf">0.0462343</span>
+ <span class="mf">0.730987</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="p">[</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="p">]</span>
+<span class="mi">6</span><span class="o">-</span><span class="n">element</span> <span class="kt">Float64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">0.391572</span>
+ <span class="mf">0.407786</span>
+ <span class="mf">0.624605</span>
+ <span class="mf">0.583114</span>
+ <span class="mf">0.245097</span>
+ <span class="mf">0.241854</span>
+</pre></div>
+</div>
+<p>NOTA: In the above example, <tt class="docutils literal"><span class="pre">x</span></tt> is declared as constant because type
+inference in Julia does not work as well on non-constant global
+variables.</p>
+<p>The resulting array type is inferred from the expression; in order to control
+the type explicitly, the type can be prepended to the comprehension. For example,
+in the above example we could have avoided declaring <tt class="docutils literal"><span class="pre">x</span></tt> as constant, and ensured
+that the result is of type <tt class="docutils literal"><span class="pre">Float64</span></tt> by writing:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="kt">Float64</span><span class="p">[</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>Using curly brackets instead of square brackets is a shortand notation for an
+array of type <tt class="docutils literal"><span class="pre">Any</span></tt>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="p">{</span> <span class="n">i</span><span class="o">/</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span> <span class="p">}</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Any</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">0.5</span>
+ <span class="mf">1.0</span>
+ <span class="mf">1.5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indexing">
+<span id="man-array-indexing"></span><h2>Indexing<a class="headerlink" href="#indexing" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>The general syntax for indexing into an n-dimensional array A is:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">X</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">I_1</span><span class="p">,</span> <span class="n">I_2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">I_n</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where each I_k may be:</p>
+<ol class="arabic simple">
+<li>A scalar value</li>
+<li>A <tt class="docutils literal"><span class="pre">Range</span></tt> of the form <tt class="docutils literal"><span class="pre">:</span></tt>, <tt class="docutils literal"><span class="pre">a:b</span></tt>, or <tt class="docutils literal"><span class="pre">a:b:c</span></tt></li>
+<li>An arbitrary integer vector, including the empty vector <tt class="docutils literal"><span class="pre">[]</span></tt></li>
+<li>A boolean vector</li>
+</ol>
+<p>The result X generally has dimensions
+<tt class="docutils literal"><span class="pre">(length(I_1),</span> <span class="pre">length(I_2),</span> <span class="pre">...,</span> <span class="pre">length(I_n))</span></tt>, with location
+<tt class="docutils literal"><span class="pre">(i_1,</span> <span class="pre">i_2,</span> <span class="pre">...,</span> <span class="pre">i_n)</span></tt> of X containing the value
+<tt class="docutils literal"><span class="pre">A[I_1[i_1],</span> <span class="pre">I_2[i_2],</span> <span class="pre">...,</span> <span class="pre">I_n[i_n]]</span></tt>. Trailing dimensions indexed with
+scalars are dropped. For example, the dimensions of <tt class="docutils literal"><span class="pre">A[I,</span> <span class="pre">1]</span></tt> will be
+<tt class="docutils literal"><span class="pre">(length(I),)</span></tt>. The size of a dimension indexed by a boolean vector
+will be the number of true values in the vector (they behave as if they were
+transformed with <tt class="docutils literal"><span class="pre">find</span></tt>).</p>
+<p>Indexing syntax is equivalent to a call to <tt class="docutils literal"><span class="pre">getindex</span></tt>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">X</span> <span class="o">=</span> <span class="n">getindex</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">I_1</span><span class="p">,</span> <span class="n">I_2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">I_n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ejemplo:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mi">4</span><span class="n">x4</span> <span class="kt">Int64</span> <span class="n">Array</span>
+<span class="mi">1</span> <span class="mi">5</span> <span class="mi">9</span> <span class="mi">13</span>
+<span class="mi">2</span> <span class="mi">6</span> <span class="mi">10</span> <span class="mi">14</span>
+<span class="mi">3</span> <span class="mi">7</span> <span class="mi">11</span> <span class="mi">15</span>
+<span class="mi">4</span> <span class="mi">8</span> <span class="mi">12</span> <span class="mi">16</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">2</span><span class="n">x2</span> <span class="kt">Int64</span> <span class="n">Array</span>
+<span class="mi">6</span> <span class="mi">10</span>
+<span class="mi">7</span> <span class="mi">11</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="assignment">
+<h2>Assignment<a class="headerlink" href="#assignment" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>The general syntax for assigning values in an n-dimensional array A is:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">A</span><span class="p">[</span><span class="n">I_1</span><span class="p">,</span> <span class="n">I_2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">I_n</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+</pre></div>
+</div>
+<p>where each I_k may be:</p>
+<ol class="arabic simple">
+<li>A scalar value</li>
+<li>A <tt class="docutils literal"><span class="pre">Range</span></tt> of the form <tt class="docutils literal"><span class="pre">:</span></tt>, <tt class="docutils literal"><span class="pre">a:b</span></tt>, or <tt class="docutils literal"><span class="pre">a:b:c</span></tt></li>
+<li>An arbitrary integer vector, including the empty vector <tt class="docutils literal"><span class="pre">[]</span></tt></li>
+<li>A boolean vector</li>
+</ol>
+<p>The size of X should be <tt class="docutils literal"><span class="pre">(length(I_1),</span> <span class="pre">length(I_2),</span> <span class="pre">...,</span> <span class="pre">length(I_n))</span></tt>, and
+the value in location <tt class="docutils literal"><span class="pre">(i_1,</span> <span class="pre">i_2,</span> <span class="pre">...,</span> <span class="pre">i_n)</span></tt> of A is overwritten with
+the value <tt class="docutils literal"><span class="pre">X[I_1[i_1],</span> <span class="pre">I_2[i_2],</span> <span class="pre">...,</span> <span class="pre">I_n[i_n]]</span></tt>.</p>
+<p>Index assignment syntax is equivalent to a call to <tt class="docutils literal"><span class="pre">setindex!</span></tt>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">A</span> <span class="o">=</span> <span class="n">setindex</span><span class="o">!</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">I_1</span><span class="p">,</span> <span class="n">I_2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">I_n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">3</span><span class="n">x3</span> <span class="kt">Int64</span> <span class="n">Array</span>
+<span class="mi">1</span> <span class="mi">4</span> <span class="mi">7</span>
+<span class="mi">2</span> <span class="mi">5</span> <span class="mi">8</span>
+<span class="mi">3</span> <span class="mi">6</span> <span class="mi">9</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">3</span><span class="n">x3</span> <span class="kt">Int64</span> <span class="n">Array</span>
+<span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">2</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">3</span> <span class="mi">6</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="concatenation">
+<h2>Concatenation<a class="headerlink" href="#concatenation" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Arrays can be concatenated along any dimension using the following
+syntax:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">cat(dim,</span> <span class="pre">A...)</span></tt> — concatenate input n-d arrays along the dimension
+<tt class="docutils literal"><span class="pre">dim</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">vcat(A...)</span></tt> — Shorthand for <tt class="docutils literal"><span class="pre">cat(1,</span> <span class="pre">A...)</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">hcat(A...)</span></tt> — Shorthand for <tt class="docutils literal"><span class="pre">cat(2,</span> <span class="pre">A...)</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">hvcat(A...)</span></tt></li>
+</ol>
+<p>Concatenation operators may also be used for concatenating arrays:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">[A</span> <span class="pre">B</span> <span class="pre">C</span> <span class="pre">...]</span></tt> — calls <tt class="docutils literal"><span class="pre">hcat</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">[A,</span> <span class="pre">B,</span> <span class="pre">C,</span> <span class="pre">...]</span></tt> — calls <tt class="docutils literal"><span class="pre">vcat</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">[A</span> <span class="pre">B;</span> <span class="pre">C</span> <span class="pre">D;</span> <span class="pre">...]</span></tt> — calls <tt class="docutils literal"><span class="pre">hvcat</span></tt></li>
+</ol>
+</div>
+<div class="section" id="vectorized-operators-and-functions">
+<h2>Vectorized Operators and Functions<a class="headerlink" href="#vectorized-operators-and-functions" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>The following operators are supported for arrays. In case of binary
+operators, the dot version of the operator should be used when both
+inputs are non-scalar, and any version of the operator may be used if
+one of the inputs is a scalar.</p>
+<ol class="arabic simple">
+<li>Unary Arithmetic — <tt class="docutils literal"><span class="pre">-</span></tt></li>
+<li>Binary Arithmetic — <tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">-</span></tt>, <tt class="docutils literal"><span class="pre">*</span></tt>, <tt class="docutils literal"><span class="pre">.*</span></tt>, <tt class="docutils literal"><span class="pre">/</span></tt>, <tt class="docutils literal"><span class="pre">./</span></tt>,
+<tt class="docutils literal"><span class="pre">\</span></tt>, <tt class="docutils literal"><span class="pre">.\</span></tt>, <tt class="docutils literal"><span class="pre">^</span></tt>, <tt class="docutils literal"><span class="pre">.^</span></tt>, <tt class="docutils literal"><span class="pre">div</span></tt>, <tt class="docutils literal"><span class="pre">mod</span></tt></li>
+<li>Comparison — <tt class="docutils literal"><span class="pre">==</span></tt>, <tt class="docutils literal"><span class="pre">!=</span></tt>, <tt class="docutils literal"><span class="pre">&lt;</span></tt>, <tt class="docutils literal"><span class="pre">&lt;=</span></tt>, <tt class="docutils literal"><span class="pre">&gt;</span></tt>, <tt class="docutils literal"><span class="pre">&gt;=</span></tt></li>
+<li>Unary Boolean or Bitwise — <tt class="docutils literal"><span class="pre">~</span></tt></li>
+<li>Binary Boolean or Bitwise — <tt class="docutils literal"><span class="pre">&amp;</span></tt>, <tt class="docutils literal"><span class="pre">|</span></tt>, <tt class="docutils literal"><span class="pre">$</span></tt></li>
+<li>Trigonometrical functions — <tt class="docutils literal"><span class="pre">sin</span></tt>, <tt class="docutils literal"><span class="pre">cos</span></tt>, <tt class="docutils literal"><span class="pre">tan</span></tt>, <tt class="docutils literal"><span class="pre">sinh</span></tt>,
+<tt class="docutils literal"><span class="pre">cosh</span></tt>, <tt class="docutils literal"><span class="pre">tanh</span></tt>, <tt class="docutils literal"><span class="pre">asin</span></tt>, <tt class="docutils literal"><span class="pre">acos</span></tt>, <tt class="docutils literal"><span class="pre">atan</span></tt>, <tt class="docutils literal"><span class="pre">atan2</span></tt>,
+<tt class="docutils literal"><span class="pre">sec</span></tt>, <tt class="docutils literal"><span class="pre">csc</span></tt>, <tt class="docutils literal"><span class="pre">cot</span></tt>, <tt class="docutils literal"><span class="pre">asec</span></tt>, <tt class="docutils literal"><span class="pre">acsc</span></tt>, <tt class="docutils literal"><span class="pre">acot</span></tt>, <tt class="docutils literal"><span class="pre">sech</span></tt>,
+<tt class="docutils literal"><span class="pre">csch</span></tt>, <tt class="docutils literal"><span class="pre">coth</span></tt>, <tt class="docutils literal"><span class="pre">asech</span></tt>, <tt class="docutils literal"><span class="pre">acsch</span></tt>, <tt class="docutils literal"><span class="pre">acoth</span></tt>, <tt class="docutils literal"><span class="pre">sinc</span></tt>,
+<tt class="docutils literal"><span class="pre">cosc</span></tt>, <tt class="docutils literal"><span class="pre">hypot</span></tt></li>
+<li>Logarithmic functions — <tt class="docutils literal"><span class="pre">log</span></tt>, <tt class="docutils literal"><span class="pre">log2</span></tt>, <tt class="docutils literal"><span class="pre">log10</span></tt>, <tt class="docutils literal"><span class="pre">log1p</span></tt></li>
+<li>Exponential functions — <tt class="docutils literal"><span class="pre">exp</span></tt>, <tt class="docutils literal"><span class="pre">expm1</span></tt>, <tt class="docutils literal"><span class="pre">exp2</span></tt>, <tt class="docutils literal"><span class="pre">ldexp</span></tt></li>
+<li>Rounding functions — <tt class="docutils literal"><span class="pre">ceil</span></tt>, <tt class="docutils literal"><span class="pre">floor</span></tt>, <tt class="docutils literal"><span class="pre">trunc</span></tt>, <tt class="docutils literal"><span class="pre">round</span></tt>,
+<tt class="docutils literal"><span class="pre">ipart</span></tt>, <tt class="docutils literal"><span class="pre">fpart</span></tt></li>
+<li>Other mathematical functions — <tt class="docutils literal"><span class="pre">min</span></tt>, <tt class="docutils literal"><span class="pre">max,</span></tt> <tt class="docutils literal"><span class="pre">abs</span></tt>, <tt class="docutils literal"><span class="pre">pow</span></tt>,
+<tt class="docutils literal"><span class="pre">sqrt</span></tt>, <tt class="docutils literal"><span class="pre">cbrt</span></tt>, <tt class="docutils literal"><span class="pre">erf</span></tt>, <tt class="docutils literal"><span class="pre">erfc</span></tt>, <tt class="docutils literal"><span class="pre">gamma</span></tt>, <tt class="docutils literal"><span class="pre">lgamma</span></tt>,
+<tt class="docutils literal"><span class="pre">real</span></tt>, <tt class="docutils literal"><span class="pre">conj</span></tt>, <tt class="docutils literal"><span class="pre">clamp</span></tt></li>
+</ol>
+</div>
+<div class="section" id="broadcasting">
+<h2>Broadcasting<a class="headerlink" href="#broadcasting" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>It is sometimes useful to perform element-by-element binary operations
+on arrays of different sizes, such as adding a vector to each column
+of a matrix.  An inefficient way to do this would be to replicate the
+vector to the size of the matrix:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">repmat</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">A</span>
+<span class="mi">2</span><span class="n">x3</span> <span class="kt">Float64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">0.848333</span>  <span class="mf">1.66714</span>  <span class="mf">1.3262</span>
+ <span class="mf">1.26743</span>   <span class="mf">1.77988</span>  <span class="mf">1.13859</span>
+</pre></div>
+</div>
+<p>This is wasteful when dimensions get large, so Julia offers the
+MATLAB-inspired <tt class="docutils literal"><span class="pre">bsxfun</span></tt>, which expands singleton dimensions in
+array arguments to match the corresponding dimension in the other
+array without using extra memory, and applies the given binary
+function:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">bsxfun</span><span class="p">(</span><span class="o">+</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="mi">2</span><span class="n">x3</span> <span class="kt">Float64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">0.848333</span>  <span class="mf">1.66714</span>  <span class="mf">1.3262</span>
+ <span class="mf">1.26743</span>   <span class="mf">1.77988</span>  <span class="mf">1.13859</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="mi">1</span><span class="n">x2</span> <span class="kt">Float64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">0.629799</span>  <span class="mf">0.754948</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">bsxfun</span><span class="p">(</span><span class="o">+</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="mi">2</span><span class="n">x2</span> <span class="kt">Float64</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="mf">1.31849</span>  <span class="mf">1.44364</span>
+ <span class="mf">1.56107</span>  <span class="mf">1.68622</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>The base array type in Julia is the abstract type
+<tt class="docutils literal"><span class="pre">AbstractArray{T,n}</span></tt>. It is parametrized by the number of dimensions
+<tt class="docutils literal"><span class="pre">n</span></tt> and the element type <tt class="docutils literal"><span class="pre">T</span></tt>. <tt class="docutils literal"><span class="pre">AbstractVector</span></tt> and
+<tt class="docutils literal"><span class="pre">AbstractMatrix</span></tt> are aliases for the 1-d and 2-d cases. Operations on
+<tt class="docutils literal"><span class="pre">AbstractArray</span></tt> objects are defined using higher level operators and
+functions, in a way that is independent of the underlying storage class.
+These operations are guaranteed to work correctly as a fallback for any
+specific array implementation.</p>
+<p>The <tt class="docutils literal"><span class="pre">Array{T,n}</span></tt> type is a specific instance of <tt class="docutils literal"><span class="pre">AbstractArray</span></tt>
+where elements are stored in column-major order. <tt class="docutils literal"><span class="pre">Vector</span></tt> and
+<tt class="docutils literal"><span class="pre">Matrix</span></tt> are aliases for the 1-d and 2-d cases. Specific operations
+such as scalar indexing, assignment, and a few other basic
+storage-specific operations are all that have to be implemented for
+<tt class="docutils literal"><span class="pre">Array</span></tt>, so that the rest of the array library can be implemented in a
+generic manner for <tt class="docutils literal"><span class="pre">AbstractArray</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">SubArray</span></tt> is a specialization of <tt class="docutils literal"><span class="pre">AbstractArray</span></tt> that performs
+indexing by reference rather than by copying. A <tt class="docutils literal"><span class="pre">SubArray</span></tt> is created
+with the <tt class="docutils literal"><span class="pre">sub</span></tt> function, which is called the same way as <tt class="docutils literal"><span class="pre">getindex</span></tt> (with
+an array and a series of index arguments). The result of <tt class="docutils literal"><span class="pre">sub</span></tt> looks
+the same as the result of <tt class="docutils literal"><span class="pre">getindex</span></tt>, except the data is left in place.
+<tt class="docutils literal"><span class="pre">sub</span></tt> stores the input index vectors in a <tt class="docutils literal"><span class="pre">SubArray</span></tt> object, which
+can later be used to index the original array indirectly.</p>
+<p><tt class="docutils literal"><span class="pre">StridedVector</span></tt> and <tt class="docutils literal"><span class="pre">StridedMatrix</span></tt> are convenient aliases defined
+to make it possible for Julia to call a wider range of BLAS and LAPACK
+functions by passing them either <tt class="docutils literal"><span class="pre">Array</span></tt> or <tt class="docutils literal"><span class="pre">SubArray</span></tt> objects, and
+thus saving inefficiencies from indexing and memory allocation.</p>
+<p>The following example computes the QR decomposition of a small section
+of a larger array, without creating any temporaries, and by calling the
+appropriate LAPACK function with the right leading dimension size and
+stride parameters.</p>
+<div class="highlight-jlcon"><div class="highlight"><pre><span class="gp">jul</span><span class="n">ia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">10x10 Float64 Array:</span>
+<span class="go"> 0.763921  0.884854   0.818783   0.519682   …  0.860332  0.882295   0.420202</span>
+<span class="go"> 0.190079  0.235315   0.0669517  0.020172      0.902405  0.0024219  0.24984</span>
+<span class="go"> 0.823817  0.0285394  0.390379   0.202234      0.516727  0.247442   0.308572</span>
+<span class="go"> 0.566851  0.622764   0.0683611  0.372167      0.280587  0.227102   0.145647</span>
+<span class="go"> 0.151173  0.179177   0.0510514  0.615746      0.322073  0.245435   0.976068</span>
+<span class="go"> 0.534307  0.493124   0.796481   0.0314695  …  0.843201  0.53461    0.910584</span>
+<span class="go"> 0.885078  0.891022   0.691548   0.547         0.727538  0.0218296  0.174351</span>
+<span class="go"> 0.123628  0.833214   0.0224507  0.806369      0.80163   0.457005   0.226993</span>
+<span class="go"> 0.362621  0.389317   0.702764   0.385856      0.155392  0.497805   0.430512</span>
+<span class="go"> 0.504046  0.532631   0.477461   0.225632      0.919701  0.0453513  0.505329</span>
+
+<span class="gp">jul</span><span class="n">ia</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">4x2 SubArray of 10x10 Float64 Array:</span>
+<span class="go"> 0.235315  0.020172</span>
+<span class="go"> 0.622764  0.372167</span>
+<span class="go"> 0.493124  0.0314695</span>
+<span class="go"> 0.833214  0.806369</span>
+
+<span class="gp">jul</span><span class="n">ia</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">)</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+
+<span class="gp">jul</span><span class="n">ia</span><span class="o">&gt;</span> <span class="n">q</span>
+<span class="go">4x2 Float64 Array:</span>
+<span class="go"> -0.200268   0.331205</span>
+<span class="go"> -0.530012   0.107555</span>
+<span class="go"> -0.41968    0.720129</span>
+<span class="go"> -0.709119  -0.600124</span>
+
+<span class="gp">jul</span><span class="n">ia</span><span class="o">&gt;</span> <span class="n">r</span>
+<span class="go">2x2 Float64 Array:</span>
+<span class="go"> -1.175  -0.786311</span>
+<span class="go">  0.0    -0.414549</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sparse-matrices">
+<h1>Sparse Matrices<a class="headerlink" href="#sparse-matrices" title="Enlazar permanentemente con este título">¶</a></h1>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Sparse_matrix">Sparse matrices</a> are
+matrices that contain enough zeros that storing them in a special data
+structure leads to savings in space and execution time. Sparse
+matrices may be used when operations on the sparse representation of a
+matrix lead to considerable gains in either time or space when
+compared to performing the same operations on a dense matrix.</p>
+<div class="section" id="compressed-sparse-column-csc-storage">
+<h2>Compressed Sparse Column (CSC) Storage<a class="headerlink" href="#compressed-sparse-column-csc-storage" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>In julia, sparse matrices are stored in the <a class="reference external" href="http://en.wikipedia.org/wiki/Sparse_matrix#Compressed_sparse_column_.28CSC_or_CCS.29">Compressed Sparse Column
+(CSC) format</a>. Julia
+sparse matrices have the type <tt class="docutils literal"><span class="pre">SparseMatrixCSC{Tv,Ti}</span></tt>, where <tt class="docutils literal"><span class="pre">Tv</span></tt>
+is the type of the nonzero values, and <tt class="docutils literal"><span class="pre">Ti</span></tt> is the integer type for
+storing column pointers and row indices.</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">type</span><span class="nc"> SparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span><span class="n">Ti</span><span class="o">&lt;:</span><span class="n">Integer</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractSparseMatrix</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span><span class="n">Ti</span><span class="p">}</span>
+    <span class="n">m</span><span class="p">::</span><span class="kt">Int</span>                  <span class="c"># Number of rows</span>
+    <span class="n">n</span><span class="p">::</span><span class="kt">Int</span>                  <span class="c"># Number of columns</span>
+    <span class="n">colptr</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">Ti</span><span class="p">}</span>      <span class="c"># Column i is in colptr[i]:(colptr[i+1]-1)</span>
+    <span class="n">rowval</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">Ti</span><span class="p">}</span>      <span class="c"># Row values of nonzeros</span>
+    <span class="n">nzval</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">Tv</span><span class="p">}</span>       <span class="c"># Nonzero values</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The compressed sparse column storage makes it easy and quick to access
+the elements in the column of a sparse matrix, whereas accessing the
+sparse matrix by rows is considerably slower. Operations such as
+insertion of nonzero values one at a time in the CSC structure tend to
+be slow. This is because all elements of the sparse matrix that are
+beyond the point of insertion have to be moved one place over.</p>
+<p>All operations on sparse matrices are carefully implemented to exploit
+the CSC data structure for performance, and to avoid expensive operations.</p>
+</div>
+<div class="section" id="sparse-matrix-constructors">
+<h2>Sparse matrix constructors<a class="headerlink" href="#sparse-matrix-constructors" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>The simplest way to create sparse matrices are using functions
+equivalent to the <tt class="docutils literal"><span class="pre">zeros</span></tt> and <tt class="docutils literal"><span class="pre">eye</span></tt> functions that Julia provides
+for working with dense matrices. To produce sparse matrices instead,
+you can use the same names with an <tt class="docutils literal"><span class="pre">sp</span></tt> prefix:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">spzeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">3</span><span class="n">x5</span> <span class="n">sparse</span> <span class="n">matrix</span> <span class="n">with</span> <span class="mi">0</span> <span class="n">nonzeros</span><span class="p">:</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">speye</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">3</span><span class="n">x5</span> <span class="n">sparse</span> <span class="n">matrix</span> <span class="n">with</span> <span class="mi">3</span> <span class="n">nonzeros</span><span class="p">:</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">sparse</span></tt> function is often a handy way to construct sparse
+matrices. It takes as its input a vector <tt class="docutils literal"><span class="pre">I</span></tt> of row indices, a
+vector <tt class="docutils literal"><span class="pre">J</span></tt> of column indices, and a vector <tt class="docutils literal"><span class="pre">V</span></tt> of nonzero
+values. <tt class="docutils literal"><span class="pre">sparse(I,J,V)</span></tt> constructs a sparse matrix such that
+<tt class="docutils literal"><span class="pre">S[I[k],</span> <span class="pre">J[k]]</span> <span class="pre">=</span> <span class="pre">V[k]</span></tt>.</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">I</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span> <span class="n">J</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">];</span> <span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sparse</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">,</span><span class="n">V</span><span class="p">)</span>
+<span class="mi">5</span><span class="n">x18</span> <span class="n">sparse</span> <span class="n">matrix</span> <span class="n">with</span> <span class="mi">4</span> <span class="n">nonzeros</span><span class="p">:</span>
+     <span class="p">[</span><span class="mi">1</span> <span class="p">,</span>  <span class="mi">4</span><span class="p">]</span>  <span class="o">=</span>  <span class="mi">1</span>
+     <span class="p">[</span><span class="mi">4</span> <span class="p">,</span>  <span class="mi">7</span><span class="p">]</span>  <span class="o">=</span>  <span class="mi">2</span>
+     <span class="p">[</span><span class="mi">5</span> <span class="p">,</span>  <span class="mi">9</span><span class="p">]</span>  <span class="o">=</span>  <span class="mi">3</span>
+     <span class="p">[</span><span class="mi">3</span> <span class="p">,</span> <span class="mi">18</span><span class="p">]</span>  <span class="o">=</span>  <span class="o">-</span><span class="mi">5</span>
+</pre></div>
+</div>
+<p>The inverse of the <tt class="docutils literal"><span class="pre">sparse</span></tt> function is <tt class="docutils literal"><span class="pre">findn</span></tt>, which
+retrieves the inputs used to create the sparse matrix.</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">findn</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">18</span><span class="p">])</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">findn_nzs</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">18</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Another way to create sparse matrices is to convert a dense matrix
+into a sparse matrix using the <tt class="docutils literal"><span class="pre">sparse</span></tt> function:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">sparse</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="mi">5</span><span class="n">x5</span> <span class="n">sparse</span> <span class="n">matrix</span> <span class="n">with</span> <span class="mi">5</span> <span class="n">nonzeros</span><span class="p">:</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>  <span class="o">=</span>  <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>You can go in the other direction using the <tt class="docutils literal"><span class="pre">dense</span></tt> or the <tt class="docutils literal"><span class="pre">full</span></tt>
+function. The <tt class="docutils literal"><span class="pre">issparse</span></tt> function can be used to query if a matrix
+is sparse.</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">issparse</span><span class="p">(</span><span class="n">speye</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sparse-matrix-operations">
+<h2>Sparse matrix operations<a class="headerlink" href="#sparse-matrix-operations" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Arithmetic operations on sparse matrices also work as they do on dense
+matrices. Indexing of, assignment into, and concatenation of sparse
+matrices work in the same way as dense matrices. Indexing operations,
+especially assignment, are expensive, when carried out one element at
+a time. In many cases it may be better to convert the sparse matrix
+into <tt class="docutils literal"><span class="pre">(I,J,V)</span></tt> format using <tt class="docutils literal"><span class="pre">find_nzs</span></tt>, manipulate the nonzeros or
+the structure in the dense vectors <tt class="docutils literal"><span class="pre">(I,J,V)</span></tt>, and then reconstruct
+the sparse matrix.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parallel-computing.html" class="btn btn-neutral float-right" title="Parallel Computing">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="metaprogramming.html" class="btn btn-neutral" title="Metaprogramming"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2013, Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

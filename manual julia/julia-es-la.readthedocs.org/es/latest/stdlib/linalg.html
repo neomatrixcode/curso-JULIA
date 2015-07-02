@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Linear Algebra &mdash; documentación de Julia Language - 0.3-dev</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="documentación de Julia Language - 0.3-dev" href="../index.html"/>
+        <link rel="up" title="Libreria estandar de Julia" href="index.html"/>
+        <link rel="next" title="Constants" href="constants.html"/>
+        <link rel="prev" title="Sparse Matrices" href="sparse.html"/>
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://julia-es-la.readthedocs.org/es/latest/stdlib/linalg.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "julia-es-la",
+    version: "latest",
+    language: "es",
+    page: "stdlib/linalg",
+    theme: "julia",
+    docroot: "/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "julia-es-la";
+  var page_name = "stdlib/linalg";
+  var html_theme = "julia";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://julialang.org/"><img src="../_static/julia-logo.svg" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> Julia Language</a>
+        -->
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">El Manual de Julia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction.html">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/getting-started.html">Comenzando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/integers-and-floating-point-numbers.html">Integers and Floating-Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/mathematical-operations.html">Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/complex-and-rational-numbers.html">Complex and Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/strings.html">Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/control-flow.html">Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/variables-and-scoping.html">Variables and Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/constructors.html">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/conversion-and-promotion.html">Conversion and Promotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/metaprogramming.html">Metaprogramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/arrays.html">Arreglos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/arrays.html#sparse-matrices">Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/parallel-computing.html">Parallel Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/running-external-programs.html">Running External Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/calling-c-and-fortran-code.html">Calling C and Fortran Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/packages.html">Julia Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/performance-tips.html">Performance Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libreria estandar de Julia</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#built-ins">Built-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#built-in-modules">Built-in Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packagelist.html">Paquetes Disponibles (en inglés)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id1">ArgParse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id2">Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id3">BinDeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id4">BioSeq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id5">BloomFilters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id7">Cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id8">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id10">Calendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id11">Catalan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id12">Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id13">Clp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id14">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id16">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id17">CoinMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id19">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id21">Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id23">ContinuedFractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id25">Cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id26">Cubature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id27">Curl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id28">DICOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id30">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id31">DataStructures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id32">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id33">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id34">Devectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id36">DictViews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id37">DimensionalityReduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id39">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id41">Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id42">Elliptic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id44">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id46">FITSIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id48">FactCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id49">FastaRead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id51">FileFind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id53">GLFW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id54">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id56">GLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id58">GLUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id59">GSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id60">GZip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id61">Gadfly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id63">Gaston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id64">GetC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id66">GoogleCharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id67">Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id69">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id71">Gtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id72">Gurobi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id74">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id76">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id78">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id79">Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id81">HypothesisTests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id82">ICU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id84">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id86">ImmutableArrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id87">IniFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id89">Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id91">Ito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id92">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id94">JudyDicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id95">JuliaWebRepl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id97">Jyacas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id99">KLDivergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id101">LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id103">Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id105">LazySequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id107">LinProgGLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id109">Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id111">MAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id113">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id115">MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id116">MLBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id118">MarketTechnicals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id119">MathProg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id120">MathProgBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id122">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id124">MixedModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id125">Monads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id126">Mongo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id127">Mongrel2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id129">Mustache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id131">NHST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id133">NLopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id135">Named</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id137">ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id138">ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id140">OpenGL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id142">OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id144">Optim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id146">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id148">PLX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id150">PatternDispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id152">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id154">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id156">ProjectTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id158">PyCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id160">QuickCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id162">RDatasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id164">RNGTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id165">RandomMatrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id167">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id169">Rif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id170">Rmath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id172">SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id173">SDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id175">SemidefiniteProgramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id177">SimJulia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id178">Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id179">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id181">StrPack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id183">Sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id185">SymbolicLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id187">TOML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id188">TextAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id190">TextWrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id192">TimeModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id194">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id196">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id198">TkExtras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id200">TopicModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id201">TradingInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id203">Trie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id205">UTF16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id207">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id209">WAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id210">Winston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id212">ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id214">Zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id216">kNN</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Julia Language</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Libreria estandar de Julia</a> &raquo;</li>
+      
+    <li>Linear Algebra</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/lbenitesanchez/julia-doc-es-la/blob/master/stdlib/linalg.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="linear-algebra">
+<span id="stdlib-linalg"></span><h1>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Linear algebra functions in Julia are largely implemented by calling functions from <a class="reference external" href="http://www.netlib.org/lapack/">LAPACK</a>.  Sparse factorizations call functions from <a class="reference external" href="http:://www.suitesparse.com/">SuiteSparse</a>.</p>
+<dl class="function">
+<dt id="*">
+<tt class="descname">*</tt><big>(</big><em>A</em>, <em>B</em><big>)</big><a class="headerlink" href="#*" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Matrix multiplication</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="\">
+<tt class="descname">\</tt><big>(</big><em>A</em>, <em>B</em><big>)</big><a class="headerlink" href="#\" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Matrix division using a polyalgorithm. For input matrices <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">B</span></tt>, the result <tt class="docutils literal"><span class="pre">X</span></tt> is such that <tt class="docutils literal"><span class="pre">A*X</span> <span class="pre">==</span> <span class="pre">B</span></tt> when <tt class="docutils literal"><span class="pre">A</span></tt> is square.  The solver that is used depends upon the structure of <tt class="docutils literal"><span class="pre">A</span></tt>.  A direct solver is used for upper- or lower triangular <tt class="docutils literal"><span class="pre">A</span></tt>.  For Hermitian <tt class="docutils literal"><span class="pre">A</span></tt> (equivalent to symmetric <tt class="docutils literal"><span class="pre">A</span></tt> for non-complex <tt class="docutils literal"><span class="pre">A</span></tt>) the BunchKaufman factorization is used.  Otherwise an LU factorization is used. For rectangular <tt class="docutils literal"><span class="pre">A</span></tt> the result is the minimum-norm least squares solution computed by reducing <tt class="docutils literal"><span class="pre">A</span></tt> to bidiagonal form and solving the bidiagonal least squares problem.  For sparse, square <tt class="docutils literal"><span class="pre">A</span></tt> the LU factorization (from UMFPACK) is used.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="dot">
+<tt class="descname">dot</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#dot" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the dot product</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cross">
+<tt class="descname">cross</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#cross" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the cross product of two 3-vectors</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="norm">
+<tt class="descname">norm</tt><big>(</big><em>a</em><big>)</big><a class="headerlink" href="#norm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the norm of a <tt class="docutils literal"><span class="pre">Vector</span></tt> or a <tt class="docutils literal"><span class="pre">Matrix</span></tt></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lu">
+<tt class="descname">lu</tt><big>(</big><em>A</em><big>)</big> &rarr; L, U, P<a class="headerlink" href="#lu" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the LU factorization of <tt class="docutils literal"><span class="pre">A</span></tt>, such that <tt class="docutils literal"><span class="pre">P*A</span> <span class="pre">=</span> <span class="pre">L*U</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lufact">
+<tt class="descname">lufact</tt><big>(</big><em>A</em><big>)</big> &rarr; LU<a class="headerlink" href="#lufact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the LU factorization of <tt class="docutils literal"><span class="pre">A</span></tt>, returning an <tt class="docutils literal"><span class="pre">LU</span></tt> object for dense <tt class="docutils literal"><span class="pre">A</span></tt> or an <tt class="docutils literal"><span class="pre">UmfpackLU</span></tt> object for sparse <tt class="docutils literal"><span class="pre">A</span></tt>. The individual components of the factorization <tt class="docutils literal"><span class="pre">F</span></tt> can be accesed by indexing: <tt class="docutils literal"><span class="pre">F[:L]</span></tt>, <tt class="docutils literal"><span class="pre">F[:U]</span></tt>, and <tt class="docutils literal"><span class="pre">F[:P]</span></tt> (permutation matrix) or <tt class="docutils literal"><span class="pre">F[:p]</span></tt> (permutation vector). An <tt class="docutils literal"><span class="pre">UmfpackLU</span></tt> object has additional components <tt class="docutils literal"><span class="pre">F[:q]</span></tt> (the left permutation vector) and <tt class="docutils literal"><span class="pre">Rs</span></tt> the vector of scaling factors. The following functions are available for both <tt class="docutils literal"><span class="pre">LU</span></tt> and <tt class="docutils literal"><span class="pre">UmfpackLU</span></tt> objects: <tt class="docutils literal"><span class="pre">size</span></tt>, <tt class="docutils literal"><span class="pre">\</span></tt> and <tt class="docutils literal"><span class="pre">det</span></tt>.  For <tt class="docutils literal"><span class="pre">LU</span></tt> there is also an <tt class="docutils literal"><span class="pre">inv</span></tt> method.  The sparse LU factorization is such that <tt class="docutils literal"><span class="pre">L*U</span></tt> is equal to``diagmm(Rs,A)[p,q]``.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lufact!">
+<tt class="descname">lufact!</tt><big>(</big><em>A</em><big>)</big> &rarr; LU<a class="headerlink" href="#lufact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">lufact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">lufact</span></tt> but saves space by overwriting the input A, instead of creating a copy.  For sparse <tt class="docutils literal"><span class="pre">A</span></tt> the <tt class="docutils literal"><span class="pre">nzval</span></tt> field is not overwritten but the index fields, <tt class="docutils literal"><span class="pre">colptr</span></tt> and <tt class="docutils literal"><span class="pre">rowval</span></tt> are decremented in place, converting from 1-based indices to 0-based indices.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="chol">
+<tt class="descname">chol</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>LU</em><span class="optional">]</span><big>)</big> &rarr; F<a class="headerlink" href="#chol" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute Cholesky factorization of a symmetric positive-definite matrix <tt class="docutils literal"><span class="pre">A</span></tt> and return the matrix <tt class="docutils literal"><span class="pre">F</span></tt>. If <tt class="docutils literal"><span class="pre">LU</span></tt> is <tt class="docutils literal"><span class="pre">L</span></tt> (Lower), <tt class="docutils literal"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">L*L'</span></tt>. If <tt class="docutils literal"><span class="pre">LU</span></tt> is <tt class="docutils literal"><span class="pre">U</span></tt> (Upper), <tt class="docutils literal"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">R'*R</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cholfact">
+<tt class="descname">cholfact</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>LU</em><span class="optional">]</span><big>)</big> &rarr; Cholesky<a class="headerlink" href="#cholfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the Cholesky factorization of a dense symmetric positive-definite matrix <tt class="docutils literal"><span class="pre">A</span></tt> and return a <tt class="docutils literal"><span class="pre">Cholesky</span></tt> object. <tt class="docutils literal"><span class="pre">LU</span></tt> may be &#8216;L&#8217; for using the lower part or &#8216;U&#8217; for the upper part. The default is to use &#8216;U&#8217;. The triangular matrix can be obtained from the factorization <tt class="docutils literal"><span class="pre">F</span></tt> with: <tt class="docutils literal"><span class="pre">F[:L]</span></tt> and <tt class="docutils literal"><span class="pre">F[:U]</span></tt>. The following functions are available for <tt class="docutils literal"><span class="pre">Cholesky</span></tt> objects: <tt class="docutils literal"><span class="pre">size</span></tt>, <tt class="docutils literal"><span class="pre">\</span></tt>, <tt class="docutils literal"><span class="pre">inv</span></tt>, <tt class="docutils literal"><span class="pre">det</span></tt>. A <tt class="docutils literal"><span class="pre">LAPACK.PosDefException</span></tt> error is thrown in case the matrix is not positive definite.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">cholfact</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>ll</em><span class="optional">]</span><big>)</big> &rarr; CholmodFactor</dt>
+<dd><p>Compute the sparse Cholesky factorization of a sparse matrix <tt class="docutils literal"><span class="pre">A</span></tt>.  If <tt class="docutils literal"><span class="pre">A</span></tt> is Hermitian its Cholesky factor is determined.  If <tt class="docutils literal"><span class="pre">A</span></tt> is not Hermitian the Cholesky factor of <tt class="docutils literal"><span class="pre">A*A'</span></tt> is determined. A fill-reducing permutation is used.  Methods for <tt class="docutils literal"><span class="pre">size</span></tt>, <tt class="docutils literal"><span class="pre">solve</span></tt>, <tt class="docutils literal"><span class="pre">\</span></tt>, <tt class="docutils literal"><span class="pre">findn_nzs</span></tt>, <tt class="docutils literal"><span class="pre">diag</span></tt>, <tt class="docutils literal"><span class="pre">det</span></tt> and <tt class="docutils literal"><span class="pre">logdet</span></tt>.  One of the solve methods includes an integer argument that can be used to solve systems involving parts of the factorization only.  The optional boolean argument, <tt class="docutils literal"><span class="pre">ll</span></tt> determines whether the factorization returned is of the <tt class="docutils literal"><span class="pre">A[p,p]</span> <span class="pre">=</span> <span class="pre">L*L'</span></tt> form, where <tt class="docutils literal"><span class="pre">L</span></tt> is lower triangular or <tt class="docutils literal"><span class="pre">A[p,p]</span> <span class="pre">=</span> <span class="pre">diagmm(L,D)*L'</span></tt> form where <tt class="docutils literal"><span class="pre">L</span></tt> is unit lower triangular and <tt class="docutils literal"><span class="pre">D</span></tt> is a non-negative vector.  The default is LDL.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cholfact!">
+<tt class="descname">cholfact!</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>LU</em><span class="optional">]</span><big>)</big> &rarr; Cholesky<a class="headerlink" href="#cholfact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">cholfact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">cholfact</span></tt> but saves space by overwriting the input A, instead of creating a copy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cholpfact">
+<tt class="descname">cholpfact</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>LU</em><span class="optional">]</span><big>)</big> &rarr; CholeskyPivoted<a class="headerlink" href="#cholpfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the pivoted Cholesky factorization of a symmetric positive semi-definite matrix <tt class="docutils literal"><span class="pre">A</span></tt> and return a <tt class="docutils literal"><span class="pre">CholeskyPivoted</span></tt> object. <tt class="docutils literal"><span class="pre">LU</span></tt> may be &#8216;L&#8217; for using the lower part or &#8216;U&#8217; for the upper part. The default is to use &#8216;U&#8217;. The triangular factors containted in the factorization <tt class="docutils literal"><span class="pre">F</span></tt> can be obtained with <tt class="docutils literal"><span class="pre">F[:L]</span></tt> and <tt class="docutils literal"><span class="pre">F[:U]</span></tt>, whereas the permutation can be obtained with <tt class="docutils literal"><span class="pre">F[:P]</span></tt> or <tt class="docutils literal"><span class="pre">F[:p]</span></tt>. The following functions are available for <tt class="docutils literal"><span class="pre">CholeskyPivoted</span></tt> objects: <tt class="docutils literal"><span class="pre">size</span></tt>, <tt class="docutils literal"><span class="pre">\</span></tt>, <tt class="docutils literal"><span class="pre">inv</span></tt>, <tt class="docutils literal"><span class="pre">det</span></tt>. A <tt class="docutils literal"><span class="pre">LAPACK.RankDeficientException</span></tt> error is thrown in case the matrix is rank deficient.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cholpfact!">
+<tt class="descname">cholpfact!</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>LU</em><span class="optional">]</span><big>)</big> &rarr; CholeskyPivoted<a class="headerlink" href="#cholpfact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">cholpfact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">cholpfact</span></tt> but saves space by overwriting the input A, instead of creating a copy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="qr">
+<tt class="descname">qr</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>thin</em><span class="optional">]</span><big>)</big> &rarr; Q, R<a class="headerlink" href="#qr" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the QR factorization of <tt class="docutils literal"><span class="pre">A</span></tt> such that <tt class="docutils literal"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">Q*R</span></tt>. Also see <tt class="docutils literal"><span class="pre">qrfact</span></tt>. The default is to compute a thin factorization.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="qrfact">
+<tt class="descname">qrfact</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#qrfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the QR factorization of <tt class="docutils literal"><span class="pre">A</span></tt> and return a <tt class="docutils literal"><span class="pre">QR</span></tt> object. The coomponents of the factorization <tt class="docutils literal"><span class="pre">F</span></tt> can be accessed as follows: the orthogonal matrix <tt class="docutils literal"><span class="pre">Q</span></tt> can be extracted with <tt class="docutils literal"><span class="pre">F[:Q]</span></tt> and the triangular matrix <tt class="docutils literal"><span class="pre">R</span></tt> with <tt class="docutils literal"><span class="pre">F[:R]</span></tt>. The following functions are available for <tt class="docutils literal"><span class="pre">QR</span></tt> objects: <tt class="docutils literal"><span class="pre">size</span></tt>, <tt class="docutils literal"><span class="pre">\</span></tt>. When <tt class="docutils literal"><span class="pre">Q</span></tt> is extracted, the resulting type is the <tt class="docutils literal"><span class="pre">QRPackedQ</span></tt> object, and has the <tt class="docutils literal"><span class="pre">*</span></tt> operator overloaded to support efficient multiplication by <tt class="docutils literal"><span class="pre">Q</span></tt> and <tt class="docutils literal"><span class="pre">Q'</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="qrfact!">
+<tt class="descname">qrfact!</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#qrfact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">qrfact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">qrfact</span></tt> but saves space by overwriting the input A, instead of creating a copy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="qrp">
+<tt class="descname">qrp</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>thin</em><span class="optional">]</span><big>)</big> &rarr; Q, R, P<a class="headerlink" href="#qrp" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the QR factorization of <tt class="docutils literal"><span class="pre">A</span></tt> with pivoting, such that <tt class="docutils literal"><span class="pre">A*P</span> <span class="pre">=</span> <span class="pre">Q*R</span></tt>, Also see <tt class="docutils literal"><span class="pre">qrpfact</span></tt>. The default is to compute a thin factorization.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="qrpfact">
+<tt class="descname">qrpfact</tt><big>(</big><em>A</em><big>)</big> &rarr; QRPivoted<a class="headerlink" href="#qrpfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the QR factorization of <tt class="docutils literal"><span class="pre">A</span></tt> with pivoting and return a <tt class="docutils literal"><span class="pre">QRPivoted</span></tt> object. The components of the factorization <tt class="docutils literal"><span class="pre">F</span></tt> can be accessed as follows: the orthogonal matrix <tt class="docutils literal"><span class="pre">Q</span></tt> can be extracted with <tt class="docutils literal"><span class="pre">F[:Q]</span></tt>, the triangular matrix <tt class="docutils literal"><span class="pre">R</span></tt> with <tt class="docutils literal"><span class="pre">F[:R]</span></tt>, and the permutation with <tt class="docutils literal"><span class="pre">F[:P]</span></tt> or <tt class="docutils literal"><span class="pre">F[:p]</span></tt>. The following functions are available for <tt class="docutils literal"><span class="pre">QRPivoted</span></tt> objects: <tt class="docutils literal"><span class="pre">size</span></tt>, <tt class="docutils literal"><span class="pre">\</span></tt>. When <tt class="docutils literal"><span class="pre">Q</span></tt> is extracted, the resulting type is the <tt class="docutils literal"><span class="pre">QRPivotedQ</span></tt> object, and has the <tt class="docutils literal"><span class="pre">*</span></tt> operator overloaded to support efficient multiplication by <tt class="docutils literal"><span class="pre">Q</span></tt> and <tt class="docutils literal"><span class="pre">Q'</span></tt>. A <tt class="docutils literal"><span class="pre">QRPivotedQ</span></tt> matrix can be converted into a regular matrix with <tt class="docutils literal"><span class="pre">full</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="qrpfact!">
+<tt class="descname">qrpfact!</tt><big>(</big><em>A</em><big>)</big> &rarr; QRPivoted<a class="headerlink" href="#qrpfact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">qrpfact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">qrpfact</span></tt> but saves space by overwriting the input A, instead of creating a copy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sqrtm">
+<tt class="descname">sqrtm</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#sqrtm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the matrix square root of <tt class="docutils literal"><span class="pre">A</span></tt>. If <tt class="docutils literal"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">sqrtm(A)</span></tt>, then <tt class="docutils literal"><span class="pre">B*B</span> <span class="pre">==</span> <span class="pre">A</span></tt> within roundoff error.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="eig">
+<tt class="descname">eig</tt><big>(</big><em>A</em><big>)</big> &rarr; D, V<a class="headerlink" href="#eig" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute eigenvalues and eigenvectors of A</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="eigvals">
+<tt class="descname">eigvals</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#eigvals" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns the eigenvalues of <tt class="docutils literal"><span class="pre">A</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="eigmax">
+<tt class="descname">eigmax</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#eigmax" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns the largest eigenvalue of <tt class="docutils literal"><span class="pre">A</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="eigmin">
+<tt class="descname">eigmin</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#eigmin" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns the smallest eigenvalue of <tt class="docutils literal"><span class="pre">A</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="eigvecs">
+<tt class="descname">eigvecs</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>eigvals</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#eigvecs" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns the eigenvectors of <tt class="docutils literal"><span class="pre">A</span></tt>.</p>
+<p>For SymTridiagonal matrices, if the optional vector of eigenvalues <tt class="docutils literal"><span class="pre">eigvals</span></tt> is specified, returns the specific corresponding eigenvectors.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="eigfact">
+<tt class="descname">eigfact</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#eigfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the eigenvalue decomposition of <tt class="docutils literal"><span class="pre">A</span></tt> and return an <tt class="docutils literal"><span class="pre">Eigen</span></tt> object. If <tt class="docutils literal"><span class="pre">F</span></tt> is the factorization object, the eigenvalues can be accessed with <tt class="docutils literal"><span class="pre">F[:values]</span></tt> and the eigenvectors with <tt class="docutils literal"><span class="pre">F[:vectors]</span></tt>. The following functions are available for <tt class="docutils literal"><span class="pre">Eigen</span></tt> objects: <tt class="docutils literal"><span class="pre">inv</span></tt>, <tt class="docutils literal"><span class="pre">det</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="eigfact!">
+<tt class="descname">eigfact!</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#eigfact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">eigfact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">eigfact</span></tt> but saves space by overwriting the input A, instead of creating a copy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hessfact">
+<tt class="descname">hessfact</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#hessfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the Hessenberg decomposition of <tt class="docutils literal"><span class="pre">A</span></tt> and return a <tt class="docutils literal"><span class="pre">Hessenberg</span></tt> object. If <tt class="docutils literal"><span class="pre">F</span></tt> is the factorization object, the unitary matrix can be accessed with <tt class="docutils literal"><span class="pre">F[:Q]</span></tt> and the Hessenberg matrix with <tt class="docutils literal"><span class="pre">F[:H]</span></tt>. When <tt class="docutils literal"><span class="pre">Q</span></tt> is extracted, the resulting type is the <tt class="docutils literal"><span class="pre">HessenbergQ</span></tt> object, and may be converted to a regular matrix with <tt class="docutils literal"><span class="pre">full</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hessfact!">
+<tt class="descname">hessfact!</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#hessfact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">hessfact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">hessfact</span></tt> but saves space by overwriting the input A, instead of creating a copy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="schurfact">
+<tt class="descname">schurfact</tt><big>(</big><em>A</em><big>)</big> &rarr; Schur<a class="headerlink" href="#schurfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Computes the Schur factorization of the matrix <tt class="docutils literal"><span class="pre">A</span></tt>. The (quasi) triangular Schur factor can be obtained from the <tt class="docutils literal"><span class="pre">Schur</span></tt> object <tt class="docutils literal"><span class="pre">F</span></tt> with either <tt class="docutils literal"><span class="pre">F[:Schur]</span></tt> or <tt class="docutils literal"><span class="pre">F[:T]</span></tt> and the unitary/orthogonal Schur vectors can be obtained with <tt class="docutils literal"><span class="pre">F[:vectors]</span></tt> or <tt class="docutils literal"><span class="pre">F[:Z]</span></tt> such that <tt class="docutils literal"><span class="pre">A=F[:vectors]*F[:Schur]*F[:vectors]'</span></tt>. The eigenvalues of <tt class="docutils literal"><span class="pre">A</span></tt> can be obtained with <tt class="docutils literal"><span class="pre">F[:values]</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="schur">
+<tt class="descname">schur</tt><big>(</big><em>A</em><big>)</big> &rarr; Schur[:T], Schur[:Z], Schur[:values]<a class="headerlink" href="#schur" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>See schurfact</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">schurfact</tt><big>(</big><em>A</em>, <em>B</em><big>)</big> &rarr; GeneralizedSchur</dt>
+<dd><p>Computes the Generalized Schur (or QZ) factorization of the matrices <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">B</span></tt>. The (quasi) triangular Schur factors can be obtained from the <tt class="docutils literal"><span class="pre">Schur</span></tt> object <tt class="docutils literal"><span class="pre">F</span></tt> with <tt class="docutils literal"><span class="pre">F[:S]</span></tt> and <tt class="docutils literal"><span class="pre">F[:T]</span></tt>, the left unitary/orthogonal Schur vectors can be obtained with <tt class="docutils literal"><span class="pre">F[:left]</span></tt> or <tt class="docutils literal"><span class="pre">F[:Q]</span></tt> and the right unitary/orthogonal Schur vectors can be obtained with <tt class="docutils literal"><span class="pre">F[:right]</span></tt> or <tt class="docutils literal"><span class="pre">F[:Z]</span></tt> such that <tt class="docutils literal"><span class="pre">A=F[:left]*F[:S]*F[:right]'</span></tt> and <tt class="docutils literal"><span class="pre">B=F[:left]*F[:T]*F[:right]'</span></tt>. The generalized eigenvalues of <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">B</span></tt> can be obtained with <tt class="docutils literal"><span class="pre">F[:alpha]./F[:beta]</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">schur</tt><big>(</big><em>A</em>, <em>B</em><big>)</big> &rarr; GeneralizedSchur[:S], GeneralizedSchur[:T], GeneralizedSchur[:Q], GeneralizedSchur[:Z]</dt>
+<dd><p>See schurfact</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="svdfact">
+<tt class="descname">svdfact</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>thin</em><span class="optional">]</span><big>)</big> &rarr; SVD<a class="headerlink" href="#svdfact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the Singular Value Decomposition (SVD) of <tt class="docutils literal"><span class="pre">A</span></tt> and return an <tt class="docutils literal"><span class="pre">SVD</span></tt> object. <tt class="docutils literal"><span class="pre">U</span></tt>, <tt class="docutils literal"><span class="pre">S</span></tt>, <tt class="docutils literal"><span class="pre">V</span></tt> and <tt class="docutils literal"><span class="pre">Vt</span></tt> can be obtained from the factorization <tt class="docutils literal"><span class="pre">F</span></tt> with <tt class="docutils literal"><span class="pre">F[:U]</span></tt>, <tt class="docutils literal"><span class="pre">F[:S]</span></tt>, <tt class="docutils literal"><span class="pre">F[:V]</span></tt> and <tt class="docutils literal"><span class="pre">F[:Vt]</span></tt>, such that <tt class="docutils literal"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">U*diagm(S)*Vt</span></tt>. If <tt class="docutils literal"><span class="pre">thin</span></tt> is <tt class="docutils literal"><span class="pre">true</span></tt>, an economy mode decomposition is returned. The algorithm produces <tt class="docutils literal"><span class="pre">Vt</span></tt> and hence <tt class="docutils literal"><span class="pre">Vt</span></tt> is more efficient to extract than <tt class="docutils literal"><span class="pre">V</span></tt>. The default is to produce a thin decomposition.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="svdfact!">
+<tt class="descname">svdfact!</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>thin</em><span class="optional">]</span><big>)</big> &rarr; SVD<a class="headerlink" href="#svdfact!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">svdfact!</span></tt> is the same as <tt class="docutils literal"><span class="pre">svdfact</span></tt> but saves space by overwriting the input A, instead of creating a copy. If <tt class="docutils literal"><span class="pre">thin</span></tt> is <tt class="docutils literal"><span class="pre">true</span></tt>, an economy mode decomposition is returned. The default is to produce a thin decomposition.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="svd">
+<tt class="descname">svd</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>thin</em><span class="optional">]</span><big>)</big> &rarr; U, S, V<a class="headerlink" href="#svd" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the SVD of A, returning <tt class="docutils literal"><span class="pre">U</span></tt>, vector <tt class="docutils literal"><span class="pre">S</span></tt>, and <tt class="docutils literal"><span class="pre">V</span></tt> such that <tt class="docutils literal"><span class="pre">A</span> <span class="pre">==</span> <span class="pre">U*diagm(S)*V'</span></tt>. If <tt class="docutils literal"><span class="pre">thin</span></tt> is <tt class="docutils literal"><span class="pre">true</span></tt>, an economy mode decomposition is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="svdvals">
+<tt class="descname">svdvals</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#svdvals" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns the singular values of <tt class="docutils literal"><span class="pre">A</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="svdvals!">
+<tt class="descname">svdvals!</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#svdvals!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns the singular values of <tt class="docutils literal"><span class="pre">A</span></tt>, while saving space by overwriting the input.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">svdfact</tt><big>(</big><em>A</em>, <em>B</em><big>)</big> &rarr; GeneralizedSVD</dt>
+<dd><p>Compute the generalized SVD of <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">B</span></tt>, returning a <tt class="docutils literal"><span class="pre">GeneralizedSVD</span></tt> Factorization object, such that <tt class="docutils literal"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">U*D1*R0*Q'</span></tt> and <tt class="docutils literal"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">V*D2*R0*Q'</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">svd</tt><big>(</big><em>A</em>, <em>B</em><big>)</big> &rarr; U, V, Q, D1, D2, R0</dt>
+<dd><p>Compute the generalized SVD of <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">B</span></tt>, returning <tt class="docutils literal"><span class="pre">U</span></tt>, <tt class="docutils literal"><span class="pre">V</span></tt>, <tt class="docutils literal"><span class="pre">Q</span></tt>, <tt class="docutils literal"><span class="pre">D1</span></tt>, <tt class="docutils literal"><span class="pre">D2</span></tt>, and <tt class="docutils literal"><span class="pre">R0</span></tt> such that <tt class="docutils literal"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">U*D1*R0*Q'</span></tt> and <tt class="docutils literal"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">V*D2*R0*Q'</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">svdvals</tt><big>(</big><em>A</em>, <em>B</em><big>)</big></dt>
+<dd><p>Return only the singular values from the generalized singular value decomposition of <tt class="docutils literal"><span class="pre">A</span></tt> and <tt class="docutils literal"><span class="pre">B</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="triu">
+<tt class="descname">triu</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#triu" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Upper triangle of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tril">
+<tt class="descname">tril</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#tril" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lower triangle of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="diag">
+<tt class="descname">diag</tt><big>(</big><em>M</em><span class="optional">[</span>, <em>k</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#diag" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>The <tt class="docutils literal"><span class="pre">k</span></tt>-th diagonal of a matrix, as a vector</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="diagm">
+<tt class="descname">diagm</tt><big>(</big><em>v</em><span class="optional">[</span>, <em>k</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#diagm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Construct a diagonal matrix and place <tt class="docutils literal"><span class="pre">v</span></tt> on the <tt class="docutils literal"><span class="pre">k</span></tt>-th diagonal</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="diagmm">
+<tt class="descname">diagmm</tt><big>(</big><em>matrix</em>, <em>vector</em><big>)</big><a class="headerlink" href="#diagmm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Multiply matrices, interpreting the vector argument as a diagonal matrix.
+The arguments may occur in the other order to multiply with the diagonal
+matrix on the left.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Tridiagonal">
+<tt class="descname">Tridiagonal</tt><big>(</big><em>dl</em>, <em>d</em>, <em>du</em><big>)</big><a class="headerlink" href="#Tridiagonal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Construct a tridiagonal matrix from the lower diagonal, diagonal, and upper diagonal</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Bidiagonal">
+<tt class="descname">Bidiagonal</tt><big>(</big><em>dv</em>, <em>ev</em>, <em>isupper</em><big>)</big><a class="headerlink" href="#Bidiagonal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Constructs an upper (isupper=true) or lower (isupper=false) bidiagonal matrix
+using the given diagonal (dv) and off-diagonal (ev) vectors</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Woodbury">
+<tt class="descname">Woodbury</tt><big>(</big><em>A</em>, <em>U</em>, <em>C</em>, <em>V</em><big>)</big><a class="headerlink" href="#Woodbury" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Construct a matrix in a form suitable for applying the Woodbury matrix identity</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rank">
+<tt class="descname">rank</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#rank" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the rank of a matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">norm</tt><big>(</big><em>A</em><span class="optional">[</span>, <em>p</em><span class="optional">]</span><big>)</big></dt>
+<dd><p>Compute the <tt class="docutils literal"><span class="pre">p</span></tt>-norm of a vector or a matrix. <tt class="docutils literal"><span class="pre">p</span></tt> is <tt class="docutils literal"><span class="pre">2</span></tt> by default, if not provided. If <tt class="docutils literal"><span class="pre">A</span></tt> is a vector, <tt class="docutils literal"><span class="pre">norm(A,</span> <span class="pre">p)</span></tt> computes the <tt class="docutils literal"><span class="pre">p</span></tt>-norm. <tt class="docutils literal"><span class="pre">norm(A,</span> <span class="pre">Inf)</span></tt> returns the largest value in <tt class="docutils literal"><span class="pre">abs(A)</span></tt>, whereas <tt class="docutils literal"><span class="pre">norm(A,</span> <span class="pre">-Inf)</span></tt> returns the smallest. If <tt class="docutils literal"><span class="pre">A</span></tt> is a matrix, valid values for <tt class="docutils literal"><span class="pre">p</span></tt> are <tt class="docutils literal"><span class="pre">1</span></tt>, <tt class="docutils literal"><span class="pre">2</span></tt>, or <tt class="docutils literal"><span class="pre">Inf</span></tt>. In order to compute the Frobenius norm, use <tt class="docutils literal"><span class="pre">normfro</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="normfro">
+<tt class="descname">normfro</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#normfro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compute the Frobenius norm of a matrix <tt class="docutils literal"><span class="pre">A</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cond">
+<tt class="descname">cond</tt><big>(</big><em>M</em><span class="optional">[</span>, <em>p</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#cond" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Matrix condition number, computed using the p-norm. <tt class="docutils literal"><span class="pre">p</span></tt> is 2 by default, if not provided. Valid values for <tt class="docutils literal"><span class="pre">p</span></tt> are <tt class="docutils literal"><span class="pre">1</span></tt>, <tt class="docutils literal"><span class="pre">2</span></tt>, or <tt class="docutils literal"><span class="pre">Inf</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="trace">
+<tt class="descname">trace</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#trace" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Matrix trace</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="det">
+<tt class="descname">det</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#det" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Matrix determinant</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="inv">
+<tt class="descname">inv</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#inv" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Matrix inverse</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pinv">
+<tt class="descname">pinv</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#pinv" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Moore-Penrose inverse</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="null">
+<tt class="descname">null</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#null" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Basis for null space of M.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="repmat">
+<tt class="descname">repmat</tt><big>(</big><em>A</em>, <em>n</em>, <em>m</em><big>)</big><a class="headerlink" href="#repmat" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Construct a matrix by repeating the given matrix <tt class="docutils literal"><span class="pre">n</span></tt> times in dimension 1 and <tt class="docutils literal"><span class="pre">m</span></tt> times in dimension 2.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="kron">
+<tt class="descname">kron</tt><big>(</big><em>A</em>, <em>B</em><big>)</big><a class="headerlink" href="#kron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Kronecker tensor product of two vectors or two matrices.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="linreg">
+<tt class="descname">linreg</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#linreg" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Determine parameters <tt class="docutils literal"><span class="pre">[a,</span> <span class="pre">b]</span></tt> that minimize the squared error between <tt class="docutils literal"><span class="pre">y</span></tt> and <tt class="docutils literal"><span class="pre">a+b*x</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">linreg</tt><big>(</big><em>x</em>, <em>y</em>, <em>w</em><big>)</big></dt>
+<dd><p>Weighted least-squares linear regression.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="expm">
+<tt class="descname">expm</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#expm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Matrix exponential.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="issym">
+<tt class="descname">issym</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#issym" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Test whether a matrix is symmetric.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="isposdef">
+<tt class="descname">isposdef</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#isposdef" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Test whether a matrix is positive-definite.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="istril">
+<tt class="descname">istril</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#istril" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Test whether a matrix is lower-triangular.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="istriu">
+<tt class="descname">istriu</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#istriu" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Test whether a matrix is upper-triangular.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ishermitian">
+<tt class="descname">ishermitian</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#ishermitian" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Test whether a matrix is hermitian.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="transpose">
+<tt class="descname">transpose</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#transpose" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>The transpose operator (.&#8217;).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ctranspose">
+<tt class="descname">ctranspose</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#ctranspose" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>The conjugate transpose operator (&#8216;).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="blas-functions">
+<h1>BLAS Functions<a class="headerlink" href="#blas-functions" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>This module provides wrappers for some of the BLAS functions for
+linear algebra.  Those BLAS functions that overwrite one of the input
+arrays have names ending in <tt class="docutils literal"><span class="pre">'!'</span></tt>.</p>
+<p>Usually a function has 4 methods defined, one each for <tt class="docutils literal"><span class="pre">Float64</span></tt>,
+<tt class="docutils literal"><span class="pre">Float32</span></tt>, <tt class="docutils literal"><span class="pre">Complex128</span></tt> and <tt class="docutils literal"><span class="pre">Complex64</span></tt> arrays.</p>
+<dl class="function">
+<dt id="copy!">
+<tt class="descname">copy!</tt><big>(</big><em>n</em>, <em>X</em>, <em>incx</em>, <em>Y</em>, <em>incy</em><big>)</big><a class="headerlink" href="#copy!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Copy <tt class="docutils literal"><span class="pre">n</span></tt> elements of array <tt class="docutils literal"><span class="pre">X</span></tt> with stride <tt class="docutils literal"><span class="pre">incx</span></tt> to array
+<tt class="docutils literal"><span class="pre">Y</span></tt> with stride <tt class="docutils literal"><span class="pre">incy</span></tt>.  Returns <tt class="docutils literal"><span class="pre">Y</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">dot</tt><big>(</big><em>n</em>, <em>X</em>, <em>incx</em>, <em>Y</em>, <em>incy</em><big>)</big></dt>
+<dd><p>Dot product of two vectors consisting of <tt class="docutils literal"><span class="pre">n</span></tt> elements of array
+<tt class="docutils literal"><span class="pre">X</span></tt> with stride <tt class="docutils literal"><span class="pre">incx</span></tt> and <tt class="docutils literal"><span class="pre">n</span></tt> elements of array <tt class="docutils literal"><span class="pre">Y</span></tt> with
+stride <tt class="docutils literal"><span class="pre">incy</span></tt>.  There are no <tt class="docutils literal"><span class="pre">dot</span></tt> methods for <tt class="docutils literal"><span class="pre">Complex</span></tt>
+arrays.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nrm2">
+<tt class="descname">nrm2</tt><big>(</big><em>n</em>, <em>X</em>, <em>incx</em><big>)</big><a class="headerlink" href="#nrm2" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>2-norm of a vector consisting of <tt class="docutils literal"><span class="pre">n</span></tt> elements of array <tt class="docutils literal"><span class="pre">X</span></tt> with
+stride <tt class="docutils literal"><span class="pre">incx</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="axpy!">
+<tt class="descname">axpy!</tt><big>(</big><em>n</em>, <em>a</em>, <em>X</em>, <em>incx</em>, <em>Y</em>, <em>incy</em><big>)</big><a class="headerlink" href="#axpy!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Overwrite <tt class="docutils literal"><span class="pre">Y</span></tt> with <tt class="docutils literal"><span class="pre">a*X</span> <span class="pre">+</span> <span class="pre">Y</span></tt>.  Returns <tt class="docutils literal"><span class="pre">Y</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="syrk!">
+<tt class="descname">syrk!</tt><big>(</big><em>uplo</em>, <em>trans</em>, <em>alpha</em>, <em>A</em>, <em>beta</em>, <em>C</em><big>)</big><a class="headerlink" href="#syrk!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Rank-k update of the symmetric matrix <tt class="docutils literal"><span class="pre">C</span></tt> as <tt class="docutils literal"><span class="pre">alpha*A*A.'</span> <span class="pre">+</span>
+<span class="pre">beta*C</span></tt> or <tt class="docutils literal"><span class="pre">alpha*A.'*A</span> <span class="pre">+</span> <span class="pre">beta*C</span></tt> according to whether <tt class="docutils literal"><span class="pre">trans</span></tt>
+is &#8216;N&#8217; or &#8216;T&#8217;.  When <tt class="docutils literal"><span class="pre">uplo</span></tt> is &#8216;U&#8217; the upper triangle of <tt class="docutils literal"><span class="pre">C</span></tt> is
+updated (&#8216;L&#8217; for lower triangle).  Returns <tt class="docutils literal"><span class="pre">C</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="syrk">
+<tt class="descname">syrk</tt><big>(</big><em>uplo</em>, <em>trans</em>, <em>alpha</em>, <em>A</em><big>)</big><a class="headerlink" href="#syrk" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns either the upper triangle or the lower triangle, according
+to <tt class="docutils literal"><span class="pre">uplo</span></tt> (&#8216;U&#8217; or &#8216;L&#8217;), of <tt class="docutils literal"><span class="pre">alpha*A*A.'</span></tt> or <tt class="docutils literal"><span class="pre">alpha*A.'*A</span></tt>,
+according to <tt class="docutils literal"><span class="pre">trans</span></tt> (&#8216;N&#8217; or &#8216;T&#8217;).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="herk!">
+<tt class="descname">herk!</tt><big>(</big><em>uplo</em>, <em>trans</em>, <em>alpha</em>, <em>A</em>, <em>beta</em>, <em>C</em><big>)</big><a class="headerlink" href="#herk!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Methods for complex arrays only.  Rank-k update of the Hermitian
+matrix <tt class="docutils literal"><span class="pre">C</span></tt> as <tt class="docutils literal"><span class="pre">alpha*A*A'</span> <span class="pre">+</span> <span class="pre">beta*C</span></tt> or <tt class="docutils literal"><span class="pre">alpha*A'*A</span> <span class="pre">+</span> <span class="pre">beta*C</span></tt>
+according to whether <tt class="docutils literal"><span class="pre">trans</span></tt> is &#8216;N&#8217; or &#8216;T&#8217;.  When <tt class="docutils literal"><span class="pre">uplo</span></tt> is &#8216;U&#8217;
+the upper triangle of <tt class="docutils literal"><span class="pre">C</span></tt> is updated (&#8216;L&#8217; for lower triangle).
+Returns <tt class="docutils literal"><span class="pre">C</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="herk">
+<tt class="descname">herk</tt><big>(</big><em>uplo</em>, <em>trans</em>, <em>alpha</em>, <em>A</em><big>)</big><a class="headerlink" href="#herk" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Methods for complex arrays only.  Returns either the upper triangle
+or the lower triangle, according to <tt class="docutils literal"><span class="pre">uplo</span></tt> (&#8216;U&#8217; or &#8216;L&#8217;), of
+<tt class="docutils literal"><span class="pre">alpha*A*A'</span></tt> or <tt class="docutils literal"><span class="pre">alpha*A'*A</span></tt>, according to <tt class="docutils literal"><span class="pre">trans</span></tt> (&#8216;N&#8217; or &#8216;T&#8217;).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gbmv!">
+<tt class="descname">gbmv!</tt><big>(</big><em>trans</em>, <em>m</em>, <em>kl</em>, <em>ku</em>, <em>alpha</em>, <em>A</em>, <em>x</em>, <em>beta</em>, <em>y</em><big>)</big><a class="headerlink" href="#gbmv!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Update vector <tt class="docutils literal"><span class="pre">y</span></tt> as <tt class="docutils literal"><span class="pre">alpha*A*x</span> <span class="pre">+</span> <span class="pre">beta*y</span></tt> or <tt class="docutils literal"><span class="pre">alpha*A'*x</span> <span class="pre">+</span>
+<span class="pre">beta*y</span></tt> according to <tt class="docutils literal"><span class="pre">trans</span></tt> (&#8216;N&#8217; or &#8216;T&#8217;).  The matrix <tt class="docutils literal"><span class="pre">A</span></tt> is
+a general band matrix of dimension <tt class="docutils literal"><span class="pre">m</span></tt> by <tt class="docutils literal"><span class="pre">size(A,2)</span></tt> with
+<tt class="docutils literal"><span class="pre">kl</span></tt> sub-diagonals and <tt class="docutils literal"><span class="pre">ku</span></tt> super-diagonals. Returns the
+updated <tt class="docutils literal"><span class="pre">y</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gbmv">
+<tt class="descname">gbmv</tt><big>(</big><em>trans</em>, <em>m</em>, <em>kl</em>, <em>ku</em>, <em>alpha</em>, <em>A</em>, <em>x</em>, <em>beta</em>, <em>y</em><big>)</big><a class="headerlink" href="#gbmv" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns <tt class="docutils literal"><span class="pre">alpha*A*x</span></tt> or <tt class="docutils literal"><span class="pre">alpha*A'*x</span></tt> according to <tt class="docutils literal"><span class="pre">trans</span></tt> (&#8216;N&#8217;
+or &#8216;T&#8217;). The matrix <tt class="docutils literal"><span class="pre">A</span></tt> is a general band matrix of dimension
+<tt class="docutils literal"><span class="pre">m</span></tt> by <tt class="docutils literal"><span class="pre">size(A,2)</span></tt> with <tt class="docutils literal"><span class="pre">kl</span></tt> sub-diagonals and
+<tt class="docutils literal"><span class="pre">ku</span></tt> super-diagonals.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sbmv!">
+<tt class="descname">sbmv!</tt><big>(</big><em>uplo</em>, <em>k</em>, <em>alpha</em>, <em>A</em>, <em>x</em>, <em>beta</em>, <em>y</em><big>)</big><a class="headerlink" href="#sbmv!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Update vector <tt class="docutils literal"><span class="pre">y</span></tt> as <tt class="docutils literal"><span class="pre">alpha*A*x</span> <span class="pre">+</span> <span class="pre">beta*y</span></tt> where <tt class="docutils literal"><span class="pre">A</span></tt> is a
+a symmetric band matrix of order <tt class="docutils literal"><span class="pre">size(A,2)</span></tt> with
+<tt class="docutils literal"><span class="pre">k</span></tt> super-diagonals stored in the argument <tt class="docutils literal"><span class="pre">A</span></tt>.  The storage
+layout for <tt class="docutils literal"><span class="pre">A</span></tt> is described the reference BLAS module, level-2
+BLAS at <cite>&lt;http://www.netlib.org/lapack/explore-html/&gt;</cite>.</p>
+<p>Returns the updated <tt class="docutils literal"><span class="pre">y</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sbmv">
+<tt class="descname">sbmv</tt><big>(</big><em>uplo</em>, <em>k</em>, <em>alpha</em>, <em>A</em>, <em>x</em><big>)</big><a class="headerlink" href="#sbmv" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns <tt class="docutils literal"><span class="pre">alpha*A*x</span></tt> where <tt class="docutils literal"><span class="pre">A</span></tt> is a symmetric band matrix of
+order <tt class="docutils literal"><span class="pre">size(A,2)</span></tt> with <tt class="docutils literal"><span class="pre">k</span></tt> super-diagonals stored in the
+argument <tt class="docutils literal"><span class="pre">A</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gemm!">
+<tt class="descname">gemm!</tt><big>(</big><em>tA</em>, <em>tB</em>, <em>alpha</em>, <em>A</em>, <em>B</em>, <em>beta</em>, <em>C</em><big>)</big><a class="headerlink" href="#gemm!" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Update <tt class="docutils literal"><span class="pre">C</span></tt> as <tt class="docutils literal"><span class="pre">alpha*A*B</span> <span class="pre">+</span> <span class="pre">beta*C</span></tt> or the other three variants
+according to <tt class="docutils literal"><span class="pre">tA</span></tt> (transpose <tt class="docutils literal"><span class="pre">A</span></tt>) and <tt class="docutils literal"><span class="pre">tB</span></tt>.  Returns the
+updated <tt class="docutils literal"><span class="pre">C</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gemm">
+<tt class="descname">gemm</tt><big>(</big><em>tA</em>, <em>tB</em>, <em>alpha</em>, <em>A</em>, <em>B</em><big>)</big><a class="headerlink" href="#gemm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Returns <tt class="docutils literal"><span class="pre">alpha*A*B</span></tt> or the other three variants
+according to <tt class="docutils literal"><span class="pre">tA</span></tt> (transpose <tt class="docutils literal"><span class="pre">A</span></tt>) and <tt class="docutils literal"><span class="pre">tB</span></tt>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="constants.html" class="btn btn-neutral float-right" title="Constants">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sparse.html" class="btn btn-neutral" title="Sparse Matrices"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2013, Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

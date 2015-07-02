@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running External Programs &mdash; documentación de Julia Language - 0.3-dev</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="documentación de Julia Language - 0.3-dev" href="../index.html"/>
+        <link rel="up" title="El Manual de Julia" href="index.html"/>
+        <link rel="next" title="Calling C and Fortran Code" href="calling-c-and-fortran-code.html"/>
+        <link rel="prev" title="Parallel Computing" href="parallel-computing.html"/>
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://julia-es-la.readthedocs.org/es/latest/manual/running-external-programs.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "julia-es-la",
+    version: "latest",
+    language: "es",
+    page: "manual/running-external-programs",
+    theme: "julia",
+    docroot: "/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "julia-es-la";
+  var page_name = "manual/running-external-programs";
+  var html_theme = "julia";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://julialang.org/"><img src="../_static/julia-logo.svg" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> Julia Language</a>
+        -->
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">El Manual de Julia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Comenzando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers-and-floating-point-numbers.html">Integers and Floating-Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematical-operations.html">Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex-and-rational-numbers.html">Complex and Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings.html">Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-flow.html">Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-scoping.html">Variables and Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constructors.html">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion-and-promotion.html">Conversion and Promotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metaprogramming.html">Metaprogramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arreglos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#sparse-matrices">Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-computing.html">Parallel Computing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Running External Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calling-c-and-fortran-code.html">Calling C and Fortran Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Julia Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance-tips.html">Performance Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/index.html">Libreria estandar de Julia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-ins">Built-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-in-modules">Built-in Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packagelist.html">Paquetes Disponibles (en inglés)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id1">ArgParse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id2">Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id3">BinDeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id4">BioSeq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id5">BloomFilters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id7">Cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id8">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id10">Calendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id11">Catalan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id12">Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id13">Clp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id14">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id16">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id17">CoinMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id19">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id21">Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id23">ContinuedFractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id25">Cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id26">Cubature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id27">Curl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id28">DICOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id30">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id31">DataStructures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id32">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id33">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id34">Devectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id36">DictViews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id37">DimensionalityReduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id39">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id41">Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id42">Elliptic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id44">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id46">FITSIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id48">FactCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id49">FastaRead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id51">FileFind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id53">GLFW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id54">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id56">GLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id58">GLUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id59">GSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id60">GZip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id61">Gadfly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id63">Gaston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id64">GetC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id66">GoogleCharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id67">Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id69">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id71">Gtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id72">Gurobi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id74">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id76">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id78">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id79">Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id81">HypothesisTests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id82">ICU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id84">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id86">ImmutableArrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id87">IniFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id89">Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id91">Ito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id92">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id94">JudyDicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id95">JuliaWebRepl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id97">Jyacas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id99">KLDivergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id101">LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id103">Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id105">LazySequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id107">LinProgGLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id109">Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id111">MAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id113">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id115">MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id116">MLBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id118">MarketTechnicals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id119">MathProg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id120">MathProgBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id122">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id124">MixedModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id125">Monads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id126">Mongo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id127">Mongrel2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id129">Mustache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id131">NHST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id133">NLopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id135">Named</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id137">ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id138">ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id140">OpenGL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id142">OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id144">Optim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id146">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id148">PLX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id150">PatternDispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id152">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id154">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id156">ProjectTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id158">PyCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id160">QuickCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id162">RDatasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id164">RNGTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id165">RandomMatrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id167">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id169">Rif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id170">Rmath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id172">SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id173">SDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id175">SemidefiniteProgramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id177">SimJulia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id178">Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id179">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id181">StrPack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id183">Sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id185">SymbolicLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id187">TOML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id188">TextAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id190">TextWrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id192">TimeModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id194">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id196">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id198">TkExtras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id200">TopicModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id201">TradingInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id203">Trie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id205">UTF16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id207">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id209">WAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id210">Winston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id212">ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id214">Zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id216">kNN</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Julia Language</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">El Manual de Julia</a> &raquo;</li>
+      
+    <li>Running External Programs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/lbenitesanchez/julia-doc-es-la/blob/master/manual/running-external-programs.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="running-external-programs">
+<span id="man-running-external-programs"></span><h1>Running External Programs<a class="headerlink" href="#running-external-programs" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Julia borrows backtick notation for commands from the shell, Perl, and
+Ruby. However, in Julia, writing</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`echo hello`</span>
+<span class="sb">`echo hello`</span>
+</pre></div>
+</div>
+<p>differs in a several aspects from the behavior in various shells, Perl,
+or Ruby:</p>
+<ul class="simple">
+<li>Instead of immediately running the command, backticks create a
+<tt class="docutils literal"><span class="pre">Cmd</span></tt> object to represent the command. You can use this object to
+connect the command to others via pipes, run it, and read or write to
+it.</li>
+<li>When the command is run, Julia does not capture its output unless you
+specifically arrange for it to. Instead, the output of the command by
+default goes to <tt class="docutils literal"><span class="pre">stdout</span></tt> as it would using <tt class="docutils literal"><span class="pre">libc</span></tt>&#8216;s <tt class="docutils literal"><span class="pre">system</span></tt>
+call.</li>
+<li>The command is never run with a shell. Instead, Julia parses the
+command syntax directly, appropriately interpolating variables and
+splitting on words as the shell would, respecting shell quoting
+syntax. The command is run as <tt class="docutils literal"><span class="pre">julia</span></tt>&#8216;s immediate child process,
+using <tt class="docutils literal"><span class="pre">fork</span></tt> and <tt class="docutils literal"><span class="pre">exec</span></tt> calls.</li>
+</ul>
+<p>Here&#8217;s a simple example of actually running an external program:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`echo hello`</span><span class="p">)</span>
+<span class="n">hello</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">hello</span></tt> is the output of the <tt class="docutils literal"><span class="pre">echo</span></tt> command, sent to stdout.
+The run method itself returns <tt class="docutils literal"><span class="pre">Nothing</span></tt>, and throws an <tt class="docutils literal"><span class="pre">ErrorException</span></tt>
+if the external command fails to run successfully.</p>
+<p>If you want to read the output of the external command, the <tt class="docutils literal"><span class="pre">readall</span></tt> method
+can be used instead:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">=</span><span class="n">readall</span><span class="p">(</span><span class="sb">`echo hello`</span><span class="p">)</span>
+<span class="s">&quot;hello</span><span class="se">\n</span><span class="s">&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">chomp</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="o">==</span> <span class="s">&quot;hello&quot;</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<div class="section" id="interpolation">
+<span id="man-command-interpolation"></span><h2>Interpolation<a class="headerlink" href="#interpolation" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Suppose you want to do something a bit more complicated and use the name
+of a file in the variable <tt class="docutils literal"><span class="pre">file</span></tt> as an argument to a command. You can
+use <tt class="docutils literal"><span class="pre">$</span></tt> for interpolation much as you would in a string literal (see
+<a class="reference internal" href="strings.html#man-strings"><em>Strings</em></a>):</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;/etc/passwd&quot;</span>
+<span class="s">&quot;/etc/passwd&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`sort $file`</span>
+<span class="sb">`sort /etc/passwd`</span>
+</pre></div>
+</div>
+<p>A common pitfall when running external programs via a shell is that if a
+file name contains characters that are special to the shell, they may
+cause undesirable behavior. Suppose, for example, rather than
+<tt class="docutils literal"><span class="pre">/etc/passwd</span></tt>, we wanted to sort the contents of the file
+<tt class="docutils literal"><span class="pre">/Volumes/External</span> <span class="pre">HD/data.csv</span></tt>. Let&#8217;s try it:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;/Volumes/External HD/data.csv&quot;</span>
+<span class="s">&quot;/Volumes/External HD/data.csv&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`sort $file`</span>
+<span class="sb">`sort &#39;/Volumes/External HD/data.csv&#39;`</span>
+</pre></div>
+</div>
+<p>How did the file name get quoted? Julia knows that <tt class="docutils literal"><span class="pre">file</span></tt> is meant to
+be interpolated as a single argument, so it quotes the word for you.
+Actually, that is not quite accurate: the value of <tt class="docutils literal"><span class="pre">file</span></tt> is never
+interpreted by a shell, so there&#8217;s no need for actual quoting; the
+quotes are inserted only for presentation to the user. This will even
+work if you interpolate a value as part of a shell word:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/Volumes/External HD&quot;</span>
+<span class="s">&quot;/Volumes/External HD&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;data&quot;</span>
+<span class="s">&quot;data&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">ext</span> <span class="o">=</span> <span class="s">&quot;csv&quot;</span>
+<span class="s">&quot;csv&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`sort $path/$name.$ext`</span>
+<span class="sb">`sort &#39;/Volumes/External HD/data.csv&#39;`</span>
+</pre></div>
+</div>
+<p>As you can see, the space in the <tt class="docutils literal"><span class="pre">path</span></tt> variable is appropriately
+escaped. But what if you <em>want</em> to interpolate multiple words? In that
+case, just use an array (or any other iterable container):</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;/etc/passwd&quot;</span><span class="p">,</span><span class="s">&quot;/Volumes/External HD/data.csv&quot;</span><span class="p">]</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="n">ASCIIString</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="s">&quot;/etc/passwd&quot;</span>
+ <span class="s">&quot;/Volumes/External HD/data.csv&quot;</span>
+
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`grep foo $files`</span>
+<span class="sb">`grep foo /etc/passwd &#39;/Volumes/External HD/data.csv&#39;`</span>
+</pre></div>
+</div>
+<p>If you interpolate an array as part of a shell word, Julia emulates the
+shell&#8217;s <tt class="docutils literal"><span class="pre">{a,b,c}</span></tt> argument generation:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="s">&quot;baz&quot;</span><span class="p">]</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="n">ASCIIString</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="s">&quot;foo&quot;</span>
+ <span class="s">&quot;bar&quot;</span>
+ <span class="s">&quot;baz&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`grep xylophone $names.txt`</span>
+<span class="sb">`grep xylophone foo.txt bar.txt baz.txt`</span>
+</pre></div>
+</div>
+<p>Moreover, if you interpolate multiple arrays into the same word, the
+shell&#8217;s Cartesian product generation behavior is emulated:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="s">&quot;baz&quot;</span><span class="p">]</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="n">ASCIIString</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="s">&quot;foo&quot;</span>
+ <span class="s">&quot;bar&quot;</span>
+ <span class="s">&quot;baz&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">exts</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;aux&quot;</span><span class="p">,</span><span class="s">&quot;log&quot;</span><span class="p">]</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="n">ASCIIString</span> <span class="n">Array</span><span class="p">:</span>
+ <span class="s">&quot;aux&quot;</span>
+ <span class="s">&quot;log&quot;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`rm -f $names.$exts`</span>
+<span class="sb">`rm -f foo.aux foo.log bar.aux bar.log baz.aux baz.log`</span>
+</pre></div>
+</div>
+<p>Since you can interpolate literal arrays, you can use this generative
+functionality without needing to create temporary array objects first:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`rm -rf $[&quot;foo&quot;,&quot;bar&quot;,&quot;baz&quot;,&quot;qux&quot;].$[&quot;aux&quot;,&quot;log&quot;,&quot;pdf&quot;]`</span>
+<span class="sb">`rm -rf foo.aux foo.log foo.pdf bar.aux bar.log bar.pdf baz.aux baz.log baz.pdf qux.aux qux.log qux.pdf`</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="quoting">
+<h2>Quoting<a class="headerlink" href="#quoting" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Inevitably, one wants to write commands that aren&#8217;t quite so simple, and
+it becomes necessary to use quotes. Here&#8217;s a simple example of a perl
+one-liner at a shell prompt:</p>
+<div class="highlight-julia"><div class="highlight"><pre>sh$ perl -le &#39;$|=1; for (0..3) { print }&#39;
+0
+1
+2
+3
+</pre></div>
+</div>
+<p>The Perl expression needs to be in single quotes for two reasons: so
+that spaces don&#8217;t break the expression into multiple shell words, and so
+that uses of Perl variables like <tt class="docutils literal"><span class="pre">$|</span></tt> (yes, that&#8217;s the name of a
+variable in Perl), don&#8217;t cause interpolation. In other instances, you
+may want to use double quotes so that interpolation <em>does</em> occur:</p>
+<div class="highlight-julia"><div class="highlight"><pre>sh$ first=&quot;A&quot;
+sh$ second=&quot;B&quot;
+sh$ perl -le &#39;$|=1; print for @ARGV&#39; &quot;1: $first&quot; &quot;2: $second&quot;
+1: A
+2: B
+</pre></div>
+</div>
+<p>In general, the Julia backtick syntax is carefully designed so that you
+can just cut-and-paste shell commands as-is into backticks and they will
+work: the escaping, quoting, and interpolation behaviors are the same as
+the shell&#8217;s. The only difference is that the interpolation is integrated
+and aware of Julia&#8217;s notion of what is a single string value, and what
+is a container for multiple values. Let&#8217;s try the above two examples in
+Julia:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`perl -le &#39;$|=1; for (0..3) { print }&#39;`</span>
+<span class="sb">`perl -le &#39;$|=1; for (0..3) { print }&#39;`</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">first</span> <span class="o">=</span> <span class="s">&quot;A&quot;</span><span class="p">;</span> <span class="n">second</span> <span class="o">=</span> <span class="s">&quot;B&quot;</span><span class="p">;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="sb">`perl -le &#39;print for @ARGV&#39; &quot;1: $first&quot; &quot;2: $second&quot;`</span>
+<span class="sb">`perl -le &#39;print for @ARGV&#39; &#39;1: A&#39; &#39;2: B&#39;`</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span> <span class="n">A</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">B</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>The results are identical, and Julia&#8217;s interpolation behavior mimics the
+shell&#8217;s with some improvements due to the fact that Julia supports
+first-class iterable objects while most shells use strings split on
+spaces for this, which introduces ambiguities. When trying to port shell
+commands to Julia, try cut and pasting first. Since Julia shows commands
+to you before running them, you can easily and safely just examine its
+interpretation without doing any damage.</p>
+</div>
+<div class="section" id="pipelines">
+<h2>Pipelines<a class="headerlink" href="#pipelines" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Shell metacharacters, such as <tt class="docutils literal"><span class="pre">|</span></tt>, <tt class="docutils literal"><span class="pre">&amp;</span></tt>, and <tt class="docutils literal"><span class="pre">&gt;</span></tt>, are not special
+inside of Julia&#8217;s backticks: unlike in the shell, inside of Julia&#8217;s
+backticks, a pipe is always just a pipe:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`echo hello | sort`</span><span class="p">)</span>
+<span class="n">hello</span> <span class="o">|</span> <span class="n">sort</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>This expression invokes the <tt class="docutils literal"><span class="pre">echo</span></tt> command with three words as
+arguments: &#8220;hello&#8221;, &#8220;|&#8221;, and &#8220;sort&#8221;. The result is that a single line
+is printed: &#8220;hello | sort&#8221;. Inside of backticks, a &#8220;|&#8221; is just a
+literal pipe character. How, then, does one construct a pipeline?
+Instead of using &#8220;|&#8221; inside of backticks, one uses Julia&#8217;s <tt class="docutils literal"><span class="pre">|</span></tt>
+operator between <tt class="docutils literal"><span class="pre">Cmd</span></tt> objects:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`echo hello`</span> <span class="o">|</span> <span class="sb">`sort`</span><span class="p">)</span>
+<span class="n">hello</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>This pipes the output of the <tt class="docutils literal"><span class="pre">echo</span></tt> command to the <tt class="docutils literal"><span class="pre">sort</span></tt> command.
+Of course, this isn&#8217;t terribly interesting since there&#8217;s only one line
+to sort, but we can certainly do much more interesting things:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`cut -d: -f3 /etc/passwd`</span> <span class="o">|</span> <span class="sb">`sort -n`</span> <span class="o">|</span> <span class="sb">`tail -n5`</span><span class="p">)</span>
+<span class="mi">210</span>
+<span class="mi">211</span>
+<span class="mi">212</span>
+<span class="mi">213</span>
+<span class="mi">214</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>This prints the highest five user IDs on a UNIX system. The <tt class="docutils literal"><span class="pre">cut</span></tt>,
+<tt class="docutils literal"><span class="pre">sort</span></tt> and <tt class="docutils literal"><span class="pre">tail</span></tt> commands are all spawned as immediate children of
+the current <tt class="docutils literal"><span class="pre">julia</span></tt> process, with no intervening shell process. Julia
+itself does the work to setup pipes and connect file descriptors that is
+normally done by the shell. Since Julia does this itself, it retains
+better control and can do some things that shells cannot.</p>
+<p>Julia can run multiple commands in parallel:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`echo hello`</span> <span class="o">&amp;</span> <span class="sb">`echo world`</span><span class="p">)</span>
+<span class="n">world</span>
+<span class="n">hello</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>The order of the output here is non-deterministic because the two
+<tt class="docutils literal"><span class="pre">echo</span></tt> processes are started nearly simultaneously, and race to make
+the first write to the <tt class="docutils literal"><span class="pre">stdout</span></tt> descriptor they share with each other
+and the <tt class="docutils literal"><span class="pre">julia</span></tt> parent process. Julia lets you pipe the output from
+both of these processes to another program:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`echo world`</span> <span class="o">&amp;</span> <span class="sb">`echo hello`</span> <span class="o">|</span> <span class="sb">`sort`</span><span class="p">)</span>
+<span class="n">hello</span>
+<span class="n">world</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>In terms of UNIX plumbing, what&#8217;s happening here is that a single UNIX
+pipe object is created and written to by both <tt class="docutils literal"><span class="pre">echo</span></tt> processes, and
+the other end of the pipe is read from by the <tt class="docutils literal"><span class="pre">sort</span></tt> command.</p>
+<p>The combination of a high-level programming language, a first-class
+command abstraction, and automatic setup of pipes between processes is a
+powerful one. To give some sense of the complex pipelines that can be
+created easily, here are some more sophisticated examples, with
+apologies for the excessive use of Perl one-liners:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">prefixer</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">sleep</span><span class="p">)</span> <span class="o">=</span> <span class="sb">`perl -nle &#39;$|=1; print &quot;&#39;$prefix&#39; &quot;, $_; sleep &#39;$sleep&#39;;&#39;`</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`perl -le &#39;$|=1; for(0..9){ print; sleep 1 }&#39;`</span> <span class="o">|</span> <span class="n">prefixer</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">prefixer</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">A</span>   <span class="mi">0</span>
+<span class="n">B</span>   <span class="mi">1</span>
+<span class="n">A</span>   <span class="mi">2</span>
+<span class="n">B</span>   <span class="mi">3</span>
+<span class="n">A</span>   <span class="mi">4</span>
+<span class="n">B</span>   <span class="mi">5</span>
+<span class="n">A</span>   <span class="mi">6</span>
+<span class="n">B</span>   <span class="mi">7</span>
+<span class="n">A</span>   <span class="mi">8</span>
+<span class="n">B</span>   <span class="mi">9</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>This is a classic example of a single producer feeding two concurrent
+consumers: one <tt class="docutils literal"><span class="pre">perl</span></tt> process generates lines with the numbers 0
+through 9 on them, while two parallel processes consume that output, one
+prefixing lines with the letter &#8220;A&#8221;, the other with the letter &#8220;B&#8221;.
+Which consumer gets the first line is non-deterministic, but once that
+race has been won, the lines are consumed alternately by one process and
+then the other. (Setting <tt class="docutils literal"><span class="pre">$|=1</span></tt> in Perl causes each print statement to
+flush the <tt class="docutils literal"><span class="pre">stdout</span></tt> handle, which is necessary for this example to
+work. Otherwise all the output is buffered and printed to the pipe at
+once, to be read by just one consumer process.)</p>
+<p>Here is an even more complex multi-stage producer-consumer example:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="sb">`perl -le &#39;$|=1; for(0..9){ print; sleep 1 }&#39;`</span> <span class="o">|</span>
+           <span class="n">prefixer</span><span class="p">(</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">prefixer</span><span class="p">(</span><span class="s">&quot;Y&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">prefixer</span><span class="p">(</span><span class="s">&quot;Z&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">|</span>
+           <span class="n">prefixer</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">prefixer</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">B</span>   <span class="n">Y</span>   <span class="mi">0</span>
+<span class="n">A</span>   <span class="n">Z</span>   <span class="mi">1</span>
+<span class="n">B</span>   <span class="n">X</span>   <span class="mi">2</span>
+<span class="n">A</span>   <span class="n">Y</span>   <span class="mi">3</span>
+<span class="n">B</span>   <span class="n">Z</span>   <span class="mi">4</span>
+<span class="n">A</span>   <span class="n">X</span>   <span class="mi">5</span>
+<span class="n">B</span>   <span class="n">Y</span>   <span class="mi">6</span>
+<span class="n">A</span>   <span class="n">Z</span>   <span class="mi">7</span>
+<span class="n">B</span>   <span class="n">X</span>   <span class="mi">8</span>
+<span class="n">A</span>   <span class="n">Y</span>   <span class="mi">9</span>
+<span class="n">true</span>
+</pre></div>
+</div>
+<p>This example is similar to the previous one, except there are two stages
+of consumers, and the stages have different latency so they use a
+different number of parallel workers, to maintain saturated throughput.</p>
+<p>Finally, we have an example of how you can make a process read from
+itself:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">gen</span> <span class="o">=</span> <span class="sb">`perl -le &#39;$|=1; for(0..9){ print; sleep 1 }&#39;`</span>
+<span class="sb">`perl -le &#39;$|=1; for(0..9){ print; sleep 1 }&#39;`</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">dup</span> <span class="o">=</span> <span class="sb">`perl -ne &#39;$|=1; warn $_; print &quot;.$_&quot;; sleep 1&#39;`</span>
+<span class="sb">`perl -ne &#39;$|=1; warn $_; print &quot;.$_&quot;; sleep 1&#39;`</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">run</span><span class="p">(</span><span class="n">gen</span> <span class="o">|</span> <span class="n">dup</span> <span class="o">|</span> <span class="n">dup</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="o">.</span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="o">..</span><span class="mi">0</span>
+<span class="mi">2</span>
+<span class="o">.</span><span class="mi">1</span>
+<span class="mi">3</span>
+<span class="o">...</span><span class="mi">0</span>
+<span class="mi">4</span>
+<span class="o">.</span><span class="mi">2</span>
+<span class="mi">5</span>
+<span class="o">..</span><span class="mi">1</span>
+<span class="mi">6</span>
+<span class="o">.</span><span class="mi">3</span>
+<span class="o">....</span><span class="mi">0</span>
+<span class="mi">7</span>
+<span class="o">.</span><span class="mi">4</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+<span class="o">..</span><span class="mi">2</span>
+<span class="o">.</span><span class="mi">5</span>
+<span class="o">...</span><span class="mi">1</span>
+<span class="o">.</span><span class="mi">6</span>
+<span class="o">..</span><span class="mi">3</span>
+<span class="o">.....</span><span class="mi">0</span>
+<span class="o">.</span><span class="mi">7</span>
+<span class="o">..</span><span class="mi">4</span>
+<span class="o">.</span><span class="mi">8</span>
+<span class="o">.</span><span class="mi">9</span>
+<span class="o">...</span><span class="mi">2</span>
+<span class="o">..</span><span class="mi">5</span>
+<span class="o">....</span><span class="mi">1</span>
+<span class="o">..</span><span class="mi">6</span>
+<span class="o">...</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>This example never terminates since the <tt class="docutils literal"><span class="pre">dup</span></tt> process reads its own
+output and duplicates it to <tt class="docutils literal"><span class="pre">stderr</span></tt> forever. We strongly encourage
+you to try all these examples to see how they work.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="calling-c-and-fortran-code.html" class="btn btn-neutral float-right" title="Calling C and Fortran Code">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="parallel-computing.html" class="btn btn-neutral" title="Parallel Computing"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2013, Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

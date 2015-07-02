@@ -1,0 +1,788 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Methods &mdash; documentación de Julia Language - 0.3-dev</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="documentación de Julia Language - 0.3-dev" href="../index.html"/>
+        <link rel="up" title="El Manual de Julia" href="index.html"/>
+        <link rel="next" title="Constructors" href="constructors.html"/>
+        <link rel="prev" title="Types" href="types.html"/>
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://julia-es-la.readthedocs.org/es/latest/manual/methods.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "julia-es-la",
+    version: "latest",
+    language: "es",
+    page: "manual/methods",
+    theme: "julia",
+    docroot: "/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "julia-es-la";
+  var page_name = "manual/methods";
+  var html_theme = "julia";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://julialang.org/"><img src="../_static/julia-logo.svg" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> Julia Language</a>
+        -->
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">El Manual de Julia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Comenzando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers-and-floating-point-numbers.html">Integers and Floating-Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematical-operations.html">Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex-and-rational-numbers.html">Complex and Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings.html">Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-flow.html">Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-scoping.html">Variables and Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constructors.html">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion-and-promotion.html">Conversion and Promotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metaprogramming.html">Metaprogramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arreglos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#sparse-matrices">Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-computing.html">Parallel Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-external-programs.html">Running External Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calling-c-and-fortran-code.html">Calling C and Fortran Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Julia Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance-tips.html">Performance Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/index.html">Libreria estandar de Julia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-ins">Built-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-in-modules">Built-in Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packagelist.html">Paquetes Disponibles (en inglés)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id1">ArgParse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id2">Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id3">BinDeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id4">BioSeq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id5">BloomFilters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id7">Cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id8">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id10">Calendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id11">Catalan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id12">Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id13">Clp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id14">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id16">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id17">CoinMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id19">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id21">Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id23">ContinuedFractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id25">Cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id26">Cubature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id27">Curl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id28">DICOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id30">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id31">DataStructures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id32">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id33">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id34">Devectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id36">DictViews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id37">DimensionalityReduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id39">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id41">Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id42">Elliptic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id44">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id46">FITSIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id48">FactCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id49">FastaRead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id51">FileFind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id53">GLFW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id54">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id56">GLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id58">GLUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id59">GSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id60">GZip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id61">Gadfly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id63">Gaston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id64">GetC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id66">GoogleCharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id67">Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id69">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id71">Gtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id72">Gurobi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id74">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id76">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id78">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id79">Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id81">HypothesisTests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id82">ICU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id84">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id86">ImmutableArrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id87">IniFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id89">Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id91">Ito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id92">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id94">JudyDicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id95">JuliaWebRepl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id97">Jyacas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id99">KLDivergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id101">LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id103">Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id105">LazySequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id107">LinProgGLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id109">Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id111">MAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id113">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id115">MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id116">MLBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id118">MarketTechnicals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id119">MathProg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id120">MathProgBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id122">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id124">MixedModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id125">Monads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id126">Mongo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id127">Mongrel2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id129">Mustache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id131">NHST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id133">NLopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id135">Named</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id137">ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id138">ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id140">OpenGL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id142">OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id144">Optim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id146">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id148">PLX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id150">PatternDispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id152">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id154">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id156">ProjectTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id158">PyCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id160">QuickCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id162">RDatasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id164">RNGTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id165">RandomMatrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id167">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id169">Rif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id170">Rmath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id172">SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id173">SDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id175">SemidefiniteProgramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id177">SimJulia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id178">Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id179">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id181">StrPack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id183">Sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id185">SymbolicLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id187">TOML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id188">TextAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id190">TextWrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id192">TimeModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id194">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id196">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id198">TkExtras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id200">TopicModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id201">TradingInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id203">Trie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id205">UTF16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id207">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id209">WAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id210">Winston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id212">ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id214">Zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id216">kNN</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Julia Language</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">El Manual de Julia</a> &raquo;</li>
+      
+    <li>Methods</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/lbenitesanchez/julia-doc-es-la/blob/master/manual/methods.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="methods">
+<span id="man-methods"></span><h1>Methods<a class="headerlink" href="#methods" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Recall from <a class="reference internal" href="functions.html#man-functions"><em>Functions</em></a> that a function is an object
+that maps a tuple of arguments to a return value, or throws an exception
+if no appropriate value can be returned. It is very common for the same
+conceptual function or operation to be implemented quite differently for
+different types of arguments: adding two integers is very different from
+adding two floating-point numbers, both of which are distinct from
+adding an integer to a floating-point number. Despite their
+implementation differences, these operations all fall under the general
+concept of &#8220;addition&#8221;. Accordingly, in Julia, these behaviors all belong
+to a single object: the <tt class="docutils literal"><span class="pre">+</span></tt> function.</p>
+<p>To facilitate using many different implementations of the same concept
+smoothly, functions need not be defined all at once, but can rather be
+defined piecewise by providing specific behaviors for certain
+combinations of argument types and counts. A definition of one possible
+behavior for a function is called a <em>method</em>. Thus far, we have
+presented only examples of functions defined with a single method,
+applicable to all types of arguments. However, the signatures of method
+definitions can be annotated to indicate the types of arguments in
+addition to their number, and more than a single method definition may
+be provided. When a function is applied to a particular tuple of
+arguments, the most specific method applicable to those arguments is
+applied. Thus, the overall behavior of a function is a patchwork of the
+behaviors of its various method defintions. If the patchwork is well
+designed, even though the implementations of the methods may be quite
+different, the outward behavior of the function will appear seamless and
+consistent.</p>
+<p>The choice of which method to execute when a function is applied is
+called <em>dispatch</em>. Julia allows the dispatch process to choose which of
+a function&#8217;s methods to call based on the number of arguments given, and
+on the types of all of the function&#8217;s arguments. This is different than
+traditional object-oriented languages, where dispatch occurs based only
+on the first argument, which often has a special argument syntax, and is
+sometimes implied rather than explicitly written as an
+argument.<a class="reference external" href="#footnote-1">1</a> Using all of a function&#8217;s arguments to
+choose which method should be invoked, rather than just the first, is
+known as <a class="reference external" href="http://en.wikipedia.org/wiki/Multiple_dispatch">*multiple
+dispatch*</a>. Multiple
+dispatch is particularly useful for mathematical code, where it makes
+little sense to artificially deem the operations to &#8220;belong&#8221; to one
+argument more than any of the others: does the addition operation in
+<tt class="docutils literal"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></tt> belong to <tt class="docutils literal"><span class="pre">x</span></tt> any more than it does to <tt class="docutils literal"><span class="pre">y</span></tt>? The
+implementation of a mathematical operator generally depends on the types
+of all of its arguments. Even beyond mathematical operations, however,
+multiple dispatch ends up being a very powerful and convenient paradigm
+for structuring and organizing programs.</p>
+<div class="sidebar"><p>Footnote 1: In C++ or Java, for example, in a method call like
+obj.meth(arg1,arg2), the object obj &#8220;receives&#8221; the method call and is
+implicitly passed to the method via the <em>this</em> keyword, rather then as an
+explicit method argument. When the current <em>this</em> object is the receiver
+of a method call, it can be omitted altogether, writing just
+meth(arg1,arg2), with this implied as the receiving object.</p>
+</div><div class="section" id="defining-methods">
+<h2>Defining Methods<a class="headerlink" href="#defining-methods" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Until now, we have, in our examples, defined only functions with a
+single method having unconstrained argument types. Such functions behave
+just like they would in traditional dynamically typed languages.
+Nevertheless, we have used multiple dispatch and methods almost
+continually without being aware of it: all of Julia&#8217;s standard functions
+and operators, like the aforementioned <tt class="docutils literal"><span class="pre">+</span></tt> function, have many methods
+defining their behavior over various possible combinations of argument
+type and count.</p>
+<p>When defining a function, one can optionally constrain the types of
+parameters it is applicable to, using the <tt class="docutils literal"><span class="pre">::</span></tt> type-assertion
+operator, introduced in the section on <a class="reference internal" href="types.html#man-composite-types"><em>Composite Types</em></a>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Float64</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="kt">Float64</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>This function definition applies only to calls where <tt class="docutils literal"><span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">y</span></tt> are
+both values of type <tt class="docutils literal"><span class="pre">Float64</span></tt>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">7.0</span>
+</pre></div>
+</div>
+<p>Applying it to any other types of arguments will result in a &#8220;no method&#8221;
+error:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">f</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">float32</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">f</span><span class="p">(</span><span class="kt">Float32</span><span class="p">,</span><span class="kt">Float64</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s">&quot;3.0&quot;</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">f</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="n">ASCIIString</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="s">&quot;2.0&quot;</span><span class="p">,</span> <span class="s">&quot;3.0&quot;</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">f</span><span class="p">(</span><span class="n">ASCIIString</span><span class="p">,</span><span class="n">ASCIIString</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, the arguments must be precisely of type <tt class="docutils literal"><span class="pre">Float64</span></tt>.
+Other numeric types, such as integers or 32-bit floating-point values,
+are not automatically converted to 64-bit floating-point, nor are
+strings parsed as numbers. Because <tt class="docutils literal"><span class="pre">Float64</span></tt> is a concrete type and
+concrete types cannot be subclassed in Julia, such a definition can only
+be applied to arguments that are exactly of type <tt class="docutils literal"><span class="pre">Float64</span></tt>. It may
+often be useful, however, to write more general methods where the
+declared parameter types are abstract:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>This method definition applies to any pair of arguments that are
+instances of <tt class="docutils literal"><span class="pre">Number</span></tt>. They need not be of the same type, so long as
+they are each numeric values. The problem of handling disparate numeric
+types is delegated to the arithmetic operations in the expression
+<tt class="docutils literal"><span class="pre">2x</span> <span class="pre">-</span> <span class="pre">y</span></tt>.</p>
+<p>To define a function with multiple methods, one simply defines the
+function multiple times, with different numbers and types of arguments.
+The first method definition for a function creates the function object,
+and subsequent method definitions add new methods to the existing
+function object. The most specific method definition matching the number
+and types of the arguments will be executed when the function is
+applied. Thus, the two method definitions above, taken together, define
+the behavior for <tt class="docutils literal"><span class="pre">f</span></tt> over all pairs of instances of the abstract type
+<tt class="docutils literal"><span class="pre">Number</span></tt> — but with a different behavior specific to pairs of
+<tt class="docutils literal"><span class="pre">Float64</span></tt> values. If one of the arguments is a 64-bit float but the
+other one is not, then the <tt class="docutils literal"><span class="pre">f(Float64,Float64)</span></tt> method cannot be
+called and the more general <tt class="docutils literal"><span class="pre">f(Number,Number)</span></tt> method must be used:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">7.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">1.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">1.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">2x</span> <span class="pre">+</span> <span class="pre">y</span></tt> definition is only used in the first case, while the
+<tt class="docutils literal"><span class="pre">2x</span> <span class="pre">-</span> <span class="pre">y</span></tt> definition is used in the others. No automatic casting or
+conversion of function arguments is ever performed: all conversion in
+Julia is non-magical and completely explicit. <a class="reference internal" href="conversion-and-promotion.html#man-conversion-and-promotion"><em>Conversion and Promotion</em></a>, however, shows how clever
+application of sufficiently advanced technology can be indistinguishable
+from magic. <a class="footnote-reference" href="#id3" id="id2">[2]</a></p>
+<p>For non-numeric values, and for fewer or more than two arguments, the
+function <tt class="docutils literal"><span class="pre">f</span></tt> remains undefined, and applying it will still result in a
+&#8220;no method&#8221; error:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">f</span><span class="p">(</span><span class="n">ASCIIString</span><span class="p">,</span><span class="kt">Int64</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">()</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">f</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can easily see which methods exist for a function by entering the
+function object itself in an interactive session:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span>
+<span class="n">Methods</span> <span class="k">for</span> <span class="n">generic</span> <span class="k">function</span><span class="nf"> f</span>
+<span class="n">f</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Float64</span><span class="p">)</span>
+<span class="n">f</span><span class="p">(</span><span class="n">Number</span><span class="p">,</span><span class="n">Number</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This output tells us that <tt class="docutils literal"><span class="pre">f</span></tt> is a function object with two methods:
+one taking two <tt class="docutils literal"><span class="pre">Float64</span></tt> arguments and one taking arguments of type
+<tt class="docutils literal"><span class="pre">Number</span></tt>.</p>
+<p>In the absence of a type declaration with <tt class="docutils literal"><span class="pre">::</span></tt>, the type of a method
+parameter is <tt class="docutils literal"><span class="pre">Any</span></tt> by default, meaning that it is unconstrained since
+all values in Julia are instances of the abstract type <tt class="docutils literal"><span class="pre">Any</span></tt>. Thus, we
+can define a catch-all method for <tt class="docutils literal"><span class="pre">f</span></tt> like so:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;Whoa there, Nelly.&quot;</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">Whoa</span> <span class="n">there</span><span class="p">,</span> <span class="n">Nelly</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This catch-all is less specific than any other possible method
+definition for a pair of parameter values, so it is only be called on
+pairs of arguments to which no other method definition applies.</p>
+<p>Although it seems a simple concept, multiple dispatch on the types of
+values is perhaps the single most powerful and central feature of the
+Julia language. Core operations typically have dozens of methods:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="o">+</span>
+<span class="n">Methods</span> <span class="k">for</span> <span class="n">generic</span> <span class="k">function</span><span class="nf"> </span><span class="o">+</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Real</span><span class="p">,</span><span class="n">Range</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">})</span> <span class="n">at</span> <span class="n">range</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">136</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Real</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">})</span> <span class="n">at</span> <span class="n">range</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">137</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Ranges</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">},</span><span class="n">Real</span><span class="p">)</span> <span class="n">at</span> <span class="n">range</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">138</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Ranges</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">},</span><span class="n">Ranges</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">})</span> <span class="n">at</span> <span class="n">range</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">150</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,)</span> <span class="n">at</span> <span class="n">bool</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">45</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,</span><span class="kt">Bool</span><span class="p">)</span> <span class="n">at</span> <span class="n">bool</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">48</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="n">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">224</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Int128</span><span class="p">,</span><span class="n">Int128</span><span class="p">)</span> <span class="n">at</span> <span class="n">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">226</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}),</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}))</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">902</span>
+<span class="o">+</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Signed</span><span class="p">}(</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Signed</span><span class="p">,</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Signed</span><span class="p">)</span> <span class="n">at</span> <span class="n">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">207</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Uint64</span><span class="p">,</span><span class="kt">Uint64</span><span class="p">)</span> <span class="n">at</span> <span class="n">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">225</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Uint128</span><span class="p">,</span><span class="n">Uint128</span><span class="p">)</span> <span class="n">at</span> <span class="n">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">227</span>
+<span class="o">+</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Unsigned</span><span class="p">}(</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Unsigned</span><span class="p">,</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Unsigned</span><span class="p">)</span> <span class="n">at</span> <span class="n">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">211</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Float32</span><span class="p">,</span><span class="kt">Float32</span><span class="p">)</span> <span class="n">at</span> <span class="n">float</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">113</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Float64</span><span class="p">)</span> <span class="n">at</span> <span class="n">float</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">114</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Complex</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">},</span><span class="n">Complex</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">})</span> <span class="n">at</span> <span class="n">complex</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">207</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Integer</span><span class="p">},</span><span class="n">Rational</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Integer</span><span class="p">})</span> <span class="n">at</span> <span class="n">rational</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">101</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Bool</span><span class="p">,</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}))</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">896</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="kt">Bool</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}),</span><span class="kt">Bool</span><span class="p">)</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">899</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Char</span><span class="p">,</span><span class="n">Char</span><span class="p">)</span> <span class="n">at</span> <span class="n">char</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">46</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Char</span><span class="p">,</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="n">char</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">47</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Char</span><span class="p">)</span> <span class="n">at</span> <span class="n">char</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">48</span>
+<span class="o">+</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}(</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="n">promotion</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">68</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Number</span><span class="p">,</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="n">promotion</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">40</span>
+<span class="o">+</span><span class="p">()</span> <span class="n">at</span> <span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">30</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Number</span><span class="p">,)</span> <span class="n">at</span> <span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">36</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">)</span> <span class="n">at</span> <span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">)</span> <span class="n">at</span> <span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">45</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">)</span> <span class="n">at</span> <span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">46</span>
+<span class="o">+</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Any</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">48</span>
+<span class="o">+</span><span class="p">{</span><span class="n">T</span><span class="p">}(</span><span class="n">Ptr</span><span class="p">{</span><span class="n">T</span><span class="p">},</span><span class="n">Integer</span><span class="p">)</span> <span class="n">at</span> <span class="n">pointer</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">52</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span><span class="n">Ptr</span><span class="p">{</span><span class="n">T</span><span class="p">})</span> <span class="n">at</span> <span class="n">pointer</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">54</span>
+<span class="o">+</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}(</span><span class="n">AbstractArray</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">N</span><span class="p">},)</span> <span class="n">at</span> <span class="n">abstractarray</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">232</span>
+<span class="o">+</span><span class="p">{</span><span class="n">S</span><span class="p">,</span><span class="n">T</span><span class="p">}(</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}),</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}))</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">850</span>
+<span class="o">+</span><span class="p">{</span><span class="n">T</span><span class="p">}(</span><span class="n">Number</span><span class="p">,</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}))</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">857</span>
+<span class="o">+</span><span class="p">{</span><span class="n">T</span><span class="p">}(</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}),</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">864</span>
+<span class="o">+</span><span class="p">{</span><span class="n">S</span><span class="p">,</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">}(</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}),</span><span class="n">Ranges</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">})</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">872</span>
+<span class="o">+</span><span class="p">{</span><span class="n">S</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">,</span><span class="n">T</span><span class="p">}(</span><span class="n">Ranges</span><span class="p">{</span><span class="n">S</span><span class="o">&lt;:</span><span class="n">Real</span><span class="p">},</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">SubArray</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="o">&lt;:</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">I</span><span class="o">&lt;:</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">Range1</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span><span class="n">Range</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span><span class="o">...</span><span class="p">,)}))</span> <span class="n">at</span> <span class="n">array</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">881</span>
+<span class="o">+</span><span class="p">(</span><span class="n">BitArray</span><span class="p">{</span><span class="n">N</span><span class="p">},</span><span class="n">BitArray</span><span class="p">{</span><span class="n">N</span><span class="p">})</span> <span class="n">at</span> <span class="n">bitarray</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">922</span>
+<span class="o">+</span><span class="p">(</span><span class="n">BitArray</span><span class="p">{</span><span class="n">N</span><span class="p">},</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="n">bitarray</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">923</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Number</span><span class="p">,</span><span class="n">BitArray</span><span class="p">{</span><span class="n">N</span><span class="p">})</span> <span class="n">at</span> <span class="n">bitarray</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">924</span>
+<span class="o">+</span><span class="p">(</span><span class="n">BitArray</span><span class="p">{</span><span class="n">N</span><span class="p">},</span><span class="n">AbstractArray</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span> <span class="n">at</span> <span class="n">bitarray</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">986</span>
+<span class="o">+</span><span class="p">(</span><span class="n">AbstractArray</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">BitArray</span><span class="p">{</span><span class="n">N</span><span class="p">})</span> <span class="n">at</span> <span class="n">bitarray</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">987</span>
+<span class="o">+</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span><span class="n">Ti</span><span class="p">}(</span><span class="n">SparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span><span class="n">Ti</span><span class="p">},</span><span class="n">SparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span><span class="n">Ti</span><span class="p">})</span> <span class="n">at</span> <span class="n">sparse</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">536</span>
+<span class="o">+</span><span class="p">(</span><span class="n">SparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span><span class="n">Ti</span><span class="o">&lt;:</span><span class="n">Integer</span><span class="p">},</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">Number</span><span class="p">))</span> <span class="n">at</span> <span class="n">sparse</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">626</span>
+<span class="o">+</span><span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">Number</span><span class="p">),</span><span class="n">SparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span><span class="n">Ti</span><span class="o">&lt;:</span><span class="n">Integer</span><span class="p">})</span> <span class="n">at</span> <span class="n">sparse</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">627</span>
+</pre></div>
+</div>
+<p>Multiple dispatch together with the flexible parametric type system give
+Julia its ability to abstractly express high-level algorithms decoupled
+from implementation details, yet generate efficient, specialized code to
+handle each case at run time.</p>
+</div>
+<div class="section" id="method-ambiguities">
+<h2>Method Ambiguities<a class="headerlink" href="#method-ambiguities" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>It is possible to define a set of function methods such that there is no
+unique most specific method applicable to some combinations of
+arguments:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Float64</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="kt">Float64</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="n">y</span>
+<span class="n">Warning</span><span class="p">:</span> <span class="n">New</span> <span class="n">definition</span> <span class="n">g</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span><span class="kt">Float64</span><span class="p">)</span> <span class="nb">is</span> <span class="n">ambiguous</span> <span class="n">with</span> <span class="n">g</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Any</span><span class="p">)</span><span class="o">.</span>
+         <span class="n">Make</span> <span class="n">sure</span> <span class="n">g</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Float64</span><span class="p">)</span> <span class="nb">is</span> <span class="n">defined</span> <span class="n">first</span><span class="o">.</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">7.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">8.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">7.0</span>
+</pre></div>
+</div>
+<p>Here the call <tt class="docutils literal"><span class="pre">g(2.0,</span> <span class="pre">3.0)</span></tt> could be handled by either the
+<tt class="docutils literal"><span class="pre">g(Float64,</span> <span class="pre">Any)</span></tt> or the <tt class="docutils literal"><span class="pre">g(Any,</span> <span class="pre">Float64)</span></tt> method, and neither is
+more specific than the other. In such cases, Julia warns you about this
+ambiguity, but allows you to proceed, arbitrarily picking a method. You
+should avoid method ambiguities by specifying an appropriate method for
+the intersection case:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Float64</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="kt">Float64</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="n">y</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Float64</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="kt">Float64</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="n">y</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">7.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">8.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="mf">10.0</span>
+</pre></div>
+</div>
+<p>To suppress Julia&#8217;s warning, the disambiguating method must be defined
+first, since otherwise the ambiguity exists, if transiently, until the
+more specific method is defined.</p>
+</div>
+<div class="section" id="parametric-methods">
+<span id="man-parametric-methods"></span><h2>Parametric Methods<a class="headerlink" href="#parametric-methods" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Method definitions can optionally have type parameters immediately after
+the method name and before the parameter tuple:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">same_type</span><span class="p">{</span><span class="n">T</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">T</span><span class="p">)</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">same_type</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">false</span>
+</pre></div>
+</div>
+<p>The first method applies whenever both arguments are of the same
+concrete type, regardless of what type that is, while the second method
+acts as a catch-all, covering all other cases. Thus, overall, this
+defines a boolean function that checks whether its two arguments are of
+the same type:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type</span><span class="p">(</span><span class="n">int32</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">int64</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">false</span>
+</pre></div>
+</div>
+<p>This kind of definition of function behavior by dispatch is quite common
+— idiomatic, even — in Julia. Method type parameters are not restricted
+to being used as the types of parameters: they can be used anywhere a
+value would be in the signature of the function or body of the function.
+Here&#8217;s an example where the method type parameter <tt class="docutils literal"><span class="pre">T</span></tt> is used as the
+type parameter to the parametric type <tt class="docutils literal"><span class="pre">Vector{T}</span></tt> in the method
+signature:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">myappend</span><span class="p">{</span><span class="n">T</span><span class="p">}(</span><span class="n">v</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">...</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">myappend</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="kt">Int64</span> <span class="n">Array</span><span class="p">:</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">myappend</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">myappend</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="kt">Float64</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">myappend</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">],</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">]</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">myappend</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">myappend</span><span class="p">(</span><span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="kt">Int64</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, the type of the appended element must match the element
+type of the vector it is appended to, or a &#8220;no method&#8221; error is raised.
+In the following example, the method type parameter <tt class="docutils literal"><span class="pre">T</span></tt> is used as the
+return value:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">mytypeof</span><span class="p">{</span><span class="n">T</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">)</span> <span class="o">=</span> <span class="n">T</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">mytypeof</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="kt">Int64</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">mytypeof</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="kt">Float64</span>
+</pre></div>
+</div>
+<p>Just as you can put subtype constraints on type parameters in type
+declarations (see <a class="reference internal" href="types.html#man-parametric-types"><em>Parametric Types</em></a>), you
+can also constrain type parameters of methods:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">same_type_numeric</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">T</span><span class="p">)</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">same_type_numeric</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="n">ASCIIString</span><span class="p">,</span><span class="kt">Float64</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">no</span> <span class="n">method</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="n">ASCIIString</span><span class="p">,</span><span class="n">ASCIIString</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">same_type_numeric</span><span class="p">(</span><span class="n">int32</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">int64</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">false</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">same_type_numeric</span></tt> function behaves much like the <tt class="docutils literal"><span class="pre">same_type</span></tt>
+function defined above, but is only defined for pairs of numbers.</p>
+</div>
+<div class="section" id="note-on-optional-and-named-arguments">
+<h2>Note on Optional and Named Arguments<a class="headerlink" href="#note-on-optional-and-named-arguments" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>As mentioned briefly in <a class="reference internal" href="functions.html#man-functions"><em>Functions</em></a>, optional arguments are
+implemented as syntax for multiple method definitions. For example,
+this definition:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="mi">2</span><span class="n">b</span>
+</pre></div>
+</div>
+<p>translates to the following three methods:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="mi">2</span><span class="n">b</span>
+<span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">f</span><span class="p">()</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Named arguments behave quite differently from ordinary positional arguments.
+In particular, they do not participate in method dispatch. Methods are
+dispatched based only on positional arguments, with named arguments processed
+after the matching method is identified.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Arthur C. Clarke, <em>Profiles of the Future</em> (1961): Clarke&#8217;s Third Law.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="constructors.html" class="btn btn-neutral float-right" title="Constructors">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="types.html" class="btn btn-neutral" title="Types"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2013, Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

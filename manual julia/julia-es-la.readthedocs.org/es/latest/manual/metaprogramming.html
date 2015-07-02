@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Metaprogramming &mdash; documentación de Julia Language - 0.3-dev</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="documentación de Julia Language - 0.3-dev" href="../index.html"/>
+        <link rel="up" title="El Manual de Julia" href="index.html"/>
+        <link rel="next" title="Arreglos" href="arrays.html"/>
+        <link rel="prev" title="Modules" href="modules.html"/>
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://julia-es-la.readthedocs.org/es/latest/manual/metaprogramming.html" />
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "julia-es-la",
+    version: "latest",
+    language: "es",
+    page: "manual/metaprogramming",
+    theme: "julia",
+    docroot: "/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "julia-es-la";
+  var page_name = "manual/metaprogramming";
+  var html_theme = "julia";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://julialang.org/"><img src="../_static/julia-logo.svg" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> Julia Language</a>
+        -->
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">El Manual de Julia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Comenzando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers-and-floating-point-numbers.html">Integers and Floating-Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematical-operations.html">Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex-and-rational-numbers.html">Complex and Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings.html">Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-flow.html">Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-scoping.html">Variables and Scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constructors.html">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversion-and-promotion.html">Conversion and Promotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Metaprogramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arreglos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#sparse-matrices">Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-computing.html">Parallel Computing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-external-programs.html">Running External Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calling-c-and-fortran-code.html">Calling C and Fortran Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Julia Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance-tips.html">Performance Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/index.html">Libreria estandar de Julia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-ins">Built-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html#built-in-modules">Built-in Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packagelist.html">Paquetes Disponibles (en inglés)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id1">ArgParse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id2">Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id3">BinDeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id4">BioSeq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id5">BloomFilters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id7">Cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id8">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id10">Calendar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id11">Catalan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id12">Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id13">Clp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id14">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id16">Codecs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id17">CoinMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id19">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id21">Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id23">ContinuedFractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id25">Cpp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id26">Cubature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id27">Curl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id28">DICOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id30">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id31">DataStructures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id32">Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id33">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id34">Devectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id36">DictViews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id37">DimensionalityReduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id39">Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id41">Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id42">Elliptic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id44">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id46">FITSIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id48">FactCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id49">FastaRead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id51">FileFind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id53">GLFW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id54">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id56">GLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id58">GLUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id59">GSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id60">GZip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id61">Gadfly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id63">Gaston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id64">GetC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id66">GoogleCharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id67">Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id69">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id71">Gtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id72">Gurobi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id74">HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id76">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id78">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id79">Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id81">HypothesisTests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id82">ICU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id84">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id86">ImmutableArrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id87">IniFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id89">Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id91">Ito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id92">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id94">JudyDicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id95">JuliaWebRepl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id97">Jyacas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id99">KLDivergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id101">LM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id103">Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id105">LazySequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id107">LinProgGLPK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id109">Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id111">MAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id113">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id115">MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id116">MLBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id118">MarketTechnicals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id119">MathProg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id120">MathProgBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id122">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id124">MixedModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id125">Monads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id126">Mongo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id127">Mongrel2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id129">Mustache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id131">NHST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id133">NLopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id135">Named</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id137">ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id138">ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id140">OpenGL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id142">OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id144">Optim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id146">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id148">PLX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id150">PatternDispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id152">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id154">Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id156">ProjectTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id158">PyCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id160">QuickCheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id162">RDatasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id164">RNGTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id165">RandomMatrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id167">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id169">Rif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id170">Rmath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id172">SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id173">SDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id175">SemidefiniteProgramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id177">SimJulia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id178">Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id179">Stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id181">StrPack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id183">Sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id185">SymbolicLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id187">TOML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id188">TextAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id190">TextWrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id192">TimeModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id194">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id196">Tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id198">TkExtras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id200">TopicModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id201">TradingInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id203">Trie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id205">UTF16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id207">Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id209">WAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id210">Winston</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id212">ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id214">Zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/packagelist.html#id216">kNN</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Julia Language</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">El Manual de Julia</a> &raquo;</li>
+      
+    <li>Metaprogramming</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/lbenitesanchez/julia-doc-es-la/blob/master/manual/metaprogramming.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="metaprogramming">
+<span id="man-metaprogramming"></span><h1>Metaprogramming<a class="headerlink" href="#metaprogramming" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>The strongest legacy of Lisp in the Julia language is its
+metaprogramming support. Like Lisp, Julia is
+<a class="reference external" href="http://en.wikipedia.org/wiki/Homoiconicity">homoiconic</a>: it
+represents its own code as a data structure of the language itself.
+Since code is represented by objects that can be created and manipulated
+from within the language, it is possible for a program to transform and
+generate its own code. This allows sophisticated code generation without
+extra build steps, and also allows true Lisp-style macros, as compared
+to preprocessor &#8220;macro&#8221; systems, like that of C and C++, that perform
+superficial textual manipulation as a separate pass before any real
+parsing or interpretation occurs. Another aspect of metaprogramming is
+reflection: the ability of a running program to dynamically discover
+properties of itself. Reflection emerges naturally from the fact that
+all data types and code are represented by normal Julia data structures,
+so the structure of the program and its types can be explored
+programmatically just like any other data.</p>
+<div class="section" id="expressions-and-eval">
+<h2>Expressions and Eval<a class="headerlink" href="#expressions-and-eval" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Julia code is represented as a syntax tree built out of Julia data
+structures of type <tt class="docutils literal"><span class="pre">Expr</span></tt>. This makes it easy to construct and
+manipulate Julia code from within Julia, without generating or parsing
+source text. Here is the definition of the <tt class="docutils literal"><span class="pre">Expr</span></tt> type:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">type</span><span class="nc"> Expr</span>
+  <span class="n">head</span><span class="p">::</span><span class="n">Symbol</span>
+  <span class="n">args</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="kt">Any</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+  <span class="n">typ</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">head</span></tt> is a symbol identifying the kind of expression, and
+<tt class="docutils literal"><span class="pre">args</span></tt> is an array of subexpressions, which may be symbols referencing
+the values of variables at evaluation time, may be nested <tt class="docutils literal"><span class="pre">Expr</span></tt>
+objects, or may be actual values of objects. The <tt class="docutils literal"><span class="pre">typ</span></tt> field is used
+by type inference to store type annotations, and can generally be
+ignored.</p>
+<p>There is special syntax for &#8220;quoting&#8221; code (analogous to quoting
+strings) that makes it easy to create expression objects without
+explicitly constructing <tt class="docutils literal"><span class="pre">Expr</span></tt> objects. There are two forms: a short
+form for inline expressions using <tt class="docutils literal"><span class="pre">:</span></tt> followed by a single expression,
+and a long form for blocks of code, enclosed in <tt class="docutils literal"><span class="pre">quote</span> <span class="pre">...</span> <span class="pre">end</span></tt>. Here
+is an example of the short form used to quote an arithmetic expression:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">ex</span> <span class="o">=</span> <span class="p">:(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="n">Expr</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">ex</span><span class="o">.</span><span class="n">head</span>
+<span class="n">call</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="n">Symbol</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">ex</span><span class="o">.</span><span class="n">args</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="kt">Any</span> <span class="n">Array</span><span class="p">:</span>
+  <span class="o">+</span>
+  <span class="n">a</span>
+  <span class="p">:(</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">))</span>
+ <span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">Symbol</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">Symbol</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">Expr</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="kt">Int64</span>
+</pre></div>
+</div>
+<p>Expressions provided by the parser generally only have symbols, other
+expressions, and literal values as their args, whereas expressions
+constructed by Julia code can easily have arbitrary run-time values
+without literal forms as args. In this specific example, <tt class="docutils literal"><span class="pre">+</span></tt> and <tt class="docutils literal"><span class="pre">a</span></tt>
+are symbols, <tt class="docutils literal"><span class="pre">*(b,c)</span></tt> is a subexpression, and <tt class="docutils literal"><span class="pre">1</span></tt> is a literal
+64-bit signed integer. Here&#8217;s an example of the longer expression
+quoting form:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="k">quote</span>
+     <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+     <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+   <span class="k">end</span>
+
+<span class="k">begin</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>When the argument to <tt class="docutils literal"><span class="pre">:</span></tt> is just a symbol, a <tt class="docutils literal"><span class="pre">Symbol</span></tt> object results
+instead of an <tt class="docutils literal"><span class="pre">Expr</span></tt>:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="p">:</span><span class="n">foo</span>
+<span class="n">foo</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="n">Symbol</span>
+</pre></div>
+</div>
+<p>In the context of an expression, symbols are used to indicate access to
+variables, and when an expression is evaluated, a symbol evaluates to
+the value bound to that symbol in the appropriate scope (see <a class="reference internal" href="variables-and-scoping.html#man-variables-and-scoping"><em>Variables and Scoping</em></a> for further details).</p>
+<div class="section" id="eval-and-interpolation">
+<h3>Eval and Interpolation<a class="headerlink" href="#eval-and-interpolation" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Given an expression object, one can cause Julia to evaluate (execute) it
+at the <em>top level</em> scope — i.e. in effect like loading from a file or
+typing at the interactive prompt — using the <tt class="docutils literal"><span class="pre">eval</span></tt> function:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="p">:(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">eval</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+<span class="mi">3</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">ex</span> <span class="o">=</span> <span class="p">:(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">eval</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="n">a</span> <span class="n">not</span> <span class="n">defined</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">eval</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="mi">3</span>
+</pre></div>
+</div>
+<p>Expressions passed to <tt class="docutils literal"><span class="pre">eval</span></tt> are not limited to returning values
+—&nbsp;they can also have side-effects that alter the state of the top-level
+evaluation environment:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">ex</span> <span class="o">=</span> <span class="p">:(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span>
+<span class="n">x</span> <span class="n">not</span> <span class="n">defined</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">eval</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<p>Here, the evaluation of an expression object causes a value to be
+assigned to the top-level variable <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
+<p>Since expressions are just <tt class="docutils literal"><span class="pre">Expr</span></tt> objects which can be constructed
+programmatically and then evaluated, one can, from within Julia code,
+dynamically generate arbitrary code which can then be run using
+<tt class="docutils literal"><span class="pre">eval</span></tt>. Here is a simple example:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">Expr</span><span class="p">(:</span><span class="n">call</span><span class="p">,</span> <span class="p">{:</span><span class="o">+</span><span class="p">,</span><span class="n">a</span><span class="p">,:</span><span class="n">b</span><span class="p">},</span> <span class="kt">Any</span><span class="p">)</span>
+<span class="p">:(</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">eval</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="mi">3</span>
+</pre></div>
+</div>
+<p>The value of <tt class="docutils literal"><span class="pre">a</span></tt> is used to construct the expression <tt class="docutils literal"><span class="pre">ex</span></tt> which
+applies the <tt class="docutils literal"><span class="pre">+</span></tt> function to the value 1 and the variable <tt class="docutils literal"><span class="pre">b</span></tt>. Note
+the important distinction between the way <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> are used:</p>
+<ul class="simple">
+<li>The value of the <em>variable</em> <tt class="docutils literal"><span class="pre">a</span></tt> at expression construction time is
+used as an immediate value in the expression. Thus, the value of
+<tt class="docutils literal"><span class="pre">a</span></tt> when the expression is evaluated no longer matters: the value
+in the expression is already <tt class="docutils literal"><span class="pre">1</span></tt>, independent of whatever the value
+of <tt class="docutils literal"><span class="pre">a</span></tt> might be.</li>
+<li>On the other hand, the <em>symbol</em> <tt class="docutils literal"><span class="pre">:b</span></tt> is used in the expression
+construction, so the value of the variable <tt class="docutils literal"><span class="pre">b</span></tt> at that time is
+irrelevant — <tt class="docutils literal"><span class="pre">:b</span></tt> is just a symbol and the variable <tt class="docutils literal"><span class="pre">b</span></tt> need not
+even be defined. At expression evaluation time, however, the value of
+the symbol <tt class="docutils literal"><span class="pre">:b</span></tt> is resolved by looking up the value of the variable
+<tt class="docutils literal"><span class="pre">b</span></tt>.</li>
+</ul>
+<p>Constructing <tt class="docutils literal"><span class="pre">Expr</span></tt> objects like this is powerful, but somewhat
+tedious and ugly. Since the Julia parser is already excellent at
+producing expression objects, Julia allows &#8220;splicing&#8221; or interpolation
+of expression objects, prefixed with <tt class="docutils literal"><span class="pre">$</span></tt>, into quoted expressions,
+written using normal syntax. The above example can be written more
+clearly and concisely using interpolation:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">ex</span> <span class="o">=</span> <span class="p">:(</span><span class="o">$</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">:(</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This syntax is automatically rewritten to the form above where we
+explicitly called <tt class="docutils literal"><span class="pre">Expr</span></tt>. The use of <tt class="docutils literal"><span class="pre">$</span></tt> for expression
+interpolation is intentionally reminiscent of
+<a class="reference internal" href="strings.html#man-string-interpolation"><em>string interpolation</em></a> and
+<a class="reference internal" href="running-external-programs.html#man-command-interpolation"><em>command interpolation</em></a>.
+Expression interpolation allows convenient, readable programmatic construction
+of complex Julia expressions.</p>
+</div>
+<div class="section" id="code-generation">
+<h3>Code Generation<a class="headerlink" href="#code-generation" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>When a significant amount of repetitive boilerplate code is required, it
+is common to generate it programmatically to avoid redundancy. In most
+languages, this requires an extra build step, and a separate program to
+generate the repetitive code. In Julia, expression interpolation and
+eval allow such code generation to take place in the normal course of
+program execution. For example, the following code defines a series of
+operators on three arguments in terms of their 2-argument forms:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">for</span> <span class="n">op</span> <span class="o">=</span> <span class="p">(:</span><span class="o">+</span><span class="p">,</span> <span class="p">:</span><span class="o">*</span><span class="p">,</span> <span class="p">:</span><span class="o">&amp;</span><span class="p">,</span> <span class="p">:</span><span class="o">|</span><span class="p">,</span> <span class="p">:</span><span class="o">$</span><span class="p">)</span>
+  <span class="n">eval</span><span class="p">(</span><span class="k">quote</span>
+    <span class="p">(</span><span class="o">$</span><span class="n">op</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">$</span><span class="n">op</span><span class="p">)((</span><span class="o">$</span><span class="n">op</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">c</span><span class="p">)</span>
+  <span class="k">end</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>In this manner, Julia acts as its own preprocessor, and allows code
+generation from inside the language. The above code could be written
+slightly more tersely using the <tt class="docutils literal"><span class="pre">:</span></tt> prefix quoting form:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">for</span> <span class="n">op</span> <span class="o">=</span> <span class="p">(:</span><span class="o">+</span><span class="p">,</span> <span class="p">:</span><span class="o">*</span><span class="p">,</span> <span class="p">:</span><span class="o">&amp;</span><span class="p">,</span> <span class="p">:</span><span class="o">|</span><span class="p">,</span> <span class="p">:</span><span class="o">$</span><span class="p">)</span>
+  <span class="n">eval</span><span class="p">(:((</span><span class="o">$</span><span class="n">op</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">$</span><span class="n">op</span><span class="p">)((</span><span class="o">$</span><span class="n">op</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">c</span><span class="p">)))</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This sort of in-language code generation, however, using the
+<tt class="docutils literal"><span class="pre">eval(quote(...))</span></tt> pattern, is common enough that Julia comes with a
+macro to abbreviate this pattern:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">for</span> <span class="n">op</span> <span class="o">=</span> <span class="p">(:</span><span class="o">+</span><span class="p">,</span> <span class="p">:</span><span class="o">*</span><span class="p">,</span> <span class="p">:</span><span class="o">&amp;</span><span class="p">,</span> <span class="p">:</span><span class="o">|</span><span class="p">,</span> <span class="p">:</span><span class="o">$</span><span class="p">)</span>
+  <span class="p">@</span><span class="n">eval</span> <span class="p">(</span><span class="o">$</span><span class="n">op</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">$</span><span class="n">op</span><span class="p">)((</span><span class="o">$</span><span class="n">op</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">c</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">&#64;eval</span></tt> macro rewrites this call to be precisely equivalent to the
+above longer versions. For longer blocks of generated code, the
+expression argument given to <tt class="docutils literal"><span class="pre">&#64;eval</span></tt> can be a block:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="p">@</span><span class="n">eval</span> <span class="k">begin</span>
+  <span class="c"># multiple lines</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Interpolating into an unquoted expression is not supported and will
+cause a compile-time error:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="o">$</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">unsupported</span> <span class="n">or</span> <span class="n">misplaced</span> <span class="n">expression</span> <span class="o">$</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="macros">
+<span id="man-macros"></span><h2>Macros<a class="headerlink" href="#macros" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Macros are the analogue of functions for expression generation at
+compile time: they allow the programmer to automatically generate
+expressions by transforming zero or more argument expressions into a
+single result expression, which then takes the place of the macro call
+in the final syntax tree. Macros are invoked with the following general
+syntax:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="p">@</span><span class="n">name</span> <span class="n">expr1</span> <span class="n">expr2</span> <span class="o">...</span>
+<span class="p">@</span><span class="n">name</span><span class="p">(</span><span class="n">expr1</span><span class="p">,</span> <span class="n">expr2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note the distinguishing <tt class="docutils literal"><span class="pre">&#64;</span></tt> before the macro name and the lack of
+commas between the argument expressions in the first form, and the
+lack of whitespace after <tt class="docutils literal"><span class="pre">&#64;name</span></tt> in the second form. The two styles
+should not be mixed. For example, the following syntax is different
+from the examples above; it passes the tuple <tt class="docutils literal"><span class="pre">(expr1,</span> <span class="pre">expr2,</span> <span class="pre">...)</span></tt> as
+one argument to the macro:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="p">@</span><span class="n">name</span> <span class="p">(</span><span class="n">expr1</span><span class="p">,</span> <span class="n">expr2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Before the program runs, this statement will be replaced with the
+result of calling an expander function for <tt class="docutils literal"><span class="pre">name</span></tt> on the expression
+arguments. Expanders are defined with the <tt class="docutils literal"><span class="pre">macro</span></tt> keyword:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">macro</span> <span class="n">name</span><span class="p">(</span><span class="n">expr1</span><span class="p">,</span> <span class="n">expr2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+    <span class="o">...</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Here, for example, is the definition of Julia&#8217;s <tt class="docutils literal"><span class="pre">&#64;assert</span></tt>
+macro (see
+<a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/base/error.jl">error.jl</a>):</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">macro</span> <span class="nb">assert</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+    <span class="p">:(</span><span class="o">$</span><span class="n">ex</span> <span class="o">?</span> <span class="n">nothing</span> <span class="p">:</span> <span class="nb">error</span><span class="p">(</span><span class="s">&quot;Assertion failed: &quot;</span><span class="p">,</span> <span class="o">$</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">ex</span><span class="p">))))</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This macro can be used like this:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">julia</span><span class="o">&gt;</span> <span class="p">@</span><span class="nb">assert</span> <span class="mi">1</span><span class="o">==</span><span class="mf">1.0</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="p">@</span><span class="nb">assert</span> <span class="mi">1</span><span class="o">==</span><span class="mi">0</span>
+<span class="n">Assertion</span> <span class="n">failed</span><span class="p">:</span> <span class="mi">1</span><span class="o">==</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Macro calls are expanded so that the above calls are precisely
+equivalent to writing:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="mi">1</span><span class="o">==</span><span class="mf">1.0</span> <span class="o">?</span> <span class="n">nothing</span> <span class="p">:</span> <span class="nb">error</span><span class="p">(</span><span class="s">&quot;Assertion failed: &quot;</span><span class="p">,</span> <span class="s">&quot;1==1.0&quot;</span><span class="p">)</span>
+<span class="mi">1</span><span class="o">==</span><span class="mi">0</span> <span class="o">?</span> <span class="n">nothing</span> <span class="p">:</span> <span class="nb">error</span><span class="p">(</span><span class="s">&quot;Assertion failed: &quot;</span><span class="p">,</span> <span class="s">&quot;1==0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That is, in the first call, the expression <tt class="docutils literal"><span class="pre">:(1==1.0)</span></tt> is spliced into
+the test condition slot, while the value of <tt class="docutils literal"><span class="pre">string(:(1==1.0))</span></tt> is
+spliced into the assertion message slot. The entire expression, thus
+constructed, is placed into the syntax tree where the <tt class="docutils literal"><span class="pre">&#64;assert</span></tt> macro
+call occurs. Therefore, if the test expression is true when evaluated,
+the entire expression evaluates to nothing, whereas if the test
+expression is false, an error is raised indicating the asserted
+expression that was false. Notice that it would not be possible to write
+this as a function, since only the <em>value</em> of the condition and not the
+expression that computed it would be available.</p>
+<p>The <tt class="docutils literal"><span class="pre">&#64;assert</span></tt> example also shows how macros can include a <tt class="docutils literal"><span class="pre">quote</span></tt>
+block, which allows for convenient manipulation of expressions inside
+the macro body.</p>
+<div class="section" id="hygiene">
+<h3>Hygiene<a class="headerlink" href="#hygiene" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>An issue that arises in more complex macros is that of
+<a class="reference external" href="http://en.wikipedia.org/wiki/Hygienic_macro">hygiene</a>. In short, Julia
+must ensure that variables introduced and used by macros do not
+accidentally clash with the variables used in code interpolated into
+those macros. Another concern arises from the fact that a macro may be called
+in a different module from where it was defined. In this case we need to
+ensure that all global variables are resolved to the correct module.</p>
+<p>To demonstrate these issues,
+let us consider writing a <tt class="docutils literal"><span class="pre">&#64;time</span></tt> macro that takes an expression as
+its argument, records the time, evaluates the expression, records the
+time again, prints the difference between the before and after times,
+and then has the value of the expression as its final value.
+The macro might look like this:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">macro</span> <span class="n">time</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+  <span class="k">quote</span>
+    <span class="kd">local</span> <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">val</span> <span class="o">=</span> <span class="o">$</span><span class="n">ex</span>
+    <span class="kd">local</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;elapsed time: &quot;</span><span class="p">,</span> <span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="s">&quot; seconds&quot;</span><span class="p">)</span>
+    <span class="n">val</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Here, we want <tt class="docutils literal"><span class="pre">t0</span></tt>, <tt class="docutils literal"><span class="pre">t1</span></tt>, and <tt class="docutils literal"><span class="pre">val</span></tt> to be private temporary variables,
+and we want <tt class="docutils literal"><span class="pre">time</span></tt> to refer to the <tt class="docutils literal"><span class="pre">time</span></tt> function in the standard library,
+not to any <tt class="docutils literal"><span class="pre">time</span></tt> variable the user might have (the same applies to
+<tt class="docutils literal"><span class="pre">println</span></tt>). Imagine the problems that could occur if the user expression
+<tt class="docutils literal"><span class="pre">ex</span></tt> also contained assignments to a variable called <tt class="docutils literal"><span class="pre">t0</span></tt>, or defined
+its own <tt class="docutils literal"><span class="pre">time</span></tt> variable. We might get errors, or mysteriously incorrect
+behavior.</p>
+<p>Julia&#8217;s macro expander solves these problems in the following way. First,
+variables within a macro result are classified as either local or global.
+A variable is considered local if it is assigned to (and not declared
+global), declared local, or used as a function argument name. Otherwise,
+it is considered global. Local variables are then renamed to be unique
+(using the <tt class="docutils literal"><span class="pre">gensym</span></tt> function, which generates new symbols), and global
+variables are resolved within the macro definition environment. Therefore
+both of the above concerns are handled; the macro&#8217;s locals will not conflict
+with any user variables, and <tt class="docutils literal"><span class="pre">time</span></tt> and <tt class="docutils literal"><span class="pre">println</span></tt> will refer to the
+standard library definitions.</p>
+<p>One problem remains however. Consider the following use of this macro:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">module</span> <span class="n">MyModule</span>
+<span class="k">import</span> <span class="n">Base</span><span class="o">.</span><span class="p">@</span><span class="n">time</span>
+
+<span class="n">time</span><span class="p">()</span> <span class="o">=</span> <span class="o">...</span> <span class="c"># compute something</span>
+
+<span class="p">@</span><span class="n">time</span> <span class="n">time</span><span class="p">()</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Here the user expression <tt class="docutils literal"><span class="pre">ex</span></tt> is a call to <tt class="docutils literal"><span class="pre">time</span></tt>, but not the same
+<tt class="docutils literal"><span class="pre">time</span></tt> function that the macro uses. It clearly refers to <tt class="docutils literal"><span class="pre">MyModule.time</span></tt>.
+Therefore we must arrange for the code in <tt class="docutils literal"><span class="pre">ex</span></tt> to be resolved in the
+macro call environment. This is done by &#8220;escaping&#8221; the expression with
+the <tt class="docutils literal"><span class="pre">esc</span></tt> function:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">macro</span> <span class="n">time</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="kd">local</span> <span class="n">val</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">esc</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+    <span class="o">...</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>An expression wrapped in this manner is left alone by the macro expander
+and simply pasted into the output verbatim. Therefore it will be
+resolved in the macro call environment.</p>
+<p>This escaping mechanism can be used to &#8220;violate&#8221; hygiene when necessary,
+in order to introduce or manipulate user variables. For example, the
+following macro sets <tt class="docutils literal"><span class="pre">x</span></tt> to zero in the call environment:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">macro</span> <span class="n">zerox</span><span class="p">()</span>
+  <span class="n">esc</span><span class="p">(:(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">))</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="nf"> foo</span><span class="p">()</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="p">@</span><span class="n">zerox</span>
+  <span class="n">x</span>  <span class="c"># is zero</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This kind of manipulation of variables should be used judiciously, but
+is occasionally quite handy.</p>
+</div>
+<div class="section" id="non-standard-string-literals">
+<h3>Non-Standard String Literals<a class="headerlink" href="#non-standard-string-literals" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recall from <a class="reference internal" href="strings.html#man-non-standard-string-literals"><em>Strings</em></a> that
+string literals prefixed by an identifier are called non-standard string
+literals, and can have different semantics than un-prefixed string
+literals. For example:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">E&quot;$100\n&quot;</span></tt> interprets escape sequences but does no string
+interpolation</li>
+<li><tt class="docutils literal"><span class="pre">r&quot;^\s*(?:#|$)&quot;</span></tt> produces a regular expression object rather than a
+string</li>
+<li><tt class="docutils literal"><span class="pre">b&quot;DATA\xff\u2200&quot;</span></tt> is a byte array literal for
+<tt class="docutils literal"><span class="pre">[68,65,84,65,255,226,136,128]</span></tt>.</li>
+</ul>
+<p>Perhaps surprisingly, these behaviors are not hard-coded into the Julia
+parser or compiler. Instead, they are custom behaviors provided by a
+general mechanism that anyone can use: prefixed string literals are
+parsed as calls to specially-named macros. For example, the regular
+expression macros is just the following:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">macro</span> <span class="n">r_str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+  <span class="n">Regex</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>That&#8217;s all. This macro says that the literal contents of the string
+literal <tt class="docutils literal"><span class="pre">r&quot;^\s*(?:#|$)&quot;</span></tt> should be passed to the <tt class="docutils literal"><span class="pre">&#64;r_str</span></tt> macro and
+the result of that expansion should be placed in the syntax tree where
+the string literal occurs. In other words, the expression
+<tt class="docutils literal"><span class="pre">r&quot;^\s*(?:#|$)&quot;</span></tt> is equivalent to placing the following object
+directly into the syntax tree:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">Regex</span><span class="p">(</span><span class="s">&quot;^</span><span class="se">\\</span><span class="s">s*(?:#|\</span><span class="si">$</span><span class="s">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Not only is the string literal form shorter and far more convenient, but
+it is also more efficient: since the regular expression is compiled and
+the <tt class="docutils literal"><span class="pre">Regex</span></tt> object is actually created <em>when the code is compiled</em>,
+the compilation occurs only once, rather than every time the code is
+executed. Consider if the regular expression occurs in a loop:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">for</span> <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="n">match</span><span class="p">(</span><span class="n">r</span><span class="s">&quot;^\s*(?:#|</span><span class="si">$</span><span class="s">)&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">match</span> <span class="o">==</span> <span class="n">nothing</span>
+    <span class="c"># non-comment</span>
+  <span class="k">else</span>
+    <span class="c"># comment</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Since the regular expression <tt class="docutils literal"><span class="pre">r&quot;^\s*(?:#|$)&quot;</span></tt> is compiled and inserted
+into the syntax tree when this code is parsed, the expression is only
+compiled once instead of each time the loop is executed. In order to
+accomplish this without macros, one would have to write this loop like
+this:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="n">re</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span><span class="s">&quot;^</span><span class="se">\\</span><span class="s">s*(?:#|\</span><span class="si">$</span><span class="s">)&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="n">match</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">match</span> <span class="o">==</span> <span class="n">nothing</span>
+    <span class="c"># non-comment</span>
+  <span class="k">else</span>
+    <span class="c"># comment</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Moreover, if the compiler could not determine that the regex object was
+constant over all loops, certain optimizations might not be possible,
+making this version still less efficient than the more convenient
+literal form above. Of course, there are still situations where the
+non-literal form is more convenient: if one needs to interpolate a
+variable into the regular expression, has to take this more verbose
+approach; in cases where the regular expression pattern itself is
+dynamic, potentially changing upon each loop iteration, a new regular
+expression object must be constructed on each iteration. The vast
+majority of use cases, however, one does not construct regular
+expressions dynamically, depending on run-time data. In this majority of
+cases, the ability to write regular expressions as compile-time values
+is, well, invaluable.</p>
+<p>The mechanism for user-defined string literals is deeply, profoundly
+powerful. Not only are Julia&#8217;s non-standard literals implemented using
+it, but also the command literal syntax (<tt class="docutils literal"><span class="pre">`echo</span> <span class="pre">&quot;Hello,</span> <span class="pre">$person&quot;`</span></tt>)
+is implemented with the following innocuous-looking macro:</p>
+<div class="highlight-julia"><div class="highlight"><pre><span class="k">macro</span> <span class="n">cmd</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="p">:(</span><span class="n">cmd_gen</span><span class="p">(</span><span class="o">$</span><span class="n">shell_parse</span><span class="p">(</span><span class="n">str</span><span class="p">)))</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Of course, a large amount of complexity is hidden in the functions used
+in this macro definition, but they are just functions, written
+entirely in Julia. You can read their source and see precisely what they
+do —&nbsp;and all they do is construct expression objects to be inserted into
+your program&#8217;s syntax tree.</p>
+</div>
+</div>
+<div class="section" id="reflection">
+<h2>Reflection<a class="headerlink" href="#reflection" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="arrays.html" class="btn btn-neutral float-right" title="Arreglos">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="Modules"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2013, Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3-dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
