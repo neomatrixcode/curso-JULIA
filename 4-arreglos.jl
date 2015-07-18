@@ -12,6 +12,10 @@ println("cuantos elementos no son cero?? ",countnz(A) )
 println(stride(A,1),"\n") 
 
 
+#usamos ∈ para saber si un elemento pertenece a una estructura de datos 
+println("2 ∈ A : $(2 ∈ A)") 
+println("1 ∈ A : $(1 ∈ A)") 
+
 
 B = [i^2+i for i=0:10]
 
@@ -25,9 +29,15 @@ println("cuantos elementos no son cero?? ",countnz(B) )
 println(stride(B,1),"\n") 
 
 
+#aqui un vector de vectores
+
+x = Vector[ ["Alex", 9], ["David", 12], ["Daniel", 12]]
+
+#matrices
+
 p(x)=x+2
 
-c = [p(i)+2j for i=1:5, j=1:5]
+c = [p(i)+2j for i=1:5, j=1:7]
 
 println("el arreglo es: ",c)
 println("su numero de dimensiones: ",ndims(c))
@@ -39,6 +49,7 @@ println("cuantos elementos no son cero?? ",countnz(c) )
 println(stride(c,1)) 
 
 
+#vector de matrices
 println("\n {eye(n) for n=1:4} = $({eye(n) for n=1:4}),\n\n")
 
 
@@ -72,11 +83,16 @@ dot(θ,β)
 "LᴬTₑX"
 
 
-
 #matrices el ; indica una nueva fila
 
 γ = [1 2 ; 1 2]
-Ι = [1 2 ; 3 2]
+
+#o tambien se puede declarar como si se escribiera en papel
+
+Ι = [
+     1 2 
+     3 2
+    ]
 
 #PARA MULTIPLICAR MATRICES USAMOS *
 γ*Ι

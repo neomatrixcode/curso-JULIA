@@ -1,3 +1,20 @@
+#cadenas
+"a0" < "a1"
+"aaa" < "aab"
+
+ca= ["aaaaa", "gato", "zepeda", "ave", "aaron"]
+
+for i = 1:5
+     for j = 1:4
+     	if ca[j] > ca[j+1]
+     		aux = ca[j]
+     		ca[j]=ca[j+1]
+     		ca[j+1] = aux	
+     	end
+     end
+end
+
+println("$ca")
 
 println (repeat("jja..\n",10))
 repeat("abc",3)
@@ -15,6 +32,12 @@ print("2+2=$(2+2)\n")
 print("\n",int ('\r'),"\n")
 
 int ('\r')
+
+#usando sublime escribimos for [tab], el rango sera a como lista
+for i = a
+	println("$i")
+end
+
 
 function calabacita(x,y)
 	print(x)
@@ -41,11 +64,7 @@ print("+(1,2,3,4)= $(+(1,2,3))\n")
 
 #plot(x -> x^3 - 9x, -5, 5)
 
-#es posible usar && como if y || como not-then
 
-α = 3
-α<5 && println("es menor")
-α>10 || println("no es mayor a 10")
 
 comparacion(x, y) = println(x < y ? "x=$x es menor que y=$y": x > y ? "x es mayor que y" : "x es igual a y")
 
