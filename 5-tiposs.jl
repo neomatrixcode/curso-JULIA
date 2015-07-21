@@ -1,8 +1,8 @@
 y = 30
-#x :: INT8         # una variable por sí 
-#locales  x :: INT8  
-#x::Int = 10  
-   
+#x :: INT8         # una variable por sí
+#locales  x :: INT8
+#x::Int = 10
+
 
 x=(2+2)::Int64
 print("y = 30 [$y]\nx=(2+2)::Int64 [$x]\n")
@@ -18,7 +18,7 @@ print(1 :: IntOrString,"\n")
 print("Hello!" :: IntOrString,"\n")
 
 
-#print(1.0 :: IntOrString,"\n")  esto no es posible el tipo de dato no es int o string 
+#print(1.0 :: IntOrString,"\n")  esto no es posible el tipo de dato no es int o string
 
 #tuplas
 print(( 1 , "foo" , 2.5 )  ::  ( Int64 , String , Any ), "\n")
@@ -47,20 +47,20 @@ g(x, y::Float64) = x + 2y
 
 println(g(2.0, 3))
 println(g(2, 3.0))
-println(g(2.0, 3.0)) #en este caso se ejecuta el primer metodo a arriba hacia abajo que sea 
+println(g(2.0, 3.0)) #en este caso se ejecuta el primer metodo a arriba hacia abajo que sea
 			#compatible con los parametros (pero podria sr cualquiera)
 
 
 #constructores (tipos de datos defindos por el usuario)
 
-type T1 
-  x :: Int64 
+type T1
+  x :: Int64
   y :: String
 end
 
-type T2 
-  x :: Int64 
-  T2 ( x :: Int64 )  = new ( x ) 
+type T2
+  x :: Int64
+  T2 ( x :: Int64 )  = new ( x )
 end
 
 println( "T1 ( 1 ) = ",T1 ( 1, "hola" ) )
@@ -74,7 +74,7 @@ println("T1 ( 1.0 ) = ",T1 ( 1.0 , "hola") )
 println("T2 ( 1.0 ) = ",T2 ( 1.0 ) )
 
 a=T1 ( 1, "hola" )
-b= T1 ( 3, "adios" ) 
+b= T1 ( 3, "adios" )
 
 a+b #es posible definir un metodo +(T1, T1)
 
@@ -91,10 +91,17 @@ end
 print(Punto( 1.0 , 2.0 ),"\n")
 print(Punto( 1 , 2 ),"\n")
 
+punto = Punto(5,4)
+
+punto.y
+
+punto.y=8
+
+
 print(Punto {Float64}(1.0,2.0),"\n")
 
 
-typealias Vector{T} Array{T,1} #el tipo vector es un array definido con un parametro T y un 1 
+typealias Vector{T} Array{T,1} #el tipo vector es un array definido con un parametro T y un 1
 typealias Matrix{T} Array{T,2}
 
 
@@ -134,7 +141,7 @@ println(promote(1 + 2im, 3//4))
 
 #tipos de datos que se componen de  FUNCIONES!!!!!!!!!!!!!!!!!!!!!
 
-type F 
+type F
 	f::Function
 	x::Float64
 end
