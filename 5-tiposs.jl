@@ -49,7 +49,27 @@ println(g(2.0, 3))
 println(g(2, 3.0))
 println(g(2.0, 3.0)) #en este caso se ejecuta el primer metodo a arriba hacia abajo que sea
 			#compatible con los parametros (pero podria sr cualquiera)
+#el typo funcion puede signarse o usarse como un valor
 
+o(x) = 6x 
+
+println(typeof(o)) #nos dice que o es de tipo funcion
+
+# y podemos usar a o como un valor 
+
+r= o  #asignamos a r el 'valor' de o 
+
+println(typeof(r)) #verificamos el tipo
+
+println(r(4)) #podemos usar a r como si fuera o
+
+#podemos usar a o como si fuera un valor dentro de otra funcion
+
+e()= o
+
+e() #al ejecutarla nos devolvera la funcion o
+
+e()(2) # nos devolvera la funcion o y evaluaremos a o con el valor 2
 
 #constructores (tipos de datos defindos por el usuario)
 
