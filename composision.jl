@@ -1,0 +1,1 @@
+*(f::Function, g::Function)= x->f(g(x)); (sin^2)(pi/4) == sin(sin(pi/4))
