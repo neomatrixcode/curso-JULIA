@@ -15,10 +15,3 @@ x < y ? "x es menor a y"  :  x > y ? "x es mayor a y" : "x es igual y"
 α = 3
 α<5 && println("es menor")
 α>10 || println("no es mayor a 10")
-
-
-
-
-
-
-
